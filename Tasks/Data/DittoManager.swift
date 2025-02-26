@@ -1,6 +1,24 @@
 import Foundation
 import DittoSwift
 
+// MARK: DataManager Protocol
+@MainActor protocol DataManager : ObservableObject {
+    var appManager: AppManager { get set}
+    var tasks: [TaskModel] { get set }
+    var isPresentingEditScreen: Bool { get set }
+    var selectedTaskModel: TaskModel? { get set }
+    
+    func initialize() async throws
+    func populateTaskCollection() async throws
+    func setSyncEnabled(_ newValue: Bool) throws
+    func insertTaskModel(_ task: TaskModel) async
+    func updateTaskModel(_ task: TaskModel) async
+    func toggleComplete(task: TaskModel) async
+    func deleteTaskModel(_ task: TaskModel) async
+    
+    
+}
+
 // MARK: DittoManager Implementation
 @MainActor class DittoManager : ObservableObject, DataManager {
     @Published var tasks = [TaskModel]()
