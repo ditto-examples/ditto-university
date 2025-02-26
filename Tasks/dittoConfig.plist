@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>endpointUrl</key>
+	<string>put Cloud URL Endpoint here</string>
+	<key>appId</key>
+	<string>put appId here</string>
+	<key>authToken</key>
+	<string>put online playground auth token here</string>
+</dict>
+</plist>
