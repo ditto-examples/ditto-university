@@ -20,3 +20,6 @@ These credentials (app ID and online playground token) will be used to authentic
 
 ## Next Steps
 Now you have your account registered, you're ready to start building your app. Let's Go!
+
+[Continue to 1.2 - Initialising Your App →](../1.2/README.md)
+

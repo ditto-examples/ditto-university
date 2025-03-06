@@ -1,4 +1,4 @@
-# Ditto iOS Introduction to Ditto Learning Module POC 🚀
+# Welcome to Ditto University! 🚀
 
 > [!NOTE] 
 >This is a proof of concept for the Ditto iOS Introduction to Ditto Learning Module.  It is a simple to-do list app that uses Ditto to store and sync the task data.  This is not production ready code and is only meant to be used as a reference for the POC of Ditto University learning modules. 
