@@ -25,10 +25,11 @@ git clone https://github.com/ditto-examples/ditto-university
 
 ### Building and Running the Application
 
-To see the app in action running with mock data - follow the instructions based on what platform you are using.
-- [Building and Running the Swift UI iOS Application](lab2-swift.md)
-- [Building and Running the Android JetPack Compose with Kotlin Application](lab2-android.md)
-- [Building and Running the Flutter Application](lab2-flutter.md)
+To see the app in action running with mock data - follow the instructions based on what platform you are using:
+
+- [Building and Running the Swift UI iOS Application](lab1-swift.md)
+- [Building and Running the Android JetPack Compose with Kotlin Application](lab1-android.md)
+- [Building and Running the Flutter Application](lab1-flutter.md)
 
 ## Ditto Identity
 
@@ -41,9 +42,9 @@ The Ditto SDK provides a Ditto Identity to the SDK.  This identity provides the 
 
 In Lab 2, we will update our app to use the `onlinePlayground` identity type.  To Update the initialization of the Ditto instance - follow the instructions based on what platform you are using:
 
-- [Update Initialization of the Ditto instance - Swift UI iOS Application](lab3-swift.md)
-- [Update Initialization of the Ditto instance - Android JetPack Compose with Kotlin Application](lab3-android.md)
-- [Update Initialization of the Ditto instance - Flutter Application](lab3-flutter.md)
+- [Update Initialization of the Ditto instance - Swift UI iOS Application](lab2-swift.md)
+- [Update Initialization of the Ditto instance - Android JetPack Compose with Kotlin Application](lab2-android.md)
+- [Update Initialization of the Ditto instance - Flutter Application](lab2-flutter.md)
 
 ## ❓ Quiz 
 
