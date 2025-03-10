@@ -1,0 +1,31 @@
+    func initialize() async throws {
+        // setup logging
+        DittoLogger.enabled = true
+        
+        //setup logging level
+        let isPreview: Bool =
+        ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        if !isPreview {
+            DittoLogger.minimumLogLevel = .debug
+        }
+        
+        //TODO: setup Ditto Identity
+        ditto = Ditto(
+            identity: .onlinePlayground(
+                appID: appManager.appConfig.appId,
+                token: appManager.appConfig.authToken,
+                enableDittoCloudSync: true
+            )
+        )
+        do {
+            //Disable sync with v3 peers, required for DQL
+            try ditto?.disableSyncWithV3()
+            
+            //setup the collection with initial data and then setup observer
+            try await self.populateTaskCollection()
+            try self.registerObservers()
+            
+        } catch let error {
+            self.appManager.setError(error)
+        }
+    }

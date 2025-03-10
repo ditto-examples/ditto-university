@@ -1,4 +1,4 @@
-# 1.1 - Register Your Portal Account 🚀
+# 1.1 - Getting Started: Register Your Portal Account 🚀
 
 ## The Ditto Portal
 
@@ -96,5 +96,5 @@ The answers can be found in the [answer file](.answer).
 
 Now that you have created your Ditto Portal account and configured your app, you're ready to start building a mobile app using the Ditto SDK. Let's go!
 
-[Continue to 1.2 - Initializing Your App →](../1.2/README.md)
+[Continue to 1.2 - Setting Up Your Development Environment →](../1.2/README.md)
 

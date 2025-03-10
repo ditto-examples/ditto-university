@@ -33,24 +33,29 @@ Through this module, you'll learn how to:
 ## 📖 Table of Contents
 
 1. [Getting Started](1.1/README.md)
-   - Register Your Portal Account
+  - Register Your Portal Account
 
 2. [Setting Up Your Development Environment](1.2/README.md)
+  - Learn about the Ditto SDK
+  - Cloning the Code
+  - Running the App with Mock Data
+  - Providing Authentication Credentials
+  - Setting up the Ditto Identity
 
 3. [Try Out The Sample Data](1.3/README.md)
-   - Understanding The Data Model
-   - The TaskModel Struct
-   - Building and Running the iOS Application
+  - Understanding The Data Model
+  - The TaskModel Struct
+  - Building and Running the iOS Application
 
 4. [Create Your First Ditto Document](1.4/README.md)
-   - Intro to DQL
-   - Update the App
-   - View Changes in the Portal
+  - Intro to DQL
+  - Update the App
+  - View Changes in the Portal
 
 5. [Subscriptions and Observers](1.5/README.md)
 
 ## 🚀 Ready to Begin?
 
-Head to [Lesson 1.1 - Register Your Portal Account](lesson-1/1.1/README.md) to get started! 
+Head to [Lesson 1.1 - Getting Started:  Register Your Portal Account](lesson-1/1.1/README.md) to get started! 
 
 

@@ -1,7 +1,4 @@
-# 1.2 Launch The Basic Application
-
-> [!NOTE] 
-> This is a proof of concept for the Introduction to Ditto Learning Module. It demonstrates a simple project and task management app using Ditto for data storage and synchronization. The code provided is for reference purposes only and is not production-ready.
+# 1.2 Setting Up Your Development Environment
 
 ## Ditto SDK
 
@@ -18,53 +15,53 @@ For detailed instructions on adding the Ditto SDK to your own projects, refer to
 - [Kotlin SDK installation guide](https://docs.ditto.live/sdk/latest/install-guides/kotlin#installing-package-dependencies)
 - [Flutter SDK installation guide](https://docs.ditto.live/sdk/latest/install-guides/flutter#installing-package-dependencies)
 
-## Clone the repository
+## Lab 1: Clone the repository and run the App with Mock Data
 
-To work with all future labs, you will are required to clone learning module repository to your local machine using the following command:
+To work with all future labs, you will are required to clone the Ditto University repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/ditto-examples/learning-swift-introduction
+git clone https://github.com/ditto-examples/ditto-university
 ```
 
-## Building and Running the iOS Application
+## Building and Running the Application
 
-To see the app in action running with mock data, let's build and run the app by following these steps:
+To see the app in action running with mock data - follow the instructions based on what platform you are using.
+- [Building and Running the Swift UI iOS Application](lab2-swift.md)
+- [Building and Running the Android JetPack Compose with Kotlin Application](lab2-android.md)
+- [Building and Running the Flutter Application](lab2-flutter.md)
 
-1. Log into the Ditto portal at <https://portal.ditto.live/>.  Make note of the app ID and online playground token.
-2. Launch Xcode and open the `/Tasks/Tasks.xcodeproj` project.
-3. Open the `dittoConfig.plist` file and update your app ID and online playground token with the values from the Ditto portal.
-4. Navigate to the project **Signing & Capabilities** tab and modify the **Team** and **Bundle Identifier** settings to your Apple developer account credentials to provision building to your device.
-5. In Xcode, select a connected iOS device or iOS Simulator as the destination.
-6. Choose the **Product > Run** menu item.
+## Ditto Identity
 
-The app will build and run on the selected device or emulator.  You can add, edit, and delete tasks in the app.  But if you close the app and open it up, all your changes will be lost due to the mock data.  Let's start fixing that by replacing the mock data with a real Ditto database.
+The Ditto SDK provides a Ditto Identity to the SDK.  This identity provides the SDK with various identity configurations that you can use when initializing a Ditto instance. Several identity types are supported including:
+- `offlinePlayground`: Develop peer-to-peer apps with no cloud connection. This mode offers no security and must only be used for development.
+- `onlineWithAuthentication`: Run Ditto in secure production mode, logging on to Ditto Cloud or on on-premises authentication server. User permissions are centrally managed.
+- `onlinePlayground`: Test a Ditto Cloud app with weak shared token authentication (“Playground mode”). This mode is not secure and must only be used for development.
 
-## Provide Authentication Credentials 
+In Lab 2, we will update our app to use the `onlinePlayground` identity type.
 
-Open the `DittoManager.swift` file and find the `initialize()` method.  This is the place to setup Ditto Identity.
+### Lab 2: Update Initialization of the Ditto instance
 
-```swift
-        //
-        //TODO: setup Ditto Identity
-        //
-        //UPDATE CODE HERE
-```
-You can find this quickly by using the quick selection bar in Xcode.
-![Quick Selection Bar](../assets/select-identity.gif)
+To Update the initialization of the Ditto instance - follow the instructions based on what platform you are using.
+- [Update Initialization of the Ditto instance - Swift UI iOS Application](lab3-swift.md)
+- [Update Initialization of the Ditto instance - Android JetPack Compose with Kotlin Application](lab3-android.md)
+- [Update Initialization of the Ditto instance - Flutter Application](lab3-flutter.md)
 
-Let's update the `TODO` comment to set up Ditto Identity. A Ditto Identity provides the SDK with your application credentials and connection details. These credentials - your app ID and online playground token - are stored in `dittoConfig.plist` and automatically loaded into the `DittoManager` through the `appManager`.
+## ❓ Quiz 
 
-Since the credentials are already available through the `appManager`, we can use them to create our Ditto Identity. Replace the `TODO` comment with this code:
+1. What is the purpose of the Ditto Identity? 
+   - a) provides a unique identifier for a Ditto instance
+   - b) provides various identity configurations that you can use when initializing a Ditto instance. 
+   - c) provides Ditto with information about the user that is logged into the device. 
+   - d) provides Ditto with information about the device that the app is running on. 
 
-```swift
-ditto = Ditto(
-	identity: .onlinePlayground(
-		appID: appManager.appConfig.appId,
-		token: appManager.appConfig.authToken,
-		enableDittoCloudSync: true
-	)
-)
-```
+## Summary
 
-As you can see we are using the identity type of `onlinePlayground`.  This tells the Ditto SDK to connect to the Ditto Cloud and use the app ID and online playground token for authentication.  The enableDittoCloudSync flag tells the SDK to use the Ditto Cloud for sync.
+🎉 Congratulations 🙌! In this lesson, you have learned:
+1. The purpose of the Ditto SDK 
+2. What the Ditto Identity is and how it is used to initialize a Ditto instance
 
+## Next Steps
+
+Now that you have created setup the Ditto SDK and initialized the Ditto instance, you're ready to start loading data using the Ditto SDK. Let's go!
+
+[Continue to 1.3 - Try Out The Sample Data →](../1.3/README.md)
