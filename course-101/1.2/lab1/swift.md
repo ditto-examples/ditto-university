@@ -2,7 +2,7 @@
 
 To see the app in action running with mock data, let's build and run the app by following these steps:
 
-1. Log into the Ditto portal at <https://portal.ditto.live/>.  Make note of the App ID, Auth URL, Websocket URL, and Online Playground Authentication Token.  You should have already done this in the previous lab in [Section 1.1](../1.1/README.md).
+1. Log into the Ditto portal at <https://portal.ditto.live/>.  Make note of the App ID, Auth URL, Websocket URL, and Online Playground Authentication Token.  You should have already done this in the previous lab in [Section 1.1](../../1.1/README.md).
 
 2. Launch Xcode and open the `/course-101/swift/Tasks.xcodeproj` project.
 
@@ -19,4 +19,4 @@ To see the app in action running with mock data, let's build and run the app by 
 
 The app will build and run on the selected device or emulator.  You can add, edit, and delete tasks in the app.  But if you close the app and open it up, all your changes will be lost due to the mock data.  
 
-Let's start fixing that by replacing the mock data with a real Ditto database.  [Return to the lesson](../1.2/README.md) to continue.
+Let's start fixing that by replacing the mock data with a real Ditto database.  [Return to the lesson](../README.md) to continue.

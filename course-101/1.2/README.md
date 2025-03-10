@@ -27,9 +27,9 @@ git clone https://github.com/ditto-examples/ditto-university
 
 To see the app in action running with mock data - follow the instructions based on what platform you are using:
 
-- [Building and Running the Swift UI iOS Application](lab1-swift.md)
-- [Building and Running the Android JetPack Compose with Kotlin Application](lab1-android.md)
-- [Building and Running the Flutter Application](lab1-flutter.md)
+- [Building and Running the Swift UI iOS Application](lab1/swift.md)
+- [Building and Running the Android JetPack Compose with Kotlin Application](lab1/android.md)
+- [Building and Running the Flutter Application](lab1/flutter.md)
 
 ## Ditto Identity
 
@@ -42,11 +42,11 @@ The Ditto SDK provides a Ditto Identity to the SDK.  This identity provides the 
 
 In Lab 2, we will update our app to use the `onlinePlayground` identity type.  To Update the initialization of the Ditto instance - follow the instructions based on what platform you are using:
 
-- [Update Initialization of the Ditto instance - Swift UI iOS Application](lab2-swift.md)
-- [Update Initialization of the Ditto instance - Android JetPack Compose with Kotlin Application](lab2-android.md)
-- [Update Initialization of the Ditto instance - Flutter Application](lab2-flutter.md)
+- [Update Initialization of the Ditto instance - Swift UI iOS Application](lab2/swift.md)
+- [Update Initialization of the Ditto instance - Android JetPack Compose with Kotlin Application](lab2/android.md)
+- [Update Initialization of the Ditto instance - Flutter Application](lab2/flutter.md)
 
-If you are stuck, you can refer to the `.lab2-finished-` with the corresponding platform name in the `course-101/1.2` directory.
+If you are stuck, you can refer to the `.finished` files in the [lab2](./lab2) directory with the corresponding platform name. 
 
 ## ❓ Quiz 
 
@@ -55,6 +55,8 @@ If you are stuck, you can refer to the `.lab2-finished-` with the corresponding 
    - b) provides various identity configurations that you can use when initializing a Ditto instance. 
    - c) provides Ditto with information about the user that is logged into the device. 
    - d) provides Ditto with information about the device that the app is running on. 
+
+The answer can be found in the [answer file](.answer).
 
 ## Summary
 
