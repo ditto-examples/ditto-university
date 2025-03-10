@@ -46,6 +46,8 @@ In Lab 2, we will update our app to use the `onlinePlayground` identity type.  T
 - [Update Initialization of the Ditto instance - Android JetPack Compose with Kotlin Application](lab2-android.md)
 - [Update Initialization of the Ditto instance - Flutter Application](lab2-flutter.md)
 
+If you are stuck, you can refer to the `.lab2-finished-` with the corresponding platform name in the `course-101/1.2` directory.
+
 ## ❓ Quiz 
 
 1. What is the purpose of the Ditto Identity? 
