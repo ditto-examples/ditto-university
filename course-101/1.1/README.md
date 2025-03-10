@@ -21,9 +21,9 @@ This architecture enables seamless data synchronization between:
 
 ### Ditto App
 
-A Ditto Portal App and App ID functions as a tenant in the traditional cloud sense. It provides a unique identifier for each distinct application environment, isolating data and configurations within that specific context.
+A Ditto Portal `App` and `App ID` functions as a tenant in the traditional cloud sense. It provides a unique identifier for each distinct application environment, isolating data and configurations within that specific context.
 
-### Lab 1 - Create a Ditto Portal Account and Ditto App
+## Lab 1 - Create a Ditto Portal Account and Ditto App
 
 To get started, you'll need a Ditto Portal account to sync information with the Big Peer and a configured application to authenticate your app using the Ditto SDK.
 
