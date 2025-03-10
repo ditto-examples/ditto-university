@@ -8,7 +8,7 @@ The Ditto Portal is a web-based interface for managing your Ditto resources. It 
 
 The Big Peer is a trusted cloud deployment of Ditto's sync engine and associated services that enables advanced platform capabilities. Every Ditto Portal account includes a Big Peer instance that can optionally serve as a central hub for data storage and synchronization.
 
-In our Project Management app, data is stored in several collections within the Big Peer instance. Each project and task is stored as a JSON document in its respective collection. The Ditto SDK provides a unified API for:
+In our app, data is stored in several collections within the Big Peer instance. Each project and task is stored as a JSON document in its respective collection. The Ditto SDK provides a unified API for:
 - Reading and writing data to the Big Peer
 - Synchronizing with other devices (Small Peers) running the same app
 - Managing offline data persistence
