@@ -1,38 +1,32 @@
-# Welcome to Ditto University! 🚀
+# Introduction to Ditto SDK - Your First Ditto App 🚀
 
 > [!NOTE] 
->This is a proof of concept for the Ditto iOS Introduction to Ditto Learning Module.  It is a simple to-do list app that uses Ditto to store and sync the task data.  This is not production ready code and is only meant to be used as a reference for the POC of Ditto University learning modules. 
+>This is a proof of concept for the Introduction to Ditto Learning Module.  It is a simple project and task management app that uses Ditto to store and sync the project and task data.  The code provided is not production ready and is only meant to be used as a reference for the POC of Ditto University learning modules. 
 
 ## Prerequisites
 
-You will need the following to complete this learning module:
+The Introduction to Ditto Learning Module is provided in several different languages and platforms.  You will need various tools installed based on the platform you are building with.  
 
+You will need the following installed on your development machine to complete this learning module:
+
+### iOS Swift Development Environment
 - [Xcode](https://developer.apple.com/xcode/) 15 or greater
 - Git installed on your machine 
-- A Ditto Portal account with an app created (directions provided below)
-- Ditto SDK installed as a package dependency using Swift Package Manager (already done for you)
 
+### Android Kotlin Development Environment
+- [Android Studio](https://developer.android.com/studio) 2024.1.1 or higher (Koala)
+- Git installed on your machine 
 
-### The Big Peer and Cloud Storage
-
-The `Big Peer` is a trusted cloud deployment of Ditto's sync engine and associated services that enables advanced platform capabilities. Every Ditto Portal account includes a Big Peer instance that serves as a central hub for data storage and synchronization.
-
-In our Tasks app, data is stored in a collection called `tasks` within the Big Peer instance. Each task is stored as a JSON document in this collection. The Ditto SDK provides a unified API for:
-- Reading and writing data to the Big Peer
-- Synchronizing with other devices (called `Small Peers`) running the same app
-- Managing offline data persistence
-- Handling real-time updates
-
-This architecture enables seamless data synchronization between:
-- Your device and the cloud (Big Peer)
-- Your device and other users' devices (Small Peers)
-- The cloud and all connected devices
-
-
+### Flutter Development Environment
+- [Flutter](https://flutter.dev/) 3.19 or greater (Tested with 3.24)
+- [Xcode](https://developer.apple.com/xcode/) 15 or greater
+- [Android Studio](https://developer.android.com/studio) 2024.1.1 or higher (Koala)
+- An IDE for your choice of language that supports Flutter (Android Studio, VSCode, etc.)
+- Git installed on your machine 
 
 ## The Scenario
 
-You've just joined a development team for the company Acmezon that recently demonstrated a task management app to company leadership. The app demo was a hit - the UI was polished, the interactions were smooth, and leadership was ready to ship it immediately. There was just one catch: the entire app was running on mock data.
+You've just joined a development team for the company Acmezon that recently demonstrated a Project Management app to company leadership. The app demo was a hit - the UI was polished, the interactions were smooth, and leadership was ready to ship it immediately. There was just one catch: the entire app was running on mock data.
 
 The prototype lacks several critical features modern users expect:
 - No offline support - data disappears when the app closes
@@ -45,13 +39,15 @@ Rather than rebuilding from scratch, the team has decided to integrate Ditto to 
 ## Learning Objectives
 
 Through this module, you'll learn how to:
-1. Replace mock data with a real Ditto database
-2. Implement offline-first data persistence
-3. Enable real-time updates across devices
+1. What Ditto is and how it works
+2. Setup a Ditto Portal account and create an app
+3. Replace mock data with a real Ditto database
+4. Implement offline-first data persistence
+5. Enable real-time updates across devices
 
 
 ## Ready to Begin?
 
-Head to [Lesson 1 - Your First Ditto App](lesson-1/README.md) to get started! 🚀
+Head to [Lesson 1.1 - Register Your Portal Account](lesson-1/1.1/README.md) to get started! 🚀
 
 

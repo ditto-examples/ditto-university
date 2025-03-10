@@ -1,16 +1,10 @@
-# Lesson 1 - Your First Ditto App 🚀
+# Introduction to Ditto SDK - Your First Ditto App 🚀
 
 > [!NOTE] 
->This is a proof of concept for the Ditto iOS Introduction to Ditto Learning Module.  It is a simple to-do list app that uses Ditto to store and sync the task data.  This is not production ready code and is only meant to be used as a reference for the POC of Ditto University learning modules. 
+>This is a proof of concept for the Introduction to Ditto Learning Module.  It is a simple project and task management app that uses Ditto to store and sync the project and task data.  The code provided is not production ready and is only meant to be used as a reference for the POC of Ditto University learning modules. 
 
-## Prerequisites
 
-You will need the following to complete this learning module:
-
-- [Xcode](https://developer.apple.com/xcode/) 15 or greater
-- Git installed on your machine 
-- A Ditto Portal account with an app created (directions provided below)
-- Ditto SDK installed as a package dependency using Swift Package Manager (already done for you)
+### Application Overview
 
 
 ### The Big Peer and Cloud Storage
@@ -33,6 +27,7 @@ This architecture enables seamless data synchronization between:
 ## Table of Contents
 
 1. [Getting Started](1.1/README.md)
+   - Register Your Portal Account
 
 2. [Setting Up Your Development Environment](1.2/README.md)
 

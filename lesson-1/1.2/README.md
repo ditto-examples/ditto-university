@@ -1,32 +1,30 @@
 # 1.2 Launch The Basic Application
 
 > [!NOTE] 
->This is a proof of concept for the Ditto iOS Introduction to Ditto Learning Module.  It is a simple to-do list app that uses Ditto to store and sync the task data.  This is not production ready code and is only meant to be used as a reference for the POC of Ditto University learning modules. 
+> This is a proof of concept for the Introduction to Ditto Learning Module. It demonstrates a simple project and task management app using Ditto for data storage and synchronization. The code provided is for reference purposes only and is not production-ready.
 
-## Prerequisites
+## Ditto SDK
 
-You will need the following to complete this learning module:
+The Ditto SDK helps develoeprs build powerful, offline-capable applications with real-time data sync. Designed for flexibility and performance, Ditto's SDK enables seamless peer-to-peer communication, efficient data synchronization, and robust offline support—no complex infrastructure required.
 
-- [Xcode](https://developer.apple.com/xcode/) 15 or greater
-- Git installed on your machine 
-- A Ditto Portal account with an app created (previous Step)
-- Ditto SDK installed as a package dependency using Swift Package Manager (already done for you)
+Whether you’re building for mobile, desktop, or embedded systems, the Ditto SDK gives you the tools to create reliable and connected applications that work anywhere.
 
+## Package Dependencies
 
-### Package Dependencies
+The Ditto SDK is already included in this project. When creating your own Ditto-enabled applications, adding the SDK as a package dependency is a required first step.
 
-The Ditto SDK is already included in this project as a Swift Package Manager dependency. When creating your own Ditto-enabled applications, adding the SDK as a package dependency is a required first step.
+For detailed instructions on adding the Ditto SDK to your own projects, refer to the following documentation:
+- [Swift SDK installation guide](https://docs.ditto.live/sdk/latest/install-guides/swift#installing-package-dependencies)
+- [Kotlin SDK installation guide](https://docs.ditto.live/sdk/latest/install-guides/kotlin#installing-package-dependencies)
+- [Flutter SDK installation guide](https://docs.ditto.live/sdk/latest/install-guides/flutter#installing-package-dependencies)
 
-For detailed instructions on adding the Ditto SDK to your own projects, refer to the [Swift SDK installation guide](https://docs.ditto.live/sdk/latest/install-guides/swift#installing-package-dependencies).
+## Clone the repository
 
-### Clone the repository
-
-Clone the repository to your local machine using the following command:
+To work with all future labs, you will are required to clone learning module repository to your local machine using the following command:
 
 ```bash
 git clone https://github.com/ditto-examples/learning-swift-introduction
 ```
-
 
 ## Building and Running the iOS Application
 
