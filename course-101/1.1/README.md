@@ -61,7 +61,7 @@ Ditto offers an HTTP API for programmatic interaction with transactional data ge
 
 The Connect via HTTP section provides the authentication information needed for using the Ditto HTTP REST API.
 
-## Quiz 
+## ❓ Quiz 
 
 1. What is the purpose of the Ditto Portal? 
    - a) A web-based interface for managing Ditto resources, configuring apps, and monitoring usage

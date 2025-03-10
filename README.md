@@ -1,13 +1,37 @@
-# Introduction to Ditto SDK - Your First Ditto App 🚀
+# Ditto University POC
 
 > [!NOTE] 
->This is a proof of concept for the Introduction to Ditto Learning Module.  It is a simple project and task management app that uses Ditto to store and sync the project and task data.  The code provided is not production ready and is only meant to be used as a reference for the POC of Ditto University learning modules. 
+>This is a proof of concept for the Ditto University learning modules.  The concepts and code provided is not production ready and is only meant to be used as a reference for the POC of Ditto University learning modules. 
+
+## Welcome to Ditto University
+
+This is a training course for **both internal and external** parties to learn about Ditto.
+
+## Target Audience
+
+The content is targeted at a mobile developer with some experience of building apps that is *completely new* to Ditto. We assume they will have familiarity with:
+
+- One or more mobile development languages / frameworks (e.g. Swift, Kotlin, Flutter etc).
+- The software development environment and IDE (e.g. XCode / Android Studio)
+- Composing basic UI elements (screens, buttons, lists etc)
+- Installation of their application onto a simulator or development device
+- Package management and installation of external dependencies
+
+*Note: Whilst Ditto University will touch on all of the above, it is NOT designed to specifically teach any of these elements.*
+
+## Target Outcome
+
+The intention is to convert the mobile developer who was completely new to Ditto into one that can create robust, sophisticated Enterprise production apps using Ditto. They will become deeply familiar with Ditto's core concepts and feel confident in delivering brand new applications into production or migrating existing applications into a more resilient, Ditto-powered form.
+
+## Course Structure
+
+The course material will be deliberately practical with an explicit intention to make progress quickly. It will follow a gradient, starting with basic concepts and a very simple implementation. It will then build on this foundation by introducing more complex topics throughout the course cumulating in a fully-fledged production-ready application. The application's business logic and aesthetics will be kept to an absolute minimum so as not to dilute the purpose away from Ditto-related education.
+
+Modules will roughly be split into Beginner, Intermediate and Advanced Levels. Whilst there will be a linear "start to finish" path, the modules will be sufficiently discrete so that specific topics can be undertaken in isolation.
 
 ## Prerequisites
 
-The Introduction to Ditto Learning Module is provided in several different languages and platforms.  You will need various tools installed based on the platform you are building with.  
-
-You will need the following installed on your development machine to complete this learning module:
+You will need the following installed on your development machine: 
 
 ### iOS Swift Development Environment
 - [Xcode](https://developer.apple.com/xcode/) 15 or greater
@@ -24,30 +48,27 @@ You will need the following installed on your development machine to complete th
 - An IDE for your choice of language that supports Flutter (Android Studio, VSCode, etc.)
 - Git installed on your machine 
 
-## The Scenario
 
-You've just joined a development team for the company Acmezon that recently demonstrated a Project Management app to company leadership. The app demo was a hit - the UI was polished, the interactions were smooth, and leadership was ready to ship it immediately. There was just one catch: the entire app was running on mock data.
+## Courses
 
-The prototype lacks several critical features modern users expect:
-- No offline support - data disappears when the app closes
-- No data persistence - changes aren't saved between sessions
-- No synchronization - changes don't sync between devices
-- No real-time updates - users don't see each other's changes
+The following courses are available: 
 
-Rather than rebuilding from scratch, the team has decided to integrate Ditto to add these essential features. Your mission is to transform this prototype into a production-ready application with robust offline-first capabilities and peer-to-peer synchronization, all while maintaining the existing user experience.
+### Beginner
+- [Course 100 - Introduction to Distributed Apps & Ditto](course-100/README.md)
+- [Course 101 - Introduction to the Ditto SDK](course-101/README.md)
+- Course 120 - Ditto SDK - Atachments & File Management
+- Course 130 - Security & Access Control
+- Course 140 - DQL & the Portal Query Editor
 
-## Learning Objectives
+### Intermediate
+- Course 210 - Advanced Data Modeling
+- Course 220 - The Ditto Tools
+- Course 230 - Data Access Patterns, Performance, & Scaleability 
+- Course 240 - Observability, Logging & Debugging
+- Course 250 - Operational Readiness & Deployment
 
-Through this module, you'll learn how to:
-1. What Ditto is and how it works
-2. Setup a Ditto Portal account and create an app
-3. Replace mock data with a real Ditto database
-4. Implement offline-first data persistence
-5. Enable real-time updates across devices
-
-
-## Ready to Begin?
-
-Head to [Lesson 1.1 - Register Your Portal Account](lesson-1/1.1/README.md) to get started! 🚀
-
-
+### Advanced
+- Course 401 - HTTP API Integration
+- Course 420 - MongoDb Connector
+- Course 430 - Kafka and CDC Integration
+- Course 440 - Local Big Peer Deployment
