@@ -64,22 +64,22 @@ The Connect via HTTP section provides the authentication information needed for 
 ## Quiz 
 
 1. What is the purpose of the Ditto Portal? 
-   a) A web-based interface for managing Ditto resources, configuring apps, and monitoring usage
-   b) A social media platform for developers to share Ditto experiences
-   c) A command-line tool for deploying Ditto applications
-   d) A cloud-based IDE for writing Ditto applications
+   - a) A web-based interface for managing Ditto resources, configuring apps, and monitoring usage
+   - b) A social media platform for developers to share Ditto experiences
+   - c) A command-line tool for deploying Ditto applications
+   - d) A cloud-based IDE for writing Ditto applications
 
 2. What is an App ID used for?
-   a) A personal identification number (PIN) for developer authentication into the portal
-   b) A serial number for tracking a users session in the Ditto Portal 
-   c) A version number for the Ditto SDK
-   d) A unique identifier that isolates data and configurations for a specific application environment
+   - a) A personal identification number (PIN) for developer authentication into the portal
+   - b) A serial number for tracking a users session in the Ditto Portal 
+   - c) A version number for the Ditto SDK
+   - d) A unique identifier that isolates data and configurations for a specific application environment
 
 3. What is an Online Playground Authentication Token used for?
-   a) A token used to track API usage and billing
-   b) A shared authentication token for development and testing without per-user permissions
-   c) A password for accessing the Ditto documentation
-   d) A license key for the Ditto SDK
+   - a) A token used to track API usage and billing
+   - b) A shared authentication token for development and testing without per-user permissions
+   - c) A password for accessing the Ditto documentation
+   - d) A license key for the Ditto SDK
 
 The answers can be found in the [answer file](.answer).
 
