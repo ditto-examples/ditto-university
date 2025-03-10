@@ -27,8 +27,6 @@ A Ditto Portal App and App ID functions as a tenant in the traditional cloud sen
 
 To get started, you'll need a Ditto Portal account to sync information with the Big Peer and a configured application to authenticate your app using the Ditto SDK.
 
-#### Lab 1 Steps 
-
 1. Create a Ditto Portal account by following the [account creation guide](https://docs.ditto.live/cloud/portal/creating-a-ditto-account). If you already have an account on [portal.ditto.live](https://portal.ditto.live/), you can skip this step.
 
 2. Create a new Ditto app by following the [creating a new app guide](https://docs.ditto.live/cloud/portal/creating-a-new-app).  If you already have an app registered, you can skip this step.
