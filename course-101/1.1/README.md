@@ -31,12 +31,11 @@ To get started, you'll need a Ditto Portal account to sync information with the 
 
 2. Create a new Ditto app by following the [creating a new app guide](https://docs.ditto.live/cloud/portal/creating-a-new-app).  If you already have an app registered, you can skip this step.
 
----
-### Ditto Portal - Connect Tab
+## Ditto Portal - Connect Tab
 
 The Connect tab provides all the information needed to authenticate your application with Ditto's services. It contains several important sections:
 
-#### Connect via SDK
+### Connect via SDK
 
 The Connect via SDK section provides the authentication credentials for your application. You'll need the following information for future labs:
 - App ID
@@ -44,23 +43,22 @@ The Connect via SDK section provides the authentication credentials for your app
 - Websocket URL
 - Online Playground Authentication Token
 
-#### Authentication and Authorization
+### Authentication and Authorization
 
 Ditto's primary authentication mechanisms use the Big Peer as a central authentication server. All new devices and users must first connect to the Big Peer to authenticate before joining and syncing data with the mesh.
 
-#### Online Playground Authentication Token
+### Online Playground Authentication Token
 
 Online Playground mode is Ditto's authentication-light environment designed for development and testing, or use cases that don't require per-user permissions. It allows developers to quickly set up a Ditto-backed application with minimal configuration. In this mode, devices connect through Ditto's Big Peer using a shared App ID and Playground token, without requiring unique user authentication.
 
 For our initial changes to the Project Management app, we'll use the Online Playground Authentication Token. This shared secret authenticates our app with the Big Peer and provides a convenient sandbox identity.
 
-#### Connect via HTTP
+### Connect via HTTP
 
 Ditto offers an HTTP API for programmatic interaction with transactional data generated in the mesh network and stored within the Big Peer. The API follows remote procedure call (RPC) framework principles, allowing you to make requests as if they were local calls, despite occurring over a network.
 
 The Connect via HTTP section provides the authentication information needed for using the Ditto HTTP REST API.
 
----
 ## ❓ Quiz 
 
 1. What is the purpose of the Ditto Portal? 
@@ -82,8 +80,6 @@ The Connect via HTTP section provides the authentication information needed for 
    - d) A license key for the Ditto SDK
 
 The answers can be found in the [answer file](.answer).
-
----
 
 ## Summary
 
