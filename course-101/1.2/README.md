@@ -23,7 +23,7 @@ To work with all future labs, you will are required to clone the Ditto Universit
 git clone https://github.com/ditto-examples/ditto-university
 ```
 
-## Building and Running the Application
+### Building and Running the Application
 
 To see the app in action running with mock data - follow the instructions based on what platform you are using.
 - [Building and Running the Swift UI iOS Application](lab2-swift.md)
@@ -37,11 +37,10 @@ The Ditto SDK provides a Ditto Identity to the SDK.  This identity provides the 
 - `onlineWithAuthentication`: Run Ditto in secure production mode, logging on to Ditto Cloud or on on-premises authentication server. User permissions are centrally managed.
 - `onlinePlayground`: Test a Ditto Cloud app with weak shared token authentication (“Playground mode”). This mode is not secure and must only be used for development.
 
-In Lab 2, we will update our app to use the `onlinePlayground` identity type.
+## Lab 2: Update Initialization of the Ditto instance
 
-### Lab 2: Update Initialization of the Ditto instance
+In Lab 2, we will update our app to use the `onlinePlayground` identity type.  To Update the initialization of the Ditto instance - follow the instructions based on what platform you are using:
 
-To Update the initialization of the Ditto instance - follow the instructions based on what platform you are using.
 - [Update Initialization of the Ditto instance - Swift UI iOS Application](lab3-swift.md)
 - [Update Initialization of the Ditto instance - Android JetPack Compose with Kotlin Application](lab3-android.md)
 - [Update Initialization of the Ditto instance - Flutter Application](lab3-flutter.md)
