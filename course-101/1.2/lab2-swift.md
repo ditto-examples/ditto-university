@@ -1,6 +1,6 @@
 # Lab 2: Update Initialization of the Ditto instance with Swift
 
-Open the `DittoManager.swift` file and find the `initialize()` method.  This is the place to setup Ditto Identity.
+Open the `DittoManager.swift` file and find the [initialize()](https://github.com/ditto-examples/ditto-university/blob/main/course-101/swift/Tasks/Data/DittoManager.swift#L39) function.  This is the place to setup Ditto Identity.
 
 ```swift
         //
