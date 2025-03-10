@@ -31,6 +31,7 @@ To get started, you'll need a Ditto Portal account to sync information with the 
 
 2. Create a new Ditto app by following the [creating a new app guide](https://docs.ditto.live/cloud/portal/creating-a-new-app).  If you already have an app registered, you can skip this step.
 
+---
 ### Ditto Portal - Connect Tab
 
 The Connect tab provides all the information needed to authenticate your application with Ditto's services. It contains several important sections:
@@ -59,6 +60,7 @@ Ditto offers an HTTP API for programmatic interaction with transactional data ge
 
 The Connect via HTTP section provides the authentication information needed for using the Ditto HTTP REST API.
 
+---
 ## ❓ Quiz 
 
 1. What is the purpose of the Ditto Portal? 
@@ -80,6 +82,8 @@ The Connect via HTTP section provides the authentication information needed for 
    - d) A license key for the Ditto SDK
 
 The answers can be found in the [answer file](.answer).
+
+---
 
 ## Summary
 
