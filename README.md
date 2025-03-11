@@ -55,7 +55,7 @@ The following courses are available:
 
 ### Beginner
 - [Course 100 - Introduction to Distributed Apps & Ditto](course-100/README.md)
-- [Course 101 - Introduction to the Ditto SDK](course-101/README.md)
+- [Course 101 - Build Your First Ditto-Powered App](course-101/README.md)
 - Course 120 - Ditto SDK - Atachments & File Management
 - Course 130 - Security & Access Control
 - Course 140 - DQL & the Portal Query Editor
