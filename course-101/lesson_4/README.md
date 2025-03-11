@@ -1,4 +1,4 @@
-# 1.4 - Create Your First Ditto Document
+# Lesson 4 - Create Your First Ditto Document
 
 > [!NOTE] 
 >This is a proof of concept for the Ditto iOS Introduction to Ditto Learning Module.  It is a simple to-do list app that uses Ditto to store and sync the task data.  This is not production ready code and is only meant to be used as a reference for the POC of Ditto University learning modules. 
@@ -74,4 +74,4 @@ You should see the initial tasks we just created listed in the portal. This conf
 
 ## Next Step: Subscriptions and Observers
 
-Now that we have our data persisting in Ditto, let's learn how to keep our UI in sync with real-time changes using [Subscriptions and Observers](../1.5/README.md).
+Now that we have our data persisting in Ditto, let's learn how to keep our UI in sync with real-time changes using [Subscriptions and Observers](../lesson_5/README.md).

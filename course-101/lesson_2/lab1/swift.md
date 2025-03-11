@@ -2,7 +2,7 @@
 
 To see the app in action running with mock data, let's build and run the app by following these steps:
 
-1. Log into the Ditto portal at <https://portal.ditto.live/>.  Make note of the App ID, Auth URL, Websocket URL, and Online Playground Authentication Token.  You should have already done this in the previous lab in [Section 1.1](../../1.1/README.md).
+1. Log into the Ditto portal at <https://portal.ditto.live/>.  Make note of the App ID, Auth URL, Websocket URL, and Online Playground Authentication Token.  You should have already done this in the previous lab in [Lesson 1](../../lesson_1/README.md).
 
 2. Launch Xcode and open the `/course-101/swift/Tasks.xcodeproj` project.
 

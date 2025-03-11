@@ -1,4 +1,4 @@
-# 1.3 Try Out The Sample Data 🚀
+# Lesson 3 Try Out The Sample Data 🚀
 
 
 ## Understanding The Data Model

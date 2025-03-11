@@ -1,4 +1,4 @@
-# 1.2 Setting Up Your Development Environment
+# Lesson 2 - Setting Up Your Development Environment
 
 ## Ditto SDK
 
@@ -68,4 +68,4 @@ The answer can be found in the [answer file](.answer).
 
 Now that you have created setup the Ditto SDK and initialized the Ditto instance, you're ready to start loading data using the Ditto SDK. Let's go!
 
-[Continue to 1.3 - Try Out The Sample Data →](../1.3/README.md)
+[Continue to lesson 3 - Try Out The Sample Data →](../lesson_3/README.md)

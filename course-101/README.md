@@ -1,4 +1,4 @@
-# Course 101: Introduction to the Ditto SDK - Your First Ditto App 🚀
+# Course 101: Build Your First Ditto-Powered App 🚀
 
 The Introduction to the Ditto SDK course guides you through the foundational skills and knowledge you need to get started with the Ditto SDK. This includes how to sign up and create your first Ditto app on the Ditto Portal, how to conduct simple CRUD operations, syncing data between small peers, and syncing to the big peer in the cloud.
 
@@ -32,30 +32,30 @@ Through this module, you'll learn how to:
 
 ## 📖 Table of Contents
 
-1. [Getting Started](1.1/README.md)
+1. [Create Your Account](lesson_1/README.md)
   - Register Your Portal Account
 
-2. [Setting Up Your Development Environment](1.2/README.md)
+2. [Setting Up Your Development Environment](lesson_2/README.md)
   - Learn about the Ditto SDK
   - Cloning the Code
   - Running the App with Mock Data
   - Providing Authentication Credentials
   - Setting up the Ditto Identity
 
-3. [Try Out The Sample Data](1.3/README.md)
+3. [Try Out The Sample Data](lesson_3/README.md)
   - Understanding The Data Model
   - The TaskModel Struct
   - Building and Running the iOS Application
 
-4. [Create Your First Ditto Document](1.4/README.md)
+4. [Create Your First Ditto Document](lesson_4/README.md)
   - Intro to DQL
   - Update the App
   - View Changes in the Portal
 
-5. [Subscriptions and Observers](1.5/README.md)
+5. [Subscriptions and Observers](lesson_5/README.md)
 
 ## 🚀 Ready to Begin?
 
-Head to [Lesson 1.1 - Getting Started:  Register Your Portal Account](lesson-1/1.1/README.md) to get started! 
+Head to [Lesson 1 - Create Your Account](lesson-1/README.md) to get started! 
 
 
