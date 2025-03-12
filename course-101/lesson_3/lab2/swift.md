@@ -91,6 +91,18 @@ The closure does the following:
 - Converts the Ditto results to TaskModel instances using compactMap, storing the new data in the `tasks` property
 - The `tasks` property is an `@Published` variable, so any UI components that depend on it will automatically update when the data changes
 
+## Update the App to use the DittoManager instead of the MockDataManager
+
+In order to test our new changes, we need to update the app to use the `DittoManager` instead of the `MockDataManager`.  This will allow us to test the app with real data from Ditto.  In order to do this, we need to update several files by replacing the `MockDataManager` with `DittoManager`.  You can use the `Find and Replace` feature found in the `Find` menu in Xcode to update the files.  
+
+![FindReplace-MockDataManager](../../assets/FindReplace-MockDataManager.gif)
+
+Here are the files you need to update:
+
+- ContentView.swift (3 places)
+- EditTaskModelView.swift (3 places)
+- TasksApp.swift (2 places)
+
 ## Run the App
 
 You can now run the app and test the new functionality.  The app should now show a list of tasks that are not deleted that we populated in the previous lab when we updated the `populateTaskCollection` function.  Note that while the app will show you a list of tasks, we haven't added the functionality to add, update, or delete tasks yet. We will do that in the next lesson. 
