@@ -42,6 +42,6 @@ Through this module, you'll learn how to:
 
 ## 🚀 Ready to Begin?
 
-Head to [Lesson 1 - Create Your Account](lesson-1/README.md) to get started! 
+Head to [Lesson 1 - Create Your Account](lesson_1/README.md) to get started! 
 
 
