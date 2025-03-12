@@ -41,7 +41,7 @@ Let's replace this TODO:
 //UPDATE CODE HERE
 ```
 
-Create a new variable `query` to store the DQL `SELECT` statement.  
+Update the code:  Create a new variable `observerQuery` to store the DQL `SELECT` statement.  
 
 ```sql
 let observerQuery = "SELECT * FROM tasks WHERE NOT deleted"
@@ -66,7 +66,8 @@ Locate the following lines of code in the `registerObservers()` function:
 //UPDATE CODE HERE
 ```
 
-Replace this TODO with the following code:
+Update the Code:  Replace this TODO with the following code:
+
 ```swift
 storeObserver = try dittoInstance.store.registerObserver(query: observerQuery)
 { [weak self] results in
@@ -79,7 +80,7 @@ storeObserver = try dittoInstance.store.registerObserver(query: observerQuery)
 }
 ```
 
-Let's break down the code:
+Let's break down the code changes:
 - The first line creates a store observer that:
 	- Listens for any changes to the tasks that match the `observerQuery` variable created in the previous step
 	- When changes occur, it runs a closure
