@@ -1,0 +1,18 @@
+ func registerObservers() throws {
+        if let dittoInstance = ditto {
+            
+            //TODO: - setup observer query, filter out NOT deleted
+            let observerQuery = "SELECT * FROM tasks WHERE NOT deleted"
+            
+            //TODO: - setup store observer with query and set array with TaskModel
+            storeObserver = try dittoInstance.store.registerObserver(query: observerQuery)
+            { [weak self] results in
+                Task { @MainActor in
+                    // Create new TaskModel instances and update the published property
+                    self?.tasks = results.items.compactMap{
+                        TaskModel($0.jsonString())
+                    }
+                }
+            }
+        }
+    }

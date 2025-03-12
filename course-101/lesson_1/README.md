@@ -1,4 +1,4 @@
-# Lesson 1 - Create Your Account 🚀
+# Lesson 1 🚀 Create Your Portal Account
 
 ## The Ditto Portal
 
@@ -22,6 +22,8 @@ This architecture enables seamless data synchronization between:
 ### Ditto App
 
 A Ditto Portal `App` and `App ID` functions as a tenant in the traditional cloud sense. It provides a unique identifier for each distinct application environment, isolating data and configurations within that specific context.
+
+While the name “App” suggests that a single Ditto app is a single application, it is common to have multiple Ditto-enabled mobile applications use a single Ditto app.  For example, in the context of a point-of-sale system, a single Ditto app is likely to be used by both the kiosks and the displays in the kitchen, even though these are two distinct mobile applications.
 
 ## Lab 1 - Create a Ditto Portal Account and Ditto App
 

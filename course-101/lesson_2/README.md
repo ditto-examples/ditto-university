@@ -1,10 +1,22 @@
-# Lesson 2 - Setting Up Your Development Environment
+# Lesson 2 🚀 Setting Up Your Development Environment
 
 ## Ditto SDK
 
 The Ditto SDK helps develoeprs build powerful, offline-capable applications with real-time data sync. Designed for flexibility and performance, Ditto's SDK enables seamless peer-to-peer communication, efficient data synchronization, and robust offline support—no complex infrastructure required.
 
 Whether you’re building for mobile, desktop, or embedded systems, the Ditto SDK gives you the tools to create reliable and connected applications that work anywhere.
+
+The Ditto SDK provides a unified API for:
+
+- Managing offline data persistence
+- Synchronizing data with other devices (called `Small Peers`) running the same `Ditto app`
+- Reading and writing data to the Big Peer
+- Handling real-time updates
+
+This architecture enables seamless data synchronization between:
+- Your device and other users' devices (Small Peers)
+- Your device and the cloud (Big Peer)
+- The cloud and all connected devices
 
 ## Package Dependencies
 
@@ -48,9 +60,15 @@ In Lab 2, we will update our app to use the `onlinePlayground` identity type.  T
 
 If you are stuck, you can refer to the `.finished` files in the [lab2](./lab2) directory with the corresponding platform name. 
 
-## ❓ Quiz 
+## ❓ Knowledge Check 
 
-1. What is the purpose of the Ditto Identity? 
+1. Which of the following is `NOT` a feature of the Ditto SDK? 
+   - a) Offline data persistence
+   - b) Synchronizing data with other devices (Small Peers)
+   - c) Authentication users with a username and password
+   - d) Handling real-time updates
+
+2. What is the purpose of the Ditto Identity? 
    - a) provides a unique identifier for a Ditto instance
    - b) provides various identity configurations that you can use when initializing a Ditto instance. 
    - c) provides Ditto with information about the user that is logged into the device. 
@@ -66,6 +84,6 @@ The answer can be found in the [answer file](.answer).
 
 ## Next Steps
 
-Now that you have created setup the Ditto SDK and initialized the Ditto instance, you're ready to start loading data using the Ditto SDK. Let's go!
+Now that you have created setup the Ditto SDK and initialized the Ditto instance, you're ready to start loading initial data into the Ditto database using the Ditto SDK. Let's go!
 
-[Continue to lesson 3 - Try Out The Sample Data →](../lesson_3/README.md)
+[Continue to Lesson 3 - Try Out The Sample Data →](../lesson_3/README.md)
