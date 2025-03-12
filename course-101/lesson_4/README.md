@@ -44,10 +44,19 @@ If you are stuck, you can refer to the `.finished` files in the [lab2](./lab2) d
 
 ## The Soft-Delete Pattern
 
+The soft-delete pattern is a way to flag data as inactive while retaining it for various requirements, such as archival evidence, reference integrity, prevention of potential data loss due to end-user error, and so on.  
+
+Our app is already using the soft-delete pattern.  When we registered our observer, we made sure to filter out only documents where the done is set to false:
+
+```swift
+let observerQuery = "SELECT * FROM tasks WHERE NOT deleted"
+```
+
+This means that if a user deletes a task, the task is not removed from the database, but instead the `deleted` field is set to true.  This allows us to retain the task in the database for future reference, while also allowing us to filter out tasks that have been deleted from the UI.
 
 ### Lab 3:  Updating the TaskModel to include a Soft-Delete
 
-In this lab we will create a DQL `SELECT` statement to use the observer to update the the app to show realtime updates when a task is added, updated, or deleted from any device.  Our main UI uses observers to show a list of tasks.  This feature is useful for implementing real-time updates across devices, like when one user adds, updates, or deletes a task, the other devices can see the task in realtime.      
+In this lab we will update the code to use the soft-delete pattern to delete a task.  When a user deletes a task, the `deleted` field is set to true.  This allows us to retain the task in the database for future reference, while also allowing us to filter out tasks that have been deleted from the UI.
 
 Follow the instructions based on what platform you are using:
 
@@ -59,35 +68,30 @@ If you are stuck, you can refer to the `.finished` files in the [lab3](./lab3) d
 
 ## ❓ Knowledge Check 
 
-1. What is a collection in Ditto?
-   - a) A set of attachments for a document that is stored in the Ditto database 
-   - b) A system for managing user authentication and permissions
-   - c) A versioning system that tracks changes to documents over time
-   - d) A namespace for grouping similar documents together, similar to tables in relational databases
+1. Which `UPDATE` statement properly updates the `animal` collection with all documents that the field animalType equal bear and sets the hybernate field to true?
+   - a) UPDATE animals LET hybernate = true WHERE animalType = "winnie the pooh"
+   - b) UPDATE animals SET hybernate = true WHERE animalType = "bear"
+   - c) UPDATE mammals SET hybernate = true WHERE type = "bear"
+   - d) UPDATE animals LET hybernate = !hybernate WHERE animalType = "bear"
 
-2. What is DQL? 
-   - a) A query language for managing documents in a Ditto database, similar to SQL
-   - b) A programming language for building Ditto applications
-   - c) A system for managing user authentication and permissions
-   - d) A versioning system that tracks changes to documents over time
-
-3. Which `SELECT` statement properly returns all the documents in the collection `animals WHERE` the `hasFur` property is set to true? 
-   - a) SELECT * FROM bigCreatures THAT hasFur = true 
-   - b) SELECT _id, name, hasFur FROM animals WHERE hasFur = true
-   - c) SELECT * FROM animals WHERE hasFur = true
-   - d) SELECT THE FURRY ONES FROM animals WHERE hasFur = true
+2. What is the purpose of the soft-delete pattern?
+   - a) To temporarily store deleted data in a separate backup collection for 30 days before permanent deletion
+   - b) To compress deleted documents to save storage space while maintaining data integrity
+   - c) To automatically trim the document size by removing all the data minus the deleted field 
+   - d) To mark documents as deleted instead of removing them, preserving data for potential restoration while maintaining history
 
 The answer can be found in the [answer file](.answer).
 
 ## Summary
 
 🎉 Congratulations 🙌! In this lesson, you have learned:
-- Ditto Collections
-- DQL INSERT and SELECT Statements
-- How to react to Data Changes using Observers
+- How to using DQL to INSERT new TaskModel objects into the task collection
+- How to use DQL to UPDATE an existing TaskModel object in the task collection
+- How to use the soft-delete pattern to delete a TaskModel object from the task collection
+- How the registerObserver function uses the soft-delete pattern to filter out deleted tasks from the UI
 
 ## Next Steps
 
-Now that you have got the app up and running observing data changes, you're read to implent inserting new tasks and updating them.  Let's go!
+Now that you have got the app up and running observing data changes, you are ready to look at syncing data between multiple devices using small peers and Ditto's Peer-to-Peer Syncing feature.  Let's go!
 
 [Continue to Lesson 5 - Syncing Data Across Devices using Small Peers →](../lesson_5/README.md)

@@ -1,0 +1,19 @@
+func deleteTaskModel(_ task: TaskModel) async {
+        //
+        //TODO - write UPDATE DQL Statement using Soft-Delete pattern
+        // https://docs.ditto.live/sdk/latest/crud/delete#soft-delete-pattern
+        //
+        let query = "UPDATE tasks SET deleted = true WHERE _id = :_id"
+        do {
+            if let dittoInstance = ditto {
+                //
+                //TODO: use dittoInstance store to execute DQL with arguments
+                // https://docs.ditto.live/sdk/latest/crud/update#updating
+                //
+                try await dittoInstance.store.execute(
+                    query: query, arguments: ["_id": task._id])
+            }
+        } catch {
+            appManager.setError(error)
+        }
+    }
