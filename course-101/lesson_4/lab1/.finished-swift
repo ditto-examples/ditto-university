@@ -1,0 +1,22 @@
+ func insertTaskModel(_ task: TaskModel) async {
+        let newTask = task.value
+        //
+        // TODO - write INSERT DQL Statement
+        // https://docs.ditto.live/dql/insert
+        // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
+        //
+        let query = "INSERT INTO tasks DOCUMENTS (:newTask)"
+        
+        do {
+            if let dittoInstance = ditto {
+                //
+                //TODO: use dittoInstance store to execute DQL with arguments
+                // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
+                //
+                try await dittoInstance.store.execute(
+                    query: query, arguments: ["newTask": newTask])
+            }
+        } catch {
+            appManager.setError(error)
+        }
+    }

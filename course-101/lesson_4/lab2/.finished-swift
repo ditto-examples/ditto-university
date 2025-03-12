@@ -1,0 +1,71 @@
+func updateTaskModel(_ task: TaskModel) async {
+        //
+        //TODO: write UPDATE DQL Statement
+        // https://docs.ditto.live/dql/update#basic-update
+        // https://docs.ditto.live/sdk/latest/crud/update#updating
+        //
+        let query = """
+                UPDATE tasks SET
+                    title = :title,
+                    done = :done,
+                    deleted = :deleted
+                WHERE _id == :_id
+                """
+        
+        do {
+            if let dittoInstance = ditto {
+                //
+                //TODO: use dittoInstance store to execute DQL with arguments
+                // https://docs.ditto.live/sdk/latest/crud/update#updating
+                //
+                try await dittoInstance.store.execute(
+                    query: query,
+                    arguments: [
+                        "title": task.title,
+                        "done": task.done,
+                        "deleted": task.deleted,
+                        "_id": task._id,
+                    ]
+                )
+            }
+        } catch {
+            appManager.setError(error)
+        }
+    
+  }
+
+
+
+
+
+  func toggleComplete(task: TaskModel) async {
+        let done = !task.done
+        
+        //
+        //TODO: write toggle UPDATE DQL Statement
+        // https://docs.ditto.live/dql/update#basic-update
+        // https://docs.ditto.live/sdk/latest/crud/update#updating
+        //
+        let query = """
+                UPDATE tasks
+                SET done = :done 
+                WHERE _id == :_id
+                """
+        
+        do {
+            if let dittoInstance = ditto {
+                //
+                //TODO: use dittoInstance store to execute DQL with arguments
+                // https://docs.ditto.live/sdk/latest/crud/update#updating
+                //
+                try await dittoInstance.store.execute(
+                    query: query,
+                    arguments: ["done": done, "_id": task._id]
+                )
+            }
+        } catch {
+            appManager.setError(error)
+        }
+   }
+
+
