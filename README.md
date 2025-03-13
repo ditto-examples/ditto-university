@@ -53,22 +53,28 @@ You will need the following installed on your development machine:
 
 The following courses are available: 
 
-### Beginner
-- [Course 100 - Introduction to Distributed Apps & Ditto](course-100/README.md)
-- [Course 101 - Build Your First Ditto-Powered App](course-101/README.md)
-- Course 120 - Ditto SDK - Atachments & File Management
-- Course 130 - Security & Access Control
-- Course 140 - DQL & the Portal Query Editor
+### 📖 Beginner
+| Course | Topics |
+| ------ | ------ |
+| [Course 100 - Introduction to Distributed Apps & Ditto](course-100/README.md) |  • Understand the shift from RPC to Subscribe-Observe-Query <br> • Grasp causal consistencys. <br> • How Ditto abstracts complexity of distributed systems (CRDTs) |
+| [Course 101 - Build Your First Ditto-Powered App](course-101/README.md) | • The Ditto Portal and the Big Peer <br> • Register Your Portal Account <br> • Create a new Ditto app <br> • Playground Authentication Token <br> • Ditto SDK <br> • Ditto Identity <br> • Ditto Collections <br> • DQL INSERT, SELECT, & UPDATE Statements <br> • Register Observers <br> • Soft-Delete Pattern <br>  • Small Peer Syncing <br>  • Big Peer Syncing | 
+| Course 120 - Ditto SDK - Atachments & File Management | |
+| Course 130 - Security & Access Control | |
+| Course 140 - DQL & the Portal Query Editor | |
 
-### Intermediate
-- Course 210 - Advanced Data Modeling
-- Course 220 - The Ditto Tools
-- Course 230 - Data Access Patterns, Performance, & Scaleability 
-- Course 240 - Observability, Logging & Debugging
-- Course 250 - Operational Readiness & Deployment
+### 📖 Intermediate
+| Course | Topics |
+| ------ | ------ |
+| Course 210 - Advanced Data Modeling | |
+| Course 220 - The Ditto Tools | |
+| Course 230 - Data Access Patterns, Performance, & Scaleability | |
+| Course 240 - Observability, Logging & Debugging | |
+| Course 250 - Operational Readiness & Deployment | |
 
-### Advanced
-- Course 401 - HTTP API Integration
-- Course 420 - MongoDb Connector
-- Course 430 - Kafka and CDC Integration
-- Course 440 - Local Big Peer Deployment
+### 📖 Advanced
+| Course | Topics |
+| ------ | ------ |
+| Course 401 - HTTP API Integration | |
+| Course 420 - MongoDb Connector | |
+| Course 430 - Kafka and CDC Integration | |
+| Course 440 - Local Big Peer Deployment | |

@@ -33,10 +33,10 @@ Through this module, you'll learn how to:
 ## 📖 Table of Contents
 | Course | Topics |
 | -------|-------- |
-| Lesson 1 [Create Your Portal Account](lesson_1/README.md) | • Register Your Portal Account |
-| Lesson 2 [Setting Up Your Development Environment](lesson_2/README.md) | • Learn about the Ditto SDK <br> • Cloning the Code <br> • Running the App with Mock Data <br> • Providing Authentication Credentials <br> • Setting up the Ditto Identity |
-| Lesson 3 [Updating the initial Data with Ditto](lesson_3/README.md) | • Collections <br> • Understanding the Code Structure <br> • Review of the Data Model <br> • DQL INSERT and SELECT Statement<br> • Register Observers <br> • Update the App to use the Ditto Database |
-| Lesson 4 [DQL INSERT, UPDATE, and SOFT DELETE](lesson_4/README.md) | • Learn about DQL UPDATE and SOFT DELETE <br> • Update the App to use DQL INSERT, UPDATE, and SOFT DELETE <br> • View changes on a device |
+| Lesson 1 [Create Your Portal Account](lesson_1/README.md) | • The purpose of the Ditto Portal and the Big Peer <br> • Register Your Portal Account <br> • Create a new Ditto app <br> • Learn about the Playground Authentication Token |
+| Lesson 2 [Setting Up Your Development Environment](lesson_2/README.md) | • Learn about the Ditto SDK <br> • Running the App with Mock Data <br> • Setting up the Ditto Identity |
+| Lesson 3 [Updating the initial Data with Ditto](lesson_3/README.md) | • Ditto Collections <br> • DQL INSERT and SELECT Statements<br> • Register Observers |
+| Lesson 4 [DQL INSERT, UPDATE, and SOFT DELETE](lesson_4/README.md) | • Learn about DQL INSERT and UPDATE Statements <br> • Soft-Delete Pattern |
 | Lesson 5 [Syncing Data Across Devices using Small Peers](lesson_5/README.md) | • Learn about Small Peers <br> • Test the App with Small Peers | 
 | Lesson 6 [Syncing Data Across Devices using the Big Peer](lesson_6/README.md) | • Learn about the Big Peer <br> • Learn the DQL Editor in the Ditto Portal <br> • Test the App with Big Peer syncing changes from the Big Peer to Small Peers |
 
