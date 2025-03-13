@@ -82,6 +82,12 @@ The answer can be found in the [answer file](.answer).
 1. The purpose of the Ditto SDK 
 2. What the Ditto Identity is and how it is used to initialize a Ditto instance
 
+
+## 📚 References
+
+- [Ditto SDK](https://docs.ditto.live/sdk/overview)
+- [SDK Install Guides](https://docs.ditto.live/sdk/latest/install-guides/install-guides)
+
 ## Next Steps
 
 Now that you have created setup the Ditto SDK and initialized the Ditto instance, you're ready to start loading initial data into the Ditto database using the Ditto SDK. Let's go!

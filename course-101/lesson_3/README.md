@@ -123,6 +123,15 @@ The answer can be found in the [answer file](.answer).
 - DQL INSERT and SELECT Statements
 - How to react to Data Changes using Observers
 
+## 📚 References
+
+- [Ditto Query Language - DQL](https://docs.ditto.live/dql/dql)
+- [DQL INSERT](https://docs.ditto.live/dql/insert)
+- [Creating Documents](https://docs.ditto.live/sdk/latest/crud/create)
+- [DQL SELECT](https://docs.ditto.live/dql/select)
+- [Reading Documents](https://docs.ditto.live/sdk/latest/crud/read)
+- [Reacting to Data Changes](https://docs.ditto.live/sdk/latest/crud/observing-data-changes)
+
 ## Next Steps
 
 Now that you have got the app up and running observing data changes, you're read to implent inserting new tasks and updating them.  Let's go!

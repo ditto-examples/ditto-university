@@ -90,6 +90,12 @@ The answer can be found in the [answer file](.answer).
 - How to use the soft-delete pattern to delete a TaskModel object from the task collection
 - How the registerObserver function uses the soft-delete pattern to filter out deleted tasks from the UI
 
+## 📚 References
+
+- [DQL UPDATE](https://docs.ditto.live/dql/update)
+- [Updating Documents](https://docs.ditto.live/sdk/latest/crud/update)
+- [Soft-Delete Pattern](https://docs.ditto.live/sdk/latest/crud/delete#soft-delete-pattern)
+
 ## Next Steps
 
 Now that you have got the app up and running observing data changes, you are ready to look at syncing data between multiple devices using small peers and Ditto's Peer-to-Peer Syncing feature.  Let's go!

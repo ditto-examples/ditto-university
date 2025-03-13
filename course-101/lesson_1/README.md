@@ -92,6 +92,11 @@ The answers can be found in the [answer file](.answer).
 - How to use the Online Playground Authentication Token
 - The basics of the Ditto HTTP API
 
+## 📚 References
+
+- [Ditto Portal](https://docs.ditto.live/cloud/portal)
+- [Ditto HTTP API](https://docs.ditto.live/cloud/http-api)
+
 ## Next Steps
 
 Now that you have created your Ditto Portal account and configured your app, you're ready to start building a mobile app using the Ditto SDK. Let's go!
