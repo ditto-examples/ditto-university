@@ -58,23 +58,23 @@ The following courses are available:
 | ------ | ------ |
 | [Course 100 - Introduction to Distributed Apps & Ditto](course-100/README.md) |  • Understand the shift from RPC to Subscribe-Observe-Query <br> • Grasp causal consistencys. <br> • How Ditto abstracts complexity of distributed systems (CRDTs) |
 | [Course 101 - Build Your First Ditto-Powered App](course-101/README.md) | • The Ditto Portal and the Big Peer <br> • Register Your Portal Account <br> • Create a new Ditto app <br> • Playground Authentication Token <br> • Ditto SDK <br> • Ditto Identity <br> • Ditto Collections <br> • DQL INSERT, SELECT, & UPDATE Statements <br> • Register Observers <br> • Soft-Delete Pattern <br>  • Intro to Small Peer Syncing <br>  • Intro to Big Peer Syncing | 
-| Course 120 - Ditto SDK - Atachments & File Management | |
-| Course 130 - Security & Access Control | |
-| Course 140 - DQL & the Portal Query Editor | |
+| Course 120 - Ditto SDK - Atachments & File Management | Coming Soon |
+| Course 130 - Security & Access Control | Coming Soon |
+| Course 140 - DQL & the Portal Query Editor | Coming Soon |
 
 ### 📖 Intermediate
 | Course | Topics |
 | ------ | ------ |
-| Course 210 - Advanced Data Modeling | |
-| Course 220 - The Ditto Tools | |
-| Course 230 - Data Access Patterns, Performance, & Scaleability | |
-| Course 240 - Observability, Logging & Debugging | |
-| Course 250 - Operational Readiness & Deployment | |
+| Course 210 - Advanced Data Modeling | Coming Soon |
+| Course 220 - The Ditto Tools | Coming Soon |
+| Course 230 - Data Access Patterns, Performance, & Scaleability | Coming Soon |
+| Course 240 - Observability, Logging & Debugging | Coming Soon |
+| Course 250 - Operational Readiness & Deployment | Coming Soon |
 
 ### 📖 Advanced
 | Course | Topics |
 | ------ | ------ |
-| Course 401 - HTTP API Integration | |
-| Course 420 - MongoDb Connector | |
-| Course 430 - Kafka and CDC Integration | |
-| Course 440 - Local Big Peer Deployment | |
+| Course 401 - HTTP API Integration | Coming Soon |
+| Course 420 - MongoDb Connector | Coming Soon |
+| Course 430 - Kafka and CDC Integration | Coming Soon|
+| Course 440 - Local Big Peer Deployment | Coming Soon |
