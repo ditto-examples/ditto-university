@@ -1,6 +1,6 @@
 # Lesson 3 🚀 Updating the initial Data with Ditto
 
-## Collections 
+## Collections in Ditto
 
 Ditto stores documents in collections. Collections are analogous to tables in relational databases. Collections allow you to group similar documents together within the same namespace.  While it is good practice for documents within a collection to share a similar structure — for instance, all car-related documents stored in the cars collection contain fields 'make', 'model', and 'year' — structural uniformity is not mandatory.
 

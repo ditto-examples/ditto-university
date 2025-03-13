@@ -61,7 +61,7 @@ Ditto offers an HTTP API for programmatic interaction with transactional data ge
 
 The Connect via HTTP section provides the authentication information needed for using the Ditto HTTP REST API.
 
-## ❓ Quiz 
+## ❓ Knowledge Check 
 
 1. What is the purpose of the Ditto Portal? 
    - a) A web-based interface for managing Ditto resources, configuring apps, and monitoring usage
@@ -86,11 +86,11 @@ The answers can be found in the [answer file](.answer).
 ## Summary
 
 🎉 Congratulations 🙌! In this lesson, you have learned:
-1. The purpose of the Ditto Portal and the Big Peer
-2. How to create a Ditto Portal account
-3. How to create a new Ditto app
-4. How to use the Online Playground Authentication Token
-5. The basics of the Ditto HTTP API
+- The purpose of the Ditto Portal and the Big Peer
+- How to create a Ditto Portal account
+- How to create a new Ditto app
+- How to use the Online Playground Authentication Token
+- The basics of the Ditto HTTP API
 
 ## Next Steps
 
