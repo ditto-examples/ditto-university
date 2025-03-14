@@ -10,7 +10,7 @@ In the previous lab, we updated the code to start the sync process and create a 
 
 This should open the DQL Editor with a list of collections in your app.  If the previous lab was completed successfully, you should see the `tasks` collection in the list and the query editor should be pre-populated with a select all query showing the four tasks that are displayed in the app. 
 
-<img src="../../assets/portal-to-editor.gif" width="75%" alt="Login Portal to Editor">
+<img src="../../assets/portal-to-editor.gif" width="95%" alt="Login Portal to Editor">
 
 We can now use the query editor to update information in the `task` collection and validate that the changes are synced to the mobile app.  
 
@@ -29,7 +29,7 @@ INSERT INTO tasks DOCUMENTS({
 - Once the query runs, it should return the new document ID that was created in the `tasks` collection.
 - Bring up your mobile app and verify that the new task is displayed in the list of tasks.
 
-<img src="../../assets/ditto-editor-insert-task.gif" width="75%" alt="INSERT task in Query Editor">
+<img src="../../assets/ditto-editor-insert-task.gif" width="95%" alt="INSERT task in Query Editor">
 
 ## Task:  Update a Task from the Query Editor
 
@@ -43,7 +43,7 @@ WHERE _id =  '621ff30d2a3e781873fcb65c'
 - Once the query runs, it should return the document ID that was updated in the `tasks` collection.
 - Bring up your mobile app and verify that the task was marked as done in the list of tasks.
 
-<img src="../../assets/ditto-editor-update-task.gif" width="75%" alt="UPDATE task in Query Editor">
+<img src="../../assets/ditto-editor-update-task.gif" width="95%" alt="UPDATE task in Query Editor">
 
 ## Task: Add a new Task from the mobile app 
 
@@ -55,7 +55,7 @@ SELECT * FROM tasks
 - Click the `Run query` button to execute the query.
 - Verify that the task was added to the `tasks` collection.
 
-<img src="../../assets/ditto-add-task-mobile-app.gif" width="75%" alt="Add task from mobile app">
+<img src="../../assets/ditto-add-task-mobile-app.gif" width="95%" alt="Add task from mobile app">
 
 Feel free to play around with adding and updating tasks from the mobile app or the portal and then validate the changes are synced to the Ditto Cloud.  
 
