@@ -182,17 +182,17 @@ extension DittoManager {
 ///
 extension DittoManager {
     
-    func setSyncEnabled(_ newValue: Bool) throws {
+   func setSyncEnabled(_ newValue: Bool) {
         if let dittoInstance = ditto {
-            if dittoInstance.isSyncActive && newValue {
-                try startSync()
+            if !dittoInstance.isSyncActive && newValue {
+                startSync()
             } else if dittoInstance.isSyncActive && !newValue {
                 stopSync()
             }
         }
     }
     
-    private func startSync() throws {
+    private func startSync() {
         do {
             if let dittoInstance = ditto {
                 //
@@ -211,7 +211,6 @@ extension DittoManager {
             }
         } catch {
             appManager.setError(error)
-            throw error
         }
     }
     

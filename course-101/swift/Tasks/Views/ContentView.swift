@@ -78,21 +78,8 @@ struct ContentView: View {
         }
         .task(id: ObjectIdentifier(dataManager)) {
             await viewModel.initialize(dataManager: dataManager)
+            viewModel.setSyncEnabled(syncEnabled)
             
-        }
-        .onAppear {
-            // Prevent Xcode previews from syncing: non-preview simulators and real devices can sync
-            let isPreview: Bool =
-            ProcessInfo.processInfo.environment[
-                "XCODE_RUNNING_FOR_PREVIEWS"]
-            == "1"
-            if !isPreview {
-                do {
-                    try viewModel.setSyncEnabled(syncEnabled)
-                } catch {
-                    syncEnabled = false
-                }
-            }
         }
     }
     
@@ -149,8 +136,8 @@ extension ContentView {
                 .store(in: &cancellables)
         }
         
-        func setSyncEnabled(_ newValue: Bool) throws {
-            try dataManager?.setSyncEnabled(newValue)
+        func setSyncEnabled(_ newValue: Bool) {
+            dataManager?.setSyncEnabled(newValue)
         }
         
         func toggleComplete(task: TaskModel) {
