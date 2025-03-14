@@ -16,12 +16,12 @@ import DittoSwift
     func toggleComplete(task: TaskModel) async
     func deleteTaskModel(_ task: TaskModel) async
     
-
+    
 }
 
 // MARK: DittoManager Implementation
 @MainActor class DittoManager : ObservableObject, DataManager {
-
+    
     @Published var tasks = [TaskModel]()
     @Published var isPresentingEditScreen: Bool = false
     @Published var selectedTaskModel: TaskModel?
@@ -29,10 +29,10 @@ import DittoSwift
     var subscription: DittoSyncSubscription?
     var storeObserver: DittoStoreObserver?
     var ditto: Ditto?
-
+    
     var appManager: AppManager
     
-    init(appManager: AppManager) async throws {
+    init(appManager: AppManager) {
         //cache state for future use
         self.appManager = appManager
     }
@@ -114,16 +114,16 @@ extension DittoManager {
         
         let initialTasks: [TaskModel] = [
             TaskModel(
-                _id: "50191411-4C46-4940-8B72-5F8017A04FA7",
+                _id: "50191411-4C46-4940-8B72-5F8017A04FA811",
                 title: "Buy groceries"),
             TaskModel(
-                _id: "6DA283DA-8CFE-4526-A6FA-D385089364E5",
+                _id: "6DA283DA-8CFE-4526-A6FA-D385089364E811",
                 title: "Clean the kitchen"),
             TaskModel(
-                _id: "5303DDF8-0E72-4FEB-9E82-4B007E5797F0",
+                _id: "5303DDF8-0E72-4FEB-9E82-4B007E5797F911",
                 title: "Schedule dentist appointment"),
             TaskModel(
-                _id: "38411F1B-6B49-4346-90C3-0B16CE97E174",
+                _id: "38411F1B-6B49-4346-90C3-0B16CE97E17911",
                 title: "Pay bills"),
         ]
         
@@ -197,18 +197,18 @@ extension DittoManager {
 /// - SeeAlso: https://docs.ditto.live/sdk/latest/sync/syncing-data#creating-subscriptions
 ///
 extension DittoManager {
-   
-    func setSyncEnabled(_ newValue: Bool) throws {
+    
+    func setSyncEnabled(_ newValue: Bool) {
         if let dittoInstance = ditto {
-            if dittoInstance.isSyncActive && newValue {
-                try startSync()
+            if !dittoInstance.isSyncActive && newValue {
+                startSync()
             } else if dittoInstance.isSyncActive && !newValue {
                 stopSync()
             }
         }
     }
     
-    private func startSync() throws {
+    private func startSync() {
         do {
             if let dittoInstance = ditto {
                 //
@@ -226,7 +226,6 @@ extension DittoManager {
             }
         } catch {
             appManager.setError(error)
-            throw error
         }
     }
     
@@ -319,10 +318,10 @@ extension DittoManager {
         } catch {
             appManager.setError(error)
         }
-    
+        
     }
     
-
+    
 }
 
 // MARK: Updating TaskModel Complete
@@ -404,3 +403,4 @@ extension DittoManager {
         }
     }
 }
+

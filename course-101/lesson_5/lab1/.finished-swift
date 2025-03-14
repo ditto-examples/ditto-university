@@ -1,0 +1,13 @@
+ private func startSync() throws {
+        do {
+            if let dittoInstance = ditto {
+                try dittoInstance.startSync()
+                
+                let subscriptionQuery = "SELECT * from tasks"
+                subscription = try dittoInstance.sync.registerSubscription(query: subscriptionQuery)
+            }
+        } catch {
+            appManager.setError(error)
+            throw error
+        }
+    }

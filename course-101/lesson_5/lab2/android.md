@@ -1,0 +1,1 @@
+# Lab 2: Validate Sync Process - Android JetPack Compose with Kotlin Application

@@ -98,6 +98,6 @@ The answer can be found in the [answer file](.answer).
 
 ## Next Steps
 
-Now that you have got the app up and running observing data changes, you are ready to look at syncing data between multiple devices using small peers and Ditto's Peer-to-Peer Syncing feature.  Let's go!
+Now that you have got the app up and running observing data changes, you are ready to look at syncing data between the app and the cloud using the Ditto Portal! 
 
-[Continue to Lesson 5 - Syncing Data Across Devices using Small Peers →](../lesson_5/README.md)
+[Continue to Lesson 5 - Syncing Data Across Devices using the Big Peer →](../lesson_5/README.md)
