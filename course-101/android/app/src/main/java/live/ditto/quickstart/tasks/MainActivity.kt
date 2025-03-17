@@ -10,20 +10,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (BuildConfig.DEBUG) {
-            StrictMode.setThreadPolicy(
-                StrictMode.ThreadPolicy.Builder()
-                    .detectDiskReads()
-                    .detectDiskWrites()
-                    .penaltyLog() // Log violations to logcat
-                    .build()
-            )
-        }
-
         setContent {
             Root()
         }
-
         requestMissingPermissions()
     }
 
@@ -36,6 +25,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
-

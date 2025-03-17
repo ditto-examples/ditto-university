@@ -17,12 +17,14 @@ import androidx.compose.ui.res.colorResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import live.ditto.quickstart.tasks.R
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditScreen(navController: NavController, taskId: String?) {
-    val editScreenViewModel: EditScreenViewModel = viewModel()
-    editScreenViewModel.setupWithTask(id = taskId)
+fun EditScreen(
+    navController: NavController,
+    taskId: String?,
+    editScreenViewModel: EditScreenViewModel = koinViewModel()) {
 
     val topBarTitle = if (taskId == null) "New Task" else "Edit Task"
 

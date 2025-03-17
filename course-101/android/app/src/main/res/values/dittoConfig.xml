@@ -1,0 +1,5 @@
+<resources>
+    <string name="endpointUrl">put endpointUrl here</string>
+    <string name="appId">put appId here</string>
+    <string name="authToken">put authToken here</string>
+</resources>
