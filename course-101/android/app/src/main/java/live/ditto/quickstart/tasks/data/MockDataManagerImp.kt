@@ -1,43 +1,77 @@
 package live.ditto.quickstart.tasks.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import live.ditto.quickstart.tasks.models.DittoConfig
 import live.ditto.quickstart.tasks.models.TaskModel
+import live.ditto.quickstart.tasks.services.ErrorService
 
 class MockDataManagerImp(
-    override val dittoConfig: DittoConfig
+    override val dittoConfig: DittoConfig,
+    private val errorService: ErrorService
 ) : DataManager {
+
+    companion object {
+        private const val TAG = "MockDataManagerImp"
+    }
+
+    private val taskModels: MutableList<TaskModel> = mutableListOf()
 
     override val syncEnabled: LiveData<Boolean> = MutableLiveData(true)
 
     override suspend fun populateTaskCollection() {
-        TODO("Not yet implemented")
+        if (taskModels.isEmpty()) {
+            taskModels.addAll(
+                0, listOf(
+                    TaskModel("50191411-4C46-4940-8B72-5F8017A04FA7", "Buy groceries"),
+                    TaskModel("6DA283DA-8CFE-4526-A6FA-D385089364E5", "Clean the kitchen"),
+                    TaskModel(
+                        "5303DDF8-0E72-4FEB-9E82-4B007E5797F0",
+                        "Schedule dentist appointment"
+                    ),
+                    TaskModel("38411F1B-6B49-4346-90C3-0B16CE97E174", "Pay bills")
+                )
+            )
+        }
     }
 
     override suspend fun setSyncEnabled(enabled: Boolean?) {
-        TODO("Not yet implemented")
+        val syncEnabledValue = syncEnabled as MutableLiveData<Boolean>
+        syncEnabledValue.value = enabled ?: true
     }
 
-    override fun getTaskModels(): Flow<List<TaskModel>> {
-        TODO("Not yet implemented")
+    override fun getTaskModels(): Flow<List<TaskModel>> = callbackFlow {
+        try {
+            trySend(taskModels)
+        } catch (e: Exception) {
+            errorService.showError("Failed to setup observer for getting taskModels: ${e.message}")
+            Log.e(TAG, "Failed to setup observer for getting taskModels", e)
+        }
     }
 
     override suspend fun insertTaskModel(taskModel: TaskModel) {
-        TODO("Not yet implemented")
+        taskModels.add(taskModel)
     }
 
     override suspend fun updateTaskModel(taskModel: TaskModel) {
-        TODO("Not yet implemented")
+        taskModels.find { it._id == taskModel._id }?.let {
+            taskModels.remove(it)
+        }
+        taskModels.add(taskModel)
     }
 
     override suspend fun toggleComplete(id: String) {
-        TODO("Not yet implemented")
+        taskModels.find { it._id == id }?.let {
+            it.done = !it.done
+        }
     }
 
     override suspend fun deleteTaskModel(id: String) {
-        TODO("Not yet implemented")
+        taskModels.find { it._id == id }?.let {
+            it.deleted = true
+        }
     }
-
 }

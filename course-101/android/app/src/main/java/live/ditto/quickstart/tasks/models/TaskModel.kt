@@ -6,9 +6,9 @@ import java.util.UUID
 
 data class TaskModel(
     val _id: String = UUID.randomUUID().toString(),
-    val title: String,
-    val done: Boolean = false,
-    val deleted: Boolean = false,
+    var title: String,
+    var done: Boolean = false,
+    var deleted: Boolean = false,
 ) {
     companion object {
         private const val TAG = "TaskModel"
