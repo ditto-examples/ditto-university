@@ -10,7 +10,7 @@ import DittoSwift
     
     func initialize() async throws
     func populateTaskCollection() async throws
-    func setSyncEnabled(_ newValue: Bool) throws
+    func setSyncEnabled(_ newValue: Bool) 
     func insertTaskModel(_ task: TaskModel) async
     func updateTaskModel(_ task: TaskModel) async
     func toggleComplete(task: TaskModel) async
