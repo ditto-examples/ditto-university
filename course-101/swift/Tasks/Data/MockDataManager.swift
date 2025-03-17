@@ -45,7 +45,7 @@ import Foundation
         
     }
     
-    func setSyncEnabled(_ newValue: Bool) throws {
+    func setSyncEnabled(_ newValue: Bool)  {
         //do fake set sync enabled
         print ("doing lots of work to check and enable or disable sync")
     }
