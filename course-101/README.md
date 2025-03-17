@@ -1,53 +1,45 @@
-# Ditto Quickstart Apps 🚀
+# Course 101: Build Your First Ditto-Powered App 🚀
 
-This repo contains apps that demonstrate how to use the Ditto SDK for supported
-programming languages and platforms.
+The Introduction to the Ditto SDK course guides you through the foundational skills and knowledge you need to get started with the Ditto SDK. This includes how to sign up and create your first Ditto app on the Ditto Portal, how to conduct simple CRUD operations, syncing data between small peers, and syncing to the big peer in the cloud.  You'll experience a common real-world scenario: transforming a prototype into a production-ready application with robust data management capabilities.
 
-See Ditto's [Quickstarts](https://docs.ditto.live/sdk/latest/quickstarts)
-documentation for more information.
+> [!NOTE] 
+>This is a proof of concept for the Ditto University.  The concepts and code provided is not production ready and is only meant to be used as a reference for the POC of Ditto University learning modules. 
 
-For support, please contact Ditto Support (<support@ditto.live>).
+## Overview
 
-## Obtaining your Ditto Identity
+### 🎯 The Scenario
 
-The Ditto SDK requires you to provide an identity for your application, which may be
-generated using the [Ditto Portal](https://portal.ditto.live/). For the purposes of these
-quickstart applications, we'll be using the "Online Playground" identity type.
+You've just joined a development team for the company Acmezon that recently demonstrated a Project Management app to company leadership. The app demo was a hit - the UI was polished, the interactions were smooth, and leadership was ready to ship it immediately. There was just one catch: the entire app was running on mock data.
 
-![Ditto Portal](.github/assets/ditto-portal.png)
+The prototype lacks several critical features modern users expect:
+- No offline support - data disappears when the app closes
+- No data persistence - changes aren't saved between sessions
+- No synchronization - changes don't sync between devices
+- No real-time updates - users don't see each other's changes
 
-> [!IMPORTANT]
-> The Online Playground identity type is _not_ suitable for production use. It is intended
-> only for development and testing purposes.
+Rather than rebuilding from scratch, the team has decided to integrate the Ditto SDK to add these essential features. Your mission is to transform this prototype into a production-ready application with robust offline-first capabilities and peer-to-peer synchronization, all while maintaining the existing user experience.
 
-To obtain your Ditto identity and configure the quickstart apps with it, follow these steps:
+## 🎓 Learning Objectives
 
-1. Create a free account in the [Ditto Portal](https://portal.ditto.live/).
-1. Create an app in the Ditto Portal.
-1. Copy the `.env.sample` file to `.env`.
-   - in a terminal: `cp .env.sample .env`.
-   - in a macOS Finder window, press `⇧⌘.` (SHIFT+CMD+period) to show hidden files.
-1. Save your App ID, Online Playground Token, Auth URL, and WebSocket URL in the `.env` file.
+Through this module, you'll learn how to:
+- What is the Ditto Portal is and how it works
+- Setup a Ditto Portal account and create an app
+- Replace mock data with a real Ditto data store
+- Implement offline-first data persistence
+- Update the app to perform CRUD operations
+- Enable real-time updates across devices (small peers)
+- Sync data to the Big Peer in the Cloud
 
-Please see the app-specific README files for details on the tools necessary to
-build and run them.
+## 📖 Table of Contents
+| Course | Topics |
+| -------|-------- |
+| Lesson 1 [Create Your Portal Account](lesson_1/README.md) | • The purpose of the Ditto Portal and the Big Peer <br> • Register Your Portal Account <br> • Create a new Ditto app <br> • Learn about the Playground Authentication Token |
+| Lesson 2 [Setting Up Your Development Environment](lesson_2/README.md) | • Learn about the Ditto SDK <br> • Running the App with Mock Data <br> • Setting up the Ditto Identity |
+| Lesson 3 [Updating the initial Data with Ditto](lesson_3/README.md) | • Ditto Collections <br> • DQL INSERT and SELECT Statements<br> • Register Observers |
+| Lesson 4 [DQL INSERT, UPDATE, and SOFT DELETE](lesson_4/README.md) | • Learn about DQL INSERT and UPDATE Statements <br> • Soft-Delete Pattern |
+| Lesson 5 [Syncing Data Across Devices using the Big Peer](lesson_5/README.md) | • Learn about the Big Peer <br> • Learn the DQL Editor in the Ditto Portal <br> • Test the App with Big Peer syncing changes from the Big Peer to Small Peers | 
 
-## Apps
+## 🚀 Ready to Begin?
 
-- [Android Kotlin](android-kotlin/README.md)
-- [Android Java](android-java/README.md)
-- [Android C++](android-cpp/README.md)
-- [C++ TUI](cpp-tui/README.md)
-- [C# .NET MAUI](dotnet-maui/README.md)
-- [C# .NET TUI](dotnet-tui/README.md)
-- [Flutter](flutter_quickstart/README.md)
-- [Javascript TUI](javascript-tui/README.md)
-- [Javascript Web](javascript-web/README.md)
-- [React Native](react-native/README.md)
-- [Rust TUI](rust-tui/README.md)
-- [Swift](swift/README.md)
+Head to [Lesson 1 - Create Your Account](lesson_1/README.md) to get started! 
 
-## 📄 License
-
-This repo is licensed under the MIT License. See the [LICENSE](LICENSE) file for
-rights and limitations.
