@@ -92,4 +92,4 @@ The answer can be found in the [answer file](.answer).
 
 Now that you have created setup the Ditto SDK and initialized the Ditto instance, you're ready to start loading initial data into the Ditto database using the Ditto SDK. Let's go!
 
-[Continue to Lesson 3 - Try Out The Sample Data →](../lesson_3/README.md)
+[Continue to Lesson 3 - Updating the initial Data with Ditto →](../lesson_3/README.md)
