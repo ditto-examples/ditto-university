@@ -58,6 +58,7 @@ The following courses are available:
 | ------ | ------ |
 | [Course 100 - Introduction to Distributed Apps & Ditto](course-100/README.md) |  • Understand the shift from RPC to Subscribe-Observe-Query <br> • Grasp causal consistencys. <br> • How Ditto abstracts complexity of distributed systems (CRDTs) |
 | [Course 101 - Build Your First Ditto-Powered App](course-101/README.md) | • The Ditto Portal and the Big Peer <br> • Register Your Portal Account <br> • Create a new Ditto app <br> • Playground Authentication Token <br> • Ditto SDK <br> • Ditto Identity <br> • Ditto Collections <br> • DQL INSERT, SELECT, & UPDATE Statements <br> • Register Observers <br> • Soft-Delete Pattern <br>  • Intro to Big Peer Syncing | 
+| [Course 102 - A True Peer to Peer Application](course-102/README.md) | • Setting up Multiple Devices <br> • Sync, Subscriptions and Observers <br> • Offline Updates <br> • Handling Conflicts <br> • Deletion and Eviction <br>  | 
 | Course 120 - Ditto SDK - Atachments & File Management | Coming Soon |
 | Course 130 - Security & Access Control | Coming Soon |
 | Course 140 - DQL & the Portal Query Editor | Coming Soon |
