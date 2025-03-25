@@ -41,4 +41,18 @@ data class TaskModel(
             }
         }
     }
+
+    override fun toString(): String {
+        return try {
+            JSONObject().apply {
+                put("_id", _id)
+                put("title", title)
+                put("done", done)
+                put("deleted", deleted)
+            }.toString()
+        } catch (e: Exception) {
+            Log.e(TAG, "Unable to convert Task to JSON", e)
+            "{}"
+        }
+    }
 }
