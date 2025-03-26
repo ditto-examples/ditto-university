@@ -2,7 +2,7 @@ package live.ditto.quickstart.tasks
 
 import android.app.Application
 import live.ditto.quickstart.tasks.data.DataManager
-import live.ditto.quickstart.tasks.data.DittoManagerImp
+import live.ditto.quickstart.tasks.data.DittoManager
 import live.ditto.quickstart.tasks.edit.EditScreenViewModel
 import live.ditto.quickstart.tasks.list.TasksListScreenViewModel
 import live.ditto.quickstart.tasks.models.DittoConfig
@@ -18,10 +18,8 @@ class TasksApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //
         // Start Koin dependency injection
         // https://insert-koin.io/docs/reference/koin-android/start
-        //
         GlobalContext.startKoin {
             androidLogger()
             androidContext(this@TasksApplication)
@@ -34,7 +32,8 @@ class TasksApplication : Application() {
            // Create DittoConfig as a single instance
            single {
                DittoConfig(
-                   getString(R.string.endpointUrl),
+                   getString(R.string.authUrl),
+                   getString(R.string.websocketUrl),
                    getString(R.string.appId),
                    getString(R.string.authToken)
                )
@@ -42,7 +41,7 @@ class TasksApplication : Application() {
 
            // Create DittoManager with injected dependencies
            single<DataManager> {
-               DittoManagerImp(
+               DittoManager(
                    dittoConfig = get(),     // Koin will provide the DittoConfig instance
                    context = get(),         // Koin will provide the Application context
                    errorService = get()

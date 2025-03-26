@@ -1,5 +1,6 @@
 <resources>
-    <string name="endpointUrl">put endpointUrl here</string>
-    <string name="appId">put appId here</string>
-    <string name="authToken">put authToken here</string>
+    <string name="authUrl">put AuthURL here</string>
+    <string name="websocketUrl">put Websocket URL here</string>
+    <string name="appId">put appID here</string>
+    <string name="authToken">put Oline Playground Authentication Token here</string>
 </resources>

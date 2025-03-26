@@ -26,128 +26,14 @@ import live.ditto.quickstart.tasks.models.DittoConfig
 import live.ditto.quickstart.tasks.models.TaskModel
 import live.ditto.quickstart.tasks.services.ErrorService
 
-interface DataManager {
-
-    val dittoConfig: DittoConfig
-    val syncEnabled: LiveData<Boolean>
-
-
-    /**
-     * Populates the Ditto tasks collection with initial seed data if it's empty.
-     * 
-     * This method:
-     * - Creates a set of predefined tasks with unique IDs and titles
-     * 
-     * The initial tasks include common todo items like:
-     * - Buy groceries
-     * - Clean the kitchen
-     * - Schedule dentist appointment
-     * - Pay bills
-     * 
-     * @throws Exception if the insert operations fail
-     * 
-     */
-    suspend fun populateTaskCollection()
-
-    /**
-     * Enables or disables synchronization
-     * 
-     * This method:
-     * - Persists the sync preference in DataStore
-     * - Updates the UI state through LiveData
-     * 
-     * Implementation details:
-     * - Retrieves default sync state from preferences if not specified
-     * - Updates both DataStore and LiveData to maintain state
-     * 
-     * @param enabled Boolean value to set sync state to. If null, uses stored preference
-     * 
-     */
-    suspend fun setSyncEnabled(enabled: Boolean?)
-
-    /**
-     * Creates a Flow that observes and emits changes to the tasks collection 
-     *
-     * This method:
-     * - Sets up a live query observer for the tasks collection
-     * - Emits a new list of TaskModel objects whenever the data changes
-     *
-     * @return Flow<List<TaskModel>> A flow that emits updated lists of Tasks
-     * whenever changes occur in the collection
-     */
-    fun getTaskModels(): Flow<List<TaskModel>>
-
-    suspend fun getTaskModel(id: String): TaskModel? = null
-
-    /**
-     * Adds a new TaskModel 
-     *
-     * This method:
-     * - Creates a new document in the tasks collection
-     * - Assigns the provided ID and properties
-     * - Triggers a sync with other devices
-     *
-     * The taskModel object should have:
-     * - A unique ID
-     * - All required fields populated
-     *
-     * @param taskModel The new TaskModel object to be added
-     * @throws Exception if the insert operation fails
-     */
-    suspend fun insertTaskModel(taskModel: TaskModel)
-
-    /**
-     * Updates an existing TaskModel 
-     *
-     * This method:
-     * - Updates all mutable fields of the TaskModel
-     * - Maintains the taskModel's ID and references
-     * - Triggers a sync with other devices
-     *
-     * @param taskModel The updated TaskModel object containing all changes
-     * @throws Exception if the update operation fails
-     */
-    suspend fun updateTaskModel(taskModel: TaskModel)
-
-    /**
-     * Updates an existing TaskModel, setting the done field to true.
-     *
-     * This method:
-     * - Updates the done field to true
-     * - Maintains the taskModel's ID and references
-     *
-     * The id should be a valid _id of a TaskModel object
-     *
-     * @param id  The _id of the TaskModel object to update
-     * @throws Exception if the insert operation fails
-     */
-    suspend fun toggleComplete(id: String)
-
-    /**
-     * Archives a TaskModel by setting its deleted flag to true.
-     *
-     * This method:
-     * - Marks the taskModel as deleted instead of deleting it
-     * - Removes it from active queries and views
-     * - Maintains the data for historical purposes
-     *
-     * Archived TaskModel:
-     * - Are excluded from the main TaskModel list
-     *
-     * @param id  The _id of the TaskModel object to archive
-     * @throws Exception if the archive operation fails
-     */
-    suspend fun deleteTaskModel(id: String)
-}
-
-class DittoManagerImp(
+class DittoManager(
     override val dittoConfig: DittoConfig,
     context: Context,
     private val errorService: ErrorService
 ) : DataManager {
 
     companion object {
-        private const val TAG = "DittoManagerImp"
+        private const val TAG = "DittoManager"
     }
 
     // The value of the Sync switch is stored in persistent settings
@@ -165,33 +51,25 @@ class DittoManagerImp(
     init {
         try {
             preferencesDataStore = context.preferencesDataStore
-
             DittoLogger.minimumLogLevel = DittoLogLevel.DEBUG
+
+            // Initialize Ditto
+            //https://docs.ditto.live/sdk/latest/install-guides/kotlin#integrating-and-initializing
             val androidDependencies = DefaultAndroidDittoDependencies(context)
 
-            //
-            // CustomUrl is used because Connector is in Private Preview
-            // and uses a different cluster than normal production
-            //
-            val customAuthUrl = "https://${dittoConfig.endpointUrl}"
-            val webSocketUrl = "wss://${dittoConfig.endpointUrl}"
-
-            //
-            // TODO remove when Connector is out of Private Preview
-            // https://docs.ditto.live/sdk/latest/install-guides/kotlin#integrating-and-initializing
             val identity = DittoIdentity.OnlinePlayground(
                 androidDependencies,
                 dittoConfig.appId,
                 dittoConfig.authToken,
                 false,
-                customAuthUrl
+                dittoConfig.authUrl
             )
             this.ditto = Ditto(androidDependencies, identity)
 
             // Set the Ditto Websocket URL
             // Enable all P2P transports
             ditto.updateTransportConfig { config ->
-                config.connect.websocketUrls.add(webSocketUrl)
+                config.connect.websocketUrls.add(dittoConfig.websocketUrl)
                 config.enableAllPeerToPeer()
             }
 
@@ -223,8 +101,8 @@ class DittoManagerImp(
      * - Handles errors gracefully and logs them for debugging
      * 
      * @throws Exception if the insert operations fail
-     * 
-     * @see https://docs.ditto.live/sdk/latest/crud/write#inserting-documents
+     * Ditto Docs:
+     * https://docs.ditto.live/sdk/latest/crud/write#inserting-documents
      */
     override suspend fun populateTaskCollection() {
         return withContext(Dispatchers.IO) {
@@ -314,9 +192,11 @@ class DittoManagerImp(
      * - Handles errors gracefully and logs them for debugging
      * 
      * @throws Exception if sync initialization or subscription setup fails
-     * 
-     * @see Ditto.startSync()
-     * @see Ditto.sync.registerSubscription()
+     *
+     * Ditto Docs:
+     * https://docs.ditto.live/sdk/latest/sync/start-and-stop-sync
+     * https://docs.ditto.live/sdk/latest/sync/syncing-data
+     *
      */
     private suspend fun startSync() {
         return withContext(Dispatchers.IO) {
