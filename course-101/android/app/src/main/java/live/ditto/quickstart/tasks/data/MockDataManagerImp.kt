@@ -3,6 +3,7 @@ package live.ditto.quickstart.tasks.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import live.ditto.quickstart.tasks.models.DittoConfig
@@ -47,6 +48,9 @@ class MockDataManagerImp(
             errorService.showError("Failed to setup observer for getting taskModels: ${e.message}")
             Log.e(TAG, "Failed to setup observer for getting taskModels", e)
         }
+        awaitClose {
+            // Cleanup code here if needed
+        }
     }
 
     override suspend fun insertTaskModel(taskModel: TaskModel) {
@@ -57,7 +61,9 @@ class MockDataManagerImp(
         taskModels.find { it._id == taskModel._id }?.let {
             taskModels.remove(it)
         }
-        taskModels.add(taskModel)
+        if (!taskModel.deleted) {
+            taskModels.add(taskModel)
+        }
     }
 
     override suspend fun toggleComplete(id: String) {
@@ -68,7 +74,7 @@ class MockDataManagerImp(
 
     override suspend fun deleteTaskModel(id: String) {
         taskModels.find { it._id == id }?.let {
-            it.deleted = true
+            taskModels.remove(it)
         }
     }
 }

@@ -1,6 +1,7 @@
 package live.ditto.quickstart.tasks
 
 import android.app.Application
+import live.ditto.android.DefaultAndroidDittoDependencies
 import live.ditto.quickstart.tasks.data.DataManager
 import live.ditto.quickstart.tasks.data.DittoManager
 import live.ditto.quickstart.tasks.edit.EditScreenViewModel
@@ -13,6 +14,8 @@ import org.koin.core.context.GlobalContext
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
+import java.io.File
+import java.util.UUID
 
 class TasksApplication : Application() {
 
@@ -43,6 +46,7 @@ class TasksApplication : Application() {
            single<DataManager> {
                DittoManager(
                    dittoConfig = get(),     // Koin will provide the DittoConfig instance
+                   androidDittoDependencies = DefaultAndroidDittoDependencies(this@TasksApplication),
                    context = get(),         // Koin will provide the Application context
                    errorService = get()
                )

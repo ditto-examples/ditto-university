@@ -14,6 +14,7 @@ import live.ditto.DittoLogLevel
 import live.ditto.DittoLogger
 import live.ditto.DittoStoreObserver
 import live.ditto.DittoSyncSubscription
+import live.ditto.android.AndroidDittoDependencies
 import live.ditto.android.DefaultAndroidDittoDependencies
 import live.ditto.quickstart.tasks.models.DittoConfig
 import live.ditto.quickstart.tasks.models.TaskModel
@@ -22,13 +23,14 @@ import live.ditto.quickstart.tasks.services.ErrorService
 class DittoManager(
     override val dittoConfig: DittoConfig,
     context: Context,
+    androidDittoDependencies: AndroidDittoDependencies,
     private val errorService: ErrorService
 ) : DataManager {
     companion object {
         private const val TAG = "DittoManager"
     }
 
-    private lateinit var ditto: Ditto
+    var ditto: Ditto? = null
     private var subscription: DittoSyncSubscription? = null
     private var storeObserver: DittoStoreObserver? = null
 
@@ -36,28 +38,24 @@ class DittoManager(
         try {
             DittoLogger.minimumLogLevel = DittoLogLevel.DEBUG
 
-            // Initialize Ditto
-            //https://docs.ditto.live/sdk/latest/install-guides/kotlin#integrating-and-initializing
-            val androidDependencies = DefaultAndroidDittoDependencies(context)
-
             val identity = DittoIdentity.OnlinePlayground(
-                androidDependencies,
+                androidDittoDependencies,
                 dittoConfig.appId,
                 dittoConfig.authToken,
                 false,
                 dittoConfig.authUrl
             )
-            this.ditto = Ditto(androidDependencies, identity)
+            this.ditto = Ditto(androidDittoDependencies, identity)
 
             // Set the Ditto Websocket URL
             // Enable all P2P transports
-            ditto.updateTransportConfig { config ->
+            ditto?.updateTransportConfig { config ->
                 config.connect.websocketUrls.add(dittoConfig.websocketUrl)
                 config.enableAllPeerToPeer()
             }
 
             // disable sync with v3 peers, required for syncing with the Ditto Cloud (Big Peer)
-            this.ditto.disableSyncWithV3()
+            this.ditto?.disableSyncWithV3()
 
         } catch (e: DittoError) {
             errorService.showError("Failed to initialize Ditto: ${e.message}")
@@ -98,7 +96,7 @@ class DittoManager(
 
             tasks.forEach { task ->
                 try {
-                    ditto.store.execute(
+                    ditto?.store?.execute(
                         "INSERT INTO tasks INITIAL DOCUMENTS (:task)",
                         mapOf(
                             "task" to mapOf(
@@ -138,7 +136,7 @@ class DittoManager(
      */
     override suspend fun setSyncEnabled(enabled: Boolean) {
         //get default value from preferences if not set
-        if (enabled  && !ditto.isSyncActive) {
+        if (enabled  && !(ditto?.isSyncActive)!!) {
             startSync()
         } else {
             stopSync()
@@ -173,10 +171,12 @@ class DittoManager(
     private suspend fun startSync() {
         return withContext(Dispatchers.IO) {
             try {
-                ditto.startSync()
+                ditto?.let {
+                    it.startSync()
 
-                val subscriptionQuery = "SELECT * from tasks"
-                subscription = ditto.sync.registerSubscription(subscriptionQuery)
+                    val subscriptionQuery = "SELECT * from tasks"
+                    subscription = it.sync.registerSubscription(subscriptionQuery)
+                }
             } catch (e: Exception) {
                 errorService.showError("Failed to start ditto sync: ${e.message}")
                 Log.e(TAG, "Failed to start ditto sync", e)
@@ -200,11 +200,11 @@ class DittoManager(
      * @see Ditto.stopSync()
      * @see DittoSyncSubscription.close()
      */
-    private suspend fun stopSync() {
+    suspend fun stopSync() {
         return withContext(Dispatchers.IO) {
             subscription?.close()
             subscription = null
-            ditto.stopSync()
+            ditto?.stopSync()
         }
     }
 
@@ -228,7 +228,7 @@ class DittoManager(
     override fun getTaskModels(): Flow<List<TaskModel>> = callbackFlow {
         try {
             val query = "SELECT * FROM tasks WHERE NOT deleted"
-            storeObserver = ditto.store.registerObserver(query) { results ->
+            storeObserver = ditto?.store?.registerObserver(query) { results ->
                 val items = results.items.map { item ->
                     TaskModel.fromMap(item.value)
                 }
@@ -258,7 +258,7 @@ class DittoManager(
         return withContext(Dispatchers.IO) {
             try {
                 val query = "INSERT INTO tasks DOCUMENTS (:newTask)"
-                ditto.store.execute(
+                ditto?.store?.execute(
                     query,
                     mapOf(
                         "newTask" to mapOf(
@@ -294,7 +294,7 @@ class DittoManager(
                     deleted = :deleted,
                 WHERE _id = :_id 
                 """
-                ditto.store.execute(
+                ditto?.store?.execute(
                     query,
                     mapOf(
                         "title" to taskModel.title,
@@ -329,26 +329,28 @@ class DittoManager(
     override suspend fun toggleComplete(id: String) {
         return withContext(Dispatchers.IO) {
             try {
-                val doc = ditto.store.execute(
-                    "SELECT * FROM tasks WHERE _id = :_id AND NOT deleted",
-                    mapOf("_id" to id)
-                ).items.first()
+                ditto?.let {
+                    val doc = it.store.execute(
+                        "SELECT * FROM tasks WHERE _id = :_id AND NOT deleted",
+                        mapOf("_id" to id)
+                    ).items.first()
 
-                val done = doc.value["done"] as Boolean
+                    val done = doc.value["done"] as Boolean
 
-                val query = """
-                UPDATE tasks
-                SET done = :done 
-                WHERE _id == :_id
-                """
+                    val query = """
+                        UPDATE tasks
+                        SET done = :done 
+                        WHERE _id == :_id
+                    """
 
-                ditto.store.execute(
-                    query,
-                    mapOf(
-                        "done" to !done,
-                        "_id" to id
+                    it.store.execute(
+                        query,
+                        mapOf(
+                            "done" to !done,
+                            "_id" to id
+                        )
                     )
-                )
+                }
             } catch (e: Exception) {
                 errorService.showError("Failed to update taskModel: ${e.message}")
                 Log.e(TAG, "Failed to update taskModel:", e)
@@ -373,7 +375,7 @@ class DittoManager(
                 SET done = true
                 WHERE _id = :_id 
                 """
-                ditto.store.execute(
+                ditto?.store?.execute(
                     query,
                     mapOf(
                         "_id" to id,

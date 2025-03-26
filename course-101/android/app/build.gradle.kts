@@ -71,8 +71,10 @@ dependencies {
 
     // Ditto SDK
     implementation(libs.live.ditto)
+    implementation(libs.androidx.monitor)
 
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
