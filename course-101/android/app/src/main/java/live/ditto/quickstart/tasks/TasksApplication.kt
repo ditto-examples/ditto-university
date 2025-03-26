@@ -14,8 +14,6 @@ import org.koin.core.context.GlobalContext
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
-import java.io.File
-import java.util.UUID
 
 class TasksApplication : Application() {
 

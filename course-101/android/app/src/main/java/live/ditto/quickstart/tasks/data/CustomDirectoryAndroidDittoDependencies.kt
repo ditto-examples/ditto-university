@@ -5,6 +5,7 @@ import live.ditto.android.AndroidDittoDependencies
 import live.ditto.android.DefaultAndroidDittoDependencies
 import java.io.File
 
+// used for testing the DittoManager - need to have a custom directory for each test
 data class CustomDirectoryAndroidDittoDependencies(
     private val androidDittoDependencies: DefaultAndroidDittoDependencies,
     private val customDir: File
