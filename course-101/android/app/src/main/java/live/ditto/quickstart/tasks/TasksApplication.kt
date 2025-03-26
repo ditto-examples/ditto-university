@@ -49,7 +49,7 @@ class TasksApplication : Application() {
            }
 
            // Create TasksListScreenViewModel with injected DittoManager
-           viewModel { TasksListScreenViewModel(get()) }
+           viewModel { TasksListScreenViewModel(get(), this@TasksApplication) }
 
            // Create EditScreenViewModel with injected DittoManager
            viewModel { EditScreenViewModel(get()) }

@@ -2,17 +2,10 @@ package live.ditto.quickstart.tasks.data
 
 import android.content.Context
 import android.util.Log
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import live.ditto.Ditto
 import live.ditto.DittoError
@@ -31,18 +24,9 @@ class DittoManager(
     context: Context,
     private val errorService: ErrorService
 ) : DataManager {
-
     companion object {
         private const val TAG = "DittoManager"
     }
-
-    // The value of the Sync switch is stored in persistent settings
-    private val Context.preferencesDataStore by preferencesDataStore("tasks_list_settings")
-    private val _syncEnabledKey = booleanPreferencesKey("sync_enabled")
-    private lateinit var preferencesDataStore: androidx.datastore.core.DataStore<androidx.datastore.preferences.core.Preferences>
-
-    private val _syncEnabled = MutableLiveData(true)
-    override val syncEnabled: LiveData<Boolean> = _syncEnabled
 
     private lateinit var ditto: Ditto
     private var subscription: DittoSyncSubscription? = null
@@ -50,7 +34,6 @@ class DittoManager(
 
     init {
         try {
-            preferencesDataStore = context.preferencesDataStore
             DittoLogger.minimumLogLevel = DittoLogLevel.DEBUG
 
             // Initialize Ditto
@@ -153,24 +136,13 @@ class DittoManager(
      * @see startSync()
      * @see stopSync()
      */
-    override suspend fun setSyncEnabled(enabled: Boolean?) {
+    override suspend fun setSyncEnabled(enabled: Boolean) {
         //get default value from preferences if not set
-        var isEnabled = enabled
-        if (isEnabled == null) {
-            isEnabled =
-                preferencesDataStore.data.map { prefs -> prefs[_syncEnabledKey] ?: true }.first()
-        }
-        if (isEnabled && !ditto.isSyncActive) {
+        if (enabled  && !ditto.isSyncActive) {
             startSync()
         } else {
             stopSync()
         }
-
-        //update preferences
-        preferencesDataStore.edit { settings ->
-            settings[_syncEnabledKey] = isEnabled
-        }
-        _syncEnabled.value = isEnabled
     }
 
     /**
@@ -271,23 +243,6 @@ class DittoManager(
             errorService.showError("Failed to setup observer for getting taskModels: ${e.message}")
             Log.e(TAG, "Failed to setup observer for getting taskModels", e)
         }
-    }
-
-    override suspend fun getTaskModel(id: String): TaskModel? {
-        withContext(Dispatchers.IO) {
-            try {
-                val item = ditto.store.execute(
-                    "SELECT * FROM tasks WHERE _id = :_id AND NOT deleted",
-                    mapOf("_id" to id)
-                ).items.first()
-                val taskModel = TaskModel.fromJson(item.jsonString())
-                return@withContext taskModel
-            } catch (e: Exception){
-                errorService.showError("Failed to get taskModel: ${e.message}")
-                Log.e(TAG, "Failed to get taskModel:", e)
-            }
-        }
-        return null
     }
 
     /**

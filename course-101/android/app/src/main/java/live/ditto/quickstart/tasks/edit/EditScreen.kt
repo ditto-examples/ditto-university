@@ -14,7 +14,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import live.ditto.quickstart.tasks.R
 import org.koin.androidx.compose.koinViewModel
@@ -23,14 +22,11 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun EditScreen(
     navController: NavController,
-    taskId: String?,
-    editScreenViewModel: EditScreenViewModel = koinViewModel()) {
+    taskJson: String?,
+    viewModel: EditScreenViewModel = koinViewModel()) {
+    viewModel.setupWithTask(taskJson)
 
-    val topBarTitle = if (taskId == null) "New Task" else "Edit Task"
-
-    val title: String by editScreenViewModel.title.observeAsState("")
-    val done: Boolean by editScreenViewModel.done.observeAsState(initial = false)
-    val canDelete: Boolean by editScreenViewModel.canDelete.observeAsState(initial = false)
+    val topBarTitle = if (taskJson == null) "New Task" else "Edit Task"
 
     Scaffold(
         topBar = {
@@ -46,17 +42,17 @@ fun EditScreen(
                 .fillMaxSize()
                 .padding(padding)) {
                 EditForm(
-                    canDelete = canDelete,
-                    title = title,
-                    onTitleTextChange = { editScreenViewModel.title.value = it },
-                    done = done,
-                    onDoneChanged = { editScreenViewModel.done.value = it },
+                    canDelete = viewModel.canDelete.value,
+                    title = viewModel.title.value,
+                    onTitleTextChange = { viewModel.title.value = it },
+                    done = viewModel.done.value,
+                    onDoneChanged = { viewModel.done.value = it },
                     onSaveButtonClicked = {
-                        editScreenViewModel.save()
+                        viewModel.save()
                         navController.popBackStack()
                     },
                     onDeleteButtonClicked = {
-                        editScreenViewModel.delete()
+                        viewModel.delete()
                         navController.popBackStack()
                     }
                 )

@@ -1,5 +1,10 @@
 package live.ditto.quickstart.tasks.list
 
+import android.content.Context
+import androidx.compose.runtime.mutableStateOf
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,25 +16,49 @@ import live.ditto.quickstart.tasks.models.TaskModel
 
 class TasksListScreenViewModel(
     val dataManager: DataManager,
+    context: Context
 ) : ViewModel() {
 
+    // The value of the Sync switch is stored in persistent settings
+    private val Context.preferencesDataStore by preferencesDataStore("tasks_list_settings")
+    private val _syncEnabledKey = booleanPreferencesKey("sync_enabled")
+    private var preferencesDataStore: androidx.datastore.core.DataStore<androidx.datastore.preferences.core.Preferences> =
+        context.preferencesDataStore
+    val syncEnabled = mutableStateOf(true)
+
+    //track the list of task models using a flow
     private val _taskModels = MutableStateFlow<List<TaskModel>>(emptyList())
     val taskModels: StateFlow<List<TaskModel>> = _taskModels.asStateFlow()
 
     init {
+        loadSyncEnabled()
         viewModelScope.launch {
             dataManager.populateTaskCollection()
             dataManager.getTaskModels()
                 .collect { taskModelList ->
                     _taskModels.value = taskModelList
                 }
-            //todo need to fix getting default value
-            dataManager.setSyncEnabled(null)
+        }
+    }
+
+    private fun loadSyncEnabled() {
+        viewModelScope.launch {
+            preferencesDataStore.data.collect { preferences ->
+                syncEnabled.value = preferences[_syncEnabledKey] ?: true
+                setSyncEnabled(syncEnabled.value)
+            }
         }
     }
 
     fun setSyncEnabled(enabled: Boolean) {
         viewModelScope.launch {
+            //update state and the preferences data store
+            if (syncEnabled.value != enabled) {
+                preferencesDataStore.edit { preferences ->
+                    preferences[_syncEnabledKey] = enabled
+                }
+                syncEnabled.value = enabled
+            }
             dataManager.setSyncEnabled(enabled)
         }
     }

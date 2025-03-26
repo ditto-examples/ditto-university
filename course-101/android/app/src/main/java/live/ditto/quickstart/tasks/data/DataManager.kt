@@ -8,7 +8,6 @@ import live.ditto.quickstart.tasks.models.TaskModel
 interface DataManager {
 
     val dittoConfig: DittoConfig
-    val syncEnabled: LiveData<Boolean>
 
     /**
      * Populates the Ditto tasks collection with initial seed data if it's empty.
@@ -41,7 +40,7 @@ interface DataManager {
      * @param enabled Boolean value to set sync state to. If null, uses stored preference
      *
      */
-    suspend fun setSyncEnabled(enabled: Boolean?)
+    suspend fun setSyncEnabled(enabled: Boolean)
 
     /**
      * Creates a Flow that observes and emits changes to the tasks collection
@@ -54,8 +53,6 @@ interface DataManager {
      * whenever changes occur in the collection
      */
     fun getTaskModels(): Flow<List<TaskModel>>
-
-    suspend fun getTaskModel(id: String): TaskModel? = null
 
     /**
      * Adds a new TaskModel

@@ -54,7 +54,6 @@ fun TasksListScreen(
     viewModel: TasksListScreenViewModel = koinViewModel()) {
 
     val tasks by viewModel.taskModels.collectAsState()
-    val syncEnabled: Boolean by viewModel.dataManager.syncEnabled.observeAsState(true)
     var showDeleteDialog by remember { mutableStateOf(false) }
     var deleteDialogTaskId by remember { mutableStateOf("") }
 
@@ -96,7 +95,7 @@ fun TasksListScreen(
                             color = Color.White
                         )
                         Switch(
-                            checked = syncEnabled,
+                            checked = viewModel.syncEnabled.value,
                             onCheckedChange = { isChecked ->
                                 viewModel.setSyncEnabled(isChecked)
                             }
@@ -187,7 +186,7 @@ fun TasksList(
             TaskRow(
                 task = task,
                 onToggle = { onToggle?.invoke(it._id) },
-                onClickEdit = { onClickEdit?.invoke(it._id) },
+                onClickEdit = { onClickEdit?.invoke(it.toString()) },
                 onClickDelete = { onClickDelete?.invoke(it._id) }
             )
         }

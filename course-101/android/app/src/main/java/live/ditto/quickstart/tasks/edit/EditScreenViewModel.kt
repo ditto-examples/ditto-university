@@ -1,6 +1,6 @@
 package live.ditto.quickstart.tasks.edit
 
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -11,45 +11,40 @@ class EditScreenViewModel(
     private val dataManager: DataManager
 ) : ViewModel() {
 
-    private var _id: String? = null
-    var title = MutableLiveData<String>("")
-    var done = MutableLiveData<Boolean>(false)
-    var canDelete = MutableLiveData<Boolean>(false)
+    private var task:TaskModel? = null
+
+    var title = mutableStateOf("")
+    var done = mutableStateOf(false)
+    var canDelete = mutableStateOf(false)
 
 
-    fun setupWithTask(id: String?) {
-        canDelete.postValue(id != null)
-        val taskId: String = id ?: return
-        viewModelScope.launch {
-            val task = dataManager.getTaskModel(taskId)
-            task?.let {
-                _id = task._id
-                title.postValue(task.title)
-                done.postValue(task.done)
-            }
+    fun setupWithTask(taskJson: String?) {
+        canDelete.value = (taskJson != null)
+        val json: String = taskJson ?: return
+        task = TaskModel.fromJson(json)
+        task?.let {
+            title.value = it.title
+            done.value = it.done
         }
     }
 
     fun save() {
         viewModelScope.launch {
-            if (_id == null) {
+            if (task == null) {
                 val taskModel = TaskModel(
-                    title = title.value ?: "",
-                    done = done.value ?: false,
+                    title = title.value,
+                    done = done.value,
                     deleted = false
                 )
                 dataManager.insertTaskModel(taskModel)
             } else {
-                // Update tasks into the ditto collection using DQL UPDATE statement
-                // https://docs.ditto.live/sdk/latest/crud/update#updating
-                _id?.let { id ->
-                    val taskModel = TaskModel(
-                        _id = id,
-                        title = title.value ?: "",
-                        done = done.value ?: false,
-                        deleted = false
-                    )
-                    dataManager.updateTaskModel(taskModel)
+                task?.let {
+                    //update the task before saving it to the database
+                    it.title = title.value
+                    it.deleted = false
+                    it.done = done.value
+
+                    dataManager.updateTaskModel(it)
                 }
             }
         }
@@ -57,8 +52,8 @@ class EditScreenViewModel(
 
     fun delete() {
         viewModelScope.launch {
-            _id?.let { id ->
-                dataManager.deleteTaskModel(id)
+            task?.let {
+                dataManager.deleteTaskModel(it._id)
             }
         }
     }

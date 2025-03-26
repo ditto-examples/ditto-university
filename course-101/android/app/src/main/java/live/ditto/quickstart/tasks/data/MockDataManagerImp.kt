@@ -20,8 +20,6 @@ class MockDataManagerImp(
 
     private val taskModels: MutableList<TaskModel> = mutableListOf()
 
-    override val syncEnabled: LiveData<Boolean> = MutableLiveData(true)
-
     override suspend fun populateTaskCollection() {
         if (taskModels.isEmpty()) {
             taskModels.addAll(
@@ -38,9 +36,8 @@ class MockDataManagerImp(
         }
     }
 
-    override suspend fun setSyncEnabled(enabled: Boolean?) {
-        val syncEnabledValue = syncEnabled as MutableLiveData<Boolean>
-        syncEnabledValue.value = enabled ?: true
+    override suspend fun setSyncEnabled(enabled: Boolean) {
+        //do work to set sync enabled
     }
 
     override fun getTaskModels(): Flow<List<TaskModel>> = callbackFlow {
