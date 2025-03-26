@@ -1,24 +1,25 @@
 package live.ditto.quickstart.tasks
 
-import android.content.Context
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import live.ditto.quickstart.tasks.models.DittoConfig
-import live.ditto.quickstart.tasks.services.ErrorService
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 import live.ditto.android.DefaultAndroidDittoDependencies
 import live.ditto.quickstart.tasks.data.CustomDirectoryAndroidDittoDependencies
 import live.ditto.quickstart.tasks.data.DittoManager
+import live.ditto.quickstart.tasks.models.DittoConfig
 import live.ditto.quickstart.tasks.models.TaskModel
+import live.ditto.quickstart.tasks.services.ErrorService
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.runner.RunWith
-import java.util.UUID
 import java.io.File
+import java.util.UUID
 
 /**
  * See [testing documentation](http://d.android.com/tools/testing).
@@ -51,7 +52,130 @@ class DittoManagerTests {
 
             //assert
             assertEquals(expectedTitles.size, tasks.size)
-            assertEquals(expectedTitles, tasks.map { it.title })
+            assertEquals(
+                expectedTitles.sorted(),
+                tasks.map { it.title }.sorted()
+            )
+        } finally {
+            cleanUpCollection(dittoManager)
+        }
+    }
+
+    @Test
+    fun testDittoInsertTaskModel() = runTest {
+        val dittoManager = createDittoManagerForTests()
+        try {
+            //arrange
+            val newTask = createInitialTaskModel()
+
+            //act
+            dittoManager.insertTaskModel(newTask)
+            advanceUntilIdle()
+
+            //assert
+            val tasks = dittoManager.getTaskModels().first()
+            val newCount = tasks.size
+            val insertedTask = tasks.find { it._id == newTask._id }
+            assertEquals(1, newCount)
+            assertEquals(newTask, insertedTask)
+        } finally {
+            cleanUpCollection(dittoManager)
+        }
+    }
+
+    @Test
+    fun testDittoUpdateTaskModel() = runTest {
+        val dittoManager = createDittoManagerForTests()
+        try {
+            //arrange
+            val newTask = createInitialTaskModel()
+            dittoManager.insertTaskModel(newTask)
+            advanceUntilIdle()
+
+            //act
+            val updatedTask = newTask.copy(title = "Updated Task", done = true)
+            dittoManager.updateTaskModel(updatedTask)
+            advanceUntilIdle()
+
+            //assert
+            val tasks = dittoManager.getTaskModels().first()
+            val newCount = tasks.size
+            val insertedTask = tasks.find { it._id == updatedTask._id }
+            assertEquals(1, newCount)
+            assertNotNull(insertedTask)
+            assertEquals(updatedTask, insertedTask)
+        } finally {
+            cleanUpCollection(dittoManager)
+        }
+    }
+
+    @Test
+    fun testDittoUpdateTaskModel_WhenDeleted() = runTest {
+        val dittoManager = createDittoManagerForTests()
+        try {
+            //arrange
+            val newTask = createInitialTaskModel()
+            dittoManager.insertTaskModel(newTask)
+            advanceUntilIdle()
+
+            //act
+            val updatedTask = newTask.copy(deleted = true)
+            dittoManager.updateTaskModel(updatedTask)
+            advanceUntilIdle()
+
+            //assert
+            val tasks = dittoManager.getTaskModels().first()
+            val newCount = tasks.size
+            assertEquals(0, newCount)
+        } finally {
+            cleanUpCollection(dittoManager)
+        }
+    }
+
+    @Test
+    fun testDittoToggleComplete() = runTest {
+        val dittoManager = createDittoManagerForTests()
+        try {
+            //arrange
+            val newTask = createInitialTaskModel()
+            dittoManager.insertTaskModel(newTask)
+            advanceUntilIdle()
+
+            //act
+            dittoManager.toggleComplete(newTask._id)
+            advanceUntilIdle()
+
+            //assert
+            val tasks = dittoManager.getTaskModels().first()
+            val newCount = tasks.size
+            assertEquals(1, newCount)
+            val insertedTask = tasks.find { it._id == newTask._id }
+            assertNotNull(insertedTask)
+            if (insertedTask != null) {
+                assertTrue(insertedTask.done)
+            }
+        } finally {
+            cleanUpCollection(dittoManager)
+        }
+    }
+
+    @Test
+    fun testDittoDeleteTaskModel() = runTest {
+        val dittoManager = createDittoManagerForTests()
+        try {
+            //arrange
+            val newTask = createInitialTaskModel()
+            dittoManager.insertTaskModel(newTask)
+            advanceUntilIdle()
+
+            //act
+            dittoManager.deleteTaskModel(newTask._id)
+            advanceUntilIdle()
+
+            //assert
+            val tasks = dittoManager.getTaskModels().first()
+            val newCount = tasks.size
+            assertEquals(0, newCount)
         } finally {
             cleanUpCollection(dittoManager)
         }
@@ -65,9 +189,11 @@ class DittoManagerTests {
             deleted = false)
     }
 
-    private fun createDittoManagerForTests() : DittoManager {
+    private suspend fun createDittoManagerForTests() : DittoManager {
         // Create a temporary directory for testing
-        val tempDir = File.createTempFile("ditto_test_${UUID.randomUUID()}", null)
+        val tempDir = withContext(Dispatchers.IO) {
+            File.createTempFile("ditto_test_${UUID.randomUUID()}", null)
+        }
         tempDir.delete()
         tempDir.mkdirs()
 
@@ -85,12 +211,18 @@ class DittoManagerTests {
             tempDir
         )
 
-        return DittoManager(
+        val dittoManager = DittoManager(
             dittoConfig = dittoConfig,
             context = appContext,
             androidDittoDependencies = customDependencies,
             errorService = createErrorService()
         )
+        dittoManager.ditto?.store?.execute(
+            "ALTER SYSTEM SET USER_COLLECTION_SYNC_SCOPES = :syncScopes",
+            mapOf("syncScopes" to mapOf(
+                "tasks" to "LocalPeerOnly"
+            )))
+        return dittoManager
     }
 
     private fun createErrorService() : ErrorService {

@@ -291,7 +291,7 @@ class DittoManager(
                 UPDATE tasks
                 SET title = :title,
                     done = :done,
-                    deleted = :deleted,
+                    deleted = :deleted
                 WHERE _id = :_id 
                 """
                 ditto?.store?.execute(
@@ -372,7 +372,7 @@ class DittoManager(
             try {
                 val query = """
                 UPDATE tasks
-                SET done = true
+                SET deleted = true
                 WHERE _id = :_id 
                 """
                 ditto?.store?.execute(
