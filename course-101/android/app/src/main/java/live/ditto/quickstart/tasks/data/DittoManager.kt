@@ -15,7 +15,6 @@ import live.ditto.DittoLogger
 import live.ditto.DittoStoreObserver
 import live.ditto.DittoSyncSubscription
 import live.ditto.android.AndroidDittoDependencies
-import live.ditto.android.DefaultAndroidDittoDependencies
 import live.ditto.quickstart.tasks.models.DittoConfig
 import live.ditto.quickstart.tasks.models.TaskModel
 import live.ditto.quickstart.tasks.services.ErrorService

@@ -1,6 +1,5 @@
 package live.ditto.quickstart.tasks.data
 
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 import live.ditto.quickstart.tasks.models.DittoConfig
 import live.ditto.quickstart.tasks.models.TaskModel
