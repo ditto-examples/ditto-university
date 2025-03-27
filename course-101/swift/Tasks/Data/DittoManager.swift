@@ -53,6 +53,13 @@ import DittoSwift
         //UPDATE CODE HERE
         
         do {
+            
+            //
+            //TODO:  setup transports for P2P
+            //
+            // Set the Ditto Websocket URL
+            // Enable all P2P transports
+            
             //Disable sync with v3 peers, required for DQL
             try ditto?.disableSyncWithV3()
             

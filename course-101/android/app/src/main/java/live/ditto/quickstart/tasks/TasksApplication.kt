@@ -4,6 +4,7 @@ import android.app.Application
 import live.ditto.android.DefaultAndroidDittoDependencies
 import live.ditto.quickstart.tasks.data.DataManager
 import live.ditto.quickstart.tasks.data.DittoManager
+import live.ditto.quickstart.tasks.data.MockDataManagerImp
 import live.ditto.quickstart.tasks.edit.EditScreenViewModel
 import live.ditto.quickstart.tasks.list.TasksListScreenViewModel
 import live.ditto.quickstart.tasks.models.DittoConfig
@@ -41,11 +42,21 @@ class TasksApplication : Application() {
            }
 
            // Create DittoManager with injected dependencies
-           single<DataManager> {
+           /*
+            single<DataManager> {
                DittoManager(
                    dittoConfig = get(),     // Koin will provide the DittoConfig instance
                    androidDittoDependencies = DefaultAndroidDittoDependencies(this@TasksApplication),
                    context = get(),         // Koin will provide the Application context
+                   errorService = get()
+               )
+           }
+           */
+
+           // Create MockDataManagerImp with injected dependencies
+           single<DataManager> {
+               MockDataManagerImp(
+                   dittoConfig = get(),
                    errorService = get()
                )
            }

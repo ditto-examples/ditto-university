@@ -37,6 +37,10 @@ class DittoManager(
         try {
             DittoLogger.minimumLogLevel = DittoLogLevel.DEBUG
 
+            //
+            //TODO: setup Ditto Identity
+            //
+            //UPDATE CODE HERE
             val identity = DittoIdentity.OnlinePlayground(
                 androidDittoDependencies,
                 dittoConfig.appId,
@@ -46,6 +50,9 @@ class DittoManager(
             )
             this.ditto = Ditto(androidDittoDependencies, identity)
 
+            //
+            //TODO:  setup transports for P2P
+            //
             // Set the Ditto Websocket URL
             // Enable all P2P transports
             ditto?.updateTransportConfig { config ->
@@ -95,6 +102,12 @@ class DittoManager(
 
             tasks.forEach { task ->
                 try {
+                    //
+                    //TODO: add tasks into the ditto collection using INSERT statment
+                    // https://docs.ditto.live/sdk/latest/crud/write#inserting-documents
+                    //
+
+                    //UPDATE CODE HERE
                     ditto?.store?.execute(
                         "INSERT INTO tasks INITIAL DOCUMENTS (:task)",
                         mapOf(
@@ -111,6 +124,58 @@ class DittoManager(
                     Log.e(TAG, "Unable to insert initial document", e)
                 }
             }
+        }
+    }
+
+    /**
+     * Creates a Flow that observes and emits changes to the tasks collection in Ditto.
+     * https://docs.ditto.live/sdk/latest/crud/read#using-args-to-query-dynamic-values
+     *
+     * This method:
+     * - Sets up a live query observer for the tasks collection
+     * - Emits a new list of TaskModel objects whenever the data changes
+     * - Automatically cleans up the observer when the flow is cancelled
+     *
+     * The query:
+     * - Returns all non-archived TaskModel (done = false)
+     * - Transforms raw Ditto data into TaskModel objects
+     *
+     * @return Flow<List<TaskModel>> A flow that emits updated lists of Tasks
+     * whenever changes occur in the collection
+     *
+     */
+    override fun getTaskModels(): Flow<List<TaskModel>> = callbackFlow {
+        try {
+            //
+            //TODO: - setup observer query, filter out NOT deleted
+            //
+
+            //UPDATE CODE HERE
+            val query = "SELECT * FROM tasks WHERE NOT deleted"
+
+            //
+            //TODO: - setup store observer with query and set array with TaskModel
+            //
+
+            //UPDATE CODE HERE
+            storeObserver = ditto?.store?.registerObserver(query) { results ->
+                val items = results.items.map { item ->
+                    TaskModel.fromMap(item.value)
+                }
+                trySend(items)
+            }
+            awaitClose {
+                //
+                //TODO: - Clean up the observer when the flow is cancelled
+                //
+
+                //UPDATE CODE HERE
+                storeObserver?.close()
+                storeObserver = null
+            }
+        } catch (e: Exception) {
+            errorService.showError("Failed to setup observer for getting taskModels: ${e.message}")
+            Log.e(TAG, "Failed to setup observer for getting taskModels", e)
         }
     }
 
@@ -171,8 +236,20 @@ class DittoManager(
         return withContext(Dispatchers.IO) {
             try {
                 ditto?.let {
+                    //
+                    //TODO: implement the startSync
+                    // https://docs.ditto.live/sdk/latest/install-guides/swift#integrating-and-initializing-sync
+                    //
+
+                    //UPDATE CODE HERE
                     it.startSync()
 
+                    //
+                    //TODO: implement the set subscription
+                    // https://docs.ditto.live/sdk/latest/sync/syncing-data#creating-subscriptions
+                    //
+
+                    //UPDATE CODE HERE
                     val subscriptionQuery = "SELECT * from tasks"
                     subscription = it.sync.registerSubscription(subscriptionQuery)
                 }
@@ -201,48 +278,18 @@ class DittoManager(
      */
     suspend fun stopSync() {
         return withContext(Dispatchers.IO) {
+            //
+            //implements stopping sync by calling cancel and setting object to nil
+            //and then running stopSync function
+            // https://docs.ditto.live/sdk/latest/sync/syncing-data#canceling-subscriptions
+            //
             subscription?.close()
             subscription = null
             ditto?.stopSync()
         }
     }
 
-    /**
-     * Creates a Flow that observes and emits changes to the tasks collection in Ditto.
-     * https://docs.ditto.live/sdk/latest/crud/read#using-args-to-query-dynamic-values
-     *
-     * This method:
-     * - Sets up a live query observer for the tasks collection
-     * - Emits a new list of TaskModel objects whenever the data changes
-     * - Automatically cleans up the observer when the flow is cancelled
-     *
-     * The query:
-     * - Returns all non-archived TaskModel (done = false)
-     * - Transforms raw Ditto data into TaskModel objects
-     *
-     * @return Flow<List<TaskModel>> A flow that emits updated lists of Tasks
-     * whenever changes occur in the collection
-     *
-     */
-    override fun getTaskModels(): Flow<List<TaskModel>> = callbackFlow {
-        try {
-            val query = "SELECT * FROM tasks WHERE NOT deleted"
-            storeObserver = ditto?.store?.registerObserver(query) { results ->
-                val items = results.items.map { item ->
-                    TaskModel.fromMap(item.value)
-                }
-                trySend(items)
-            }
-            // Clean up the observer when the flow is cancelled
-            awaitClose {
-                storeObserver?.close()
-                storeObserver = null
-            }
-        } catch (e: Exception) {
-            errorService.showError("Failed to setup observer for getting taskModels: ${e.message}")
-            Log.e(TAG, "Failed to setup observer for getting taskModels", e)
-        }
-    }
+
 
     /**
      * Creates a new TaskModel document in the Ditto store.
@@ -256,7 +303,21 @@ class DittoManager(
     override suspend fun insertTaskModel(taskModel: TaskModel) {
         return withContext(Dispatchers.IO) {
             try {
+                //
+                // TODO - write INSERT DQL Statement
+                // https://docs.ditto.live/dql/insert
+                // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
+                //
+
+                //UPDATE CODE HERE
                 val query = "INSERT INTO tasks DOCUMENTS (:newTask)"
+
+                //
+                //TODO: use dittoInstance store to execute DQL with arguments
+                // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
+                //
+
+                //UPDATE CODE HERE
                 ditto?.store?.execute(
                     query,
                     mapOf(
@@ -286,6 +347,13 @@ class DittoManager(
     override suspend fun updateTaskModel(taskModel: TaskModel) {
         return withContext(Dispatchers.IO) {
             try {
+                //
+                //TODO: write UPDATE DQL Statement
+                // https://docs.ditto.live/dql/update#basic-update
+                // https://docs.ditto.live/sdk/latest/crud/update#updating
+                //
+
+                //UPDATE CODE HERE
                 val query = """
                 UPDATE tasks
                 SET title = :title,
@@ -293,6 +361,13 @@ class DittoManager(
                     deleted = :deleted
                 WHERE _id = :_id 
                 """
+
+                //
+                //TODO: use dittoInstance store to execute DQL with arguments
+                // https://docs.ditto.live/sdk/latest/crud/update#updating
+                //
+
+                //UPDATE CODE HERE
                 ditto?.store?.execute(
                     query,
                     mapOf(
@@ -336,12 +411,25 @@ class DittoManager(
 
                     val done = doc.value["done"] as Boolean
 
+                    //
+                    //TODO: write UPDATE DQL Statement
+                    // https://docs.ditto.live/dql/update#basic-update
+                    // https://docs.ditto.live/sdk/latest/crud/update#updating
+                    //
+
+                    //UPDATE CODE HERE
                     val query = """
                         UPDATE tasks
                         SET done = :done 
                         WHERE _id == :_id
                     """
 
+                    //
+                    //TODO: use dittoInstance store to execute DQL with arguments
+                    // https://docs.ditto.live/sdk/latest/crud/update#updating
+                    //
+
+                    // UPDATE CODE HERE
                     it.store.execute(
                         query,
                         mapOf(
@@ -369,6 +457,11 @@ class DittoManager(
     override suspend fun deleteTaskModel(id: String) {
         return withContext(Dispatchers.IO) {
             try {
+                //
+                //TODO: write UPDATE DQL Statement using Soft-Delete pattern
+                // https://docs.ditto.live/sdk/latest/crud/delete#soft-delete-pattern
+                //
+                //UPDATE CODE HERE
                 val query = """
                 UPDATE tasks
                 SET deleted = true
