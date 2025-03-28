@@ -2,8 +2,8 @@ package live.ditto.quickstart.tasks
 
 import android.app.Application
 import live.ditto.android.DefaultAndroidDittoDependencies
-import live.ditto.quickstart.tasks.data.DataManager
 import live.ditto.quickstart.tasks.data.DittoManager
+import live.ditto.quickstart.tasks.data.DataManager
 import live.ditto.quickstart.tasks.data.MockDataManagerImp
 import live.ditto.quickstart.tasks.edit.EditScreenViewModel
 import live.ditto.quickstart.tasks.list.TasksListScreenViewModel
@@ -47,7 +47,6 @@ class TasksApplication : Application() {
                DittoManager(
                    dittoConfig = get(),     // Koin will provide the DittoConfig instance
                    androidDittoDependencies = DefaultAndroidDittoDependencies(this@TasksApplication),
-                   context = get(),         // Koin will provide the Application context
                    errorService = get()
                )
            }

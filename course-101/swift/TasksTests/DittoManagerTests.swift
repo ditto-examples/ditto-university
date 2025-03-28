@@ -225,7 +225,7 @@ struct DittoManagerTests {
    
     private func createDittoManagerForTests() async throws -> Tasks.DittoManager  {
         let appManager = createTestAppManager()
-        let dittoManager = try await Tasks.DittoManager(appManager: appManager)
+        let dittoManager = Tasks.DittoManager(appManager: appManager)
         // setup logging
         DittoLogger.enabled = true
         DittoLogger.minimumLogLevel = .debug
@@ -244,12 +244,17 @@ struct DittoManagerTests {
             // Initialize Ditto with test-specific directory
             dittoManager.ditto = Ditto(
                 identity: .onlinePlayground(
-                    appID: appManager.appConfig.appId,
+                    appID: appManager.appConfig.appID,
                     token: appManager.appConfig.authToken,
-                    enableDittoCloudSync: true
+                    enableDittoCloudSync: false,
+                    customAuthURL: URL(string: appManager.appConfig.authURL)
                 ),
                 persistenceDirectory: testDirectoryPath
             )
+            try await dittoManager.ditto?.store.execute(
+                query: "ALTER SYSTEM SET USER_COLLECTION_SYNC_SCOPES = :syncScopes",
+                arguments: ["syncScopes":
+                        [ "tasks": "LocalPeerOnly"]])
             
             try dittoManager.ditto?.disableSyncWithV3()
         } catch {

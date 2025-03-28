@@ -9,14 +9,21 @@
             DittoLogger.minimumLogLevel = .debug
         }
         
-        //TODO: setup Ditto Identity
         ditto = Ditto(
-            identity: .onlinePlayground(
-                appID: appManager.appConfig.appId,
-                token: appManager.appConfig.authToken,
-                enableDittoCloudSync: true
-            )
-        )
+	        identity: .onlinePlayground(
+		    appID: appManager.appConfig.appId,
+		    token: appManager.appConfig.authToken,
+		    enableDittoCloudSync: false,
+		    customAuthURL: appManager.appConfig.authURL,
+		    )
+	    )
+        // Set the Ditto Websocket URL
+        var config = DittoTransportConfig()
+        config.connect.webSocketURLs.insert(appManager.appConfig.websocketURL)
+
+        // TODO: enable all P2P transports
+
+        ditto?.transportConfig = config
         do {
             //Disable sync with v3 peers, required for DQL
             try ditto?.disableSyncWithV3()
