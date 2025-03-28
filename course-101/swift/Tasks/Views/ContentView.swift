@@ -15,7 +15,7 @@ struct ContentView: View {
             List {
                 Section(
                     header: VStack {
-                        Text("App ID: \(dataManager.appManager.appConfig.appId)")
+                        Text("App ID: \(dataManager.appManager.appConfig.appID)")
                         Text("Token: \(dataManager.appManager.appConfig.authToken)")
                     }
                         .font(.caption)

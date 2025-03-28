@@ -7,10 +7,11 @@ To see the app in action running with mock data, let's build and run the app by 
 2. Launch Xcode and open the `/course-101/swift/Tasks.xcodeproj` project.
 
 3. Open the `dittoConfig.plist` file:
-	- Replace `put appId here` with your AppId listed on the portal
-	- Replace `put online playground auth token here` with the Online Playground Authentication Token from the Ditto portal.
-	- Replace `put Cloud URL Endpoint here` with the Auth URL from the Ditto portal.
-	- Replace `put Cloud Websocket URL here` with the Websocket URL from the Ditto portal.
+	- Replace `put App ID here` in the appID key with your AppId listed on the portal
+	- Replace `put Online Playground Authentication Token here` in the authToken key with the Online Playground Authentication Token from the Ditto portal.
+	- Replace `put Auth URL here` in the authURL keywith the Auth URL from the Ditto portal.
+	- Replace `put Websocket URL here` in the websocketURL key with the Websocket URL from the Ditto portal.
+
 4. In order to run on a physical device, you will need to update the `Team` that the project is signed with.  Navigate to the project **Signing & Capabilities** tab and modify the **Team** and **Bundle Identifier** settings to your Apple developer account credentials to provision building to your device.
 
 5. In Xcode, select a connected iOS device or iOS Simulator as the destination.
