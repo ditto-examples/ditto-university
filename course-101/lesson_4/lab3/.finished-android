@@ -1,0 +1,23 @@
+override suspend fun deleteTaskModel(id: String) {
+	return withContext(Dispatchers.IO) {
+		try {
+			//
+			// https://docs.ditto.live/sdk/latest/crud/delete#soft-delete-pattern
+			//
+			val query = """
+			UPDATE tasks
+			SET deleted = true
+			WHERE _id = :_id 
+			"""
+			ditto?.store?.execute(
+				query,
+				mapOf(
+					"_id" to id,
+				)
+			)
+		} catch (e: Exception) {
+			errorService.showError("Failed to archive taskModel: ${e.message}")
+			Log.e(TAG, "Failed to archive taskModel:", e)
+		}
+	}
+}

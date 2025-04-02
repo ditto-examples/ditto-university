@@ -1,0 +1,21 @@
+override suspend fun insertTaskModel(taskModel: TaskModel) {
+	return withContext(Dispatchers.IO) {
+		try {
+			val query = "INSERT INTO tasks DOCUMENTS (:newTask)"
+			ditto?.store?.execute(
+				query,
+				mapOf(
+					"newTask" to mapOf(
+						"_id" to taskModel._id,
+						"title" to taskModel.title,
+						"done" to taskModel.done,
+						"deleted" to taskModel.deleted
+					)
+				)
+			)
+		} catch (e: Exception) {
+			errorService.showError("Failed to add taskModel: ${e.message}")
+			Log.e(TAG, "Failed to add taskModel:", e)
+		}
+	}
+}

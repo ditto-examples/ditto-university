@@ -40,24 +40,6 @@ class DittoManager(
             //TODO: setup Ditto Identity
             //
             //UPDATE CODE HERE
-            val identity = DittoIdentity.OnlinePlayground(
-                androidDittoDependencies,
-                dittoConfig.appId,
-                dittoConfig.authToken,
-                false,
-                dittoConfig.authUrl
-            )
-            this.ditto = Ditto(androidDittoDependencies, identity)
-
-            //
-            //TODO:  setup transports for P2P
-            //
-            // Set the Ditto Websocket URL
-            ditto?.updateTransportConfig { config ->
-                config.connect.websocketUrls.add(dittoConfig.websocketUrl)
-                // TODO: enable all P2P transports
-                config.enableAllPeerToPeer()
-            }
 
             // disable sync with v3 peers, required for syncing with the Ditto Cloud (Big Peer)
             this.ditto?.disableSyncWithV3()
@@ -107,17 +89,6 @@ class DittoManager(
                     //
 
                     //UPDATE CODE HERE
-                    ditto?.store?.execute(
-                        "INSERT INTO tasks INITIAL DOCUMENTS (:task)",
-                        mapOf(
-                            "task" to mapOf(
-                                "_id" to task._id,
-                                "title" to task.title,
-                                "done" to task.done,
-                                "deleted" to task.deleted,
-                            )
-                        )
-                    )
                 } catch (e: Exception) {
                     errorService.showError("Unable to insert initial documents: ${e.message}")
                     Log.e(TAG, "Unable to insert initial document", e)
@@ -150,19 +121,14 @@ class DittoManager(
             //
 
             //UPDATE CODE HERE
-            val query = "SELECT * FROM tasks WHERE NOT deleted"
+            val query = ""
 
             //
             //TODO: - setup store observer with query and set array with TaskModel
             //
 
             //UPDATE CODE HERE
-            storeObserver = ditto?.store?.registerObserver(query) { results ->
-                val items = results.items.map { item ->
-                    TaskModel.fromMap(item.value)
-                }
-                trySend(items)
-            }
+
             awaitClose {
                 //
                 //TODO: - Clean up the observer when the flow is cancelled
@@ -241,7 +207,6 @@ class DittoManager(
                     //
 
                     //UPDATE CODE HERE
-                    it.startSync()
 
                     //
                     //TODO: implement the set subscription
@@ -249,8 +214,6 @@ class DittoManager(
                     //
 
                     //UPDATE CODE HERE
-                    val subscriptionQuery = "SELECT * from tasks"
-                    subscription = it.sync.registerSubscription(subscriptionQuery)
                 }
             } catch (e: Exception) {
                 errorService.showError("Failed to start ditto sync: ${e.message}")
@@ -309,7 +272,7 @@ class DittoManager(
                 //
 
                 //UPDATE CODE HERE
-                val query = "INSERT INTO tasks DOCUMENTS (:newTask)"
+                val query = ""
 
                 //
                 //TODO: use dittoInstance store to execute DQL with arguments
@@ -317,17 +280,7 @@ class DittoManager(
                 //
 
                 //UPDATE CODE HERE
-                ditto?.store?.execute(
-                    query,
-                    mapOf(
-                        "newTask" to mapOf(
-                            "_id" to taskModel._id,
-                            "title" to taskModel.title,
-                            "done" to taskModel.done,
-                            "deleted" to taskModel.deleted
-                        )
-                    )
-                )
+
             } catch (e: Exception) {
                 errorService.showError("Failed to add taskModel: ${e.message}")
                 Log.e(TAG, "Failed to add taskModel:", e)
@@ -353,13 +306,7 @@ class DittoManager(
                 //
 
                 //UPDATE CODE HERE
-                val query = """
-                UPDATE tasks
-                SET title = :title,
-                    done = :done,
-                    deleted = :deleted
-                WHERE _id = :_id 
-                """
+                val query = ""
 
                 //
                 //TODO: use dittoInstance store to execute DQL with arguments
@@ -367,15 +314,7 @@ class DittoManager(
                 //
 
                 //UPDATE CODE HERE
-                ditto?.store?.execute(
-                    query,
-                    mapOf(
-                        "title" to taskModel.title,
-                        "done" to taskModel.done,
-                        "deleted" to taskModel.deleted,
-                        "_id" to taskModel._id
-                    )
-                )
+
             } catch (e: Exception) {
                 errorService.showError("Failed to update taskModel: ${e.message}")
                 Log.e(TAG, "Failed to update taskModel:", e)
@@ -384,32 +323,16 @@ class DittoManager(
     }
 
     /**
-     * Updates an existing TaskModel in the Ditto store, setting the done
-     * field to true.
+     * Updates existing TaskModel's properties in the Ditto store.
+     * https://docs.ditto.live/sdk/latest/crud/update#updating
+     * Implementation details:
+     * - Uses DQL to update the document
      *
-     * This method:
-     * - Updates the done field to true
-     * - Maintains the taskModel's ID and references
-     * - Triggers a sync with other devices
-     *
-     * The taskModel object should have:
-     * - A unique ID
-     * - All required fields populated
-     *
-     * @param id The _id TaskModel object to update
-     * @throws Exception if the insert operation fails
+     * @param taskModel The TaskModel object containing updated values
      */
-    override suspend fun toggleComplete(id: String) {
+    override suspend fun toggleComplete(taskModel: TaskModel) {
         return withContext(Dispatchers.IO) {
             try {
-                ditto?.let {
-                    val doc = it.store.execute(
-                        "SELECT * FROM tasks WHERE _id = :_id AND NOT deleted",
-                        mapOf("_id" to id)
-                    ).items.first()
-
-                    val done = doc.value["done"] as Boolean
-
                     //
                     //TODO: write UPDATE DQL Statement
                     // https://docs.ditto.live/dql/update#basic-update
@@ -417,11 +340,7 @@ class DittoManager(
                     //
 
                     //UPDATE CODE HERE
-                    val query = """
-                        UPDATE tasks
-                        SET done = :done 
-                        WHERE _id == :_id
-                    """
+                    val query = ""
 
                     //
                     //TODO: use dittoInstance store to execute DQL with arguments
@@ -429,14 +348,7 @@ class DittoManager(
                     //
 
                     // UPDATE CODE HERE
-                    it.store.execute(
-                        query,
-                        mapOf(
-                            "done" to !done,
-                            "_id" to id
-                        )
-                    )
-                }
+                
             } catch (e: Exception) {
                 errorService.showError("Failed to update taskModel: ${e.message}")
                 Log.e(TAG, "Failed to update taskModel:", e)
@@ -461,17 +373,9 @@ class DittoManager(
                 // https://docs.ditto.live/sdk/latest/crud/delete#soft-delete-pattern
                 //
                 //UPDATE CODE HERE
-                val query = """
-                UPDATE tasks
-                SET deleted = true
-                WHERE _id = :_id 
-                """
-                ditto?.store?.execute(
-                    query,
-                    mapOf(
-                        "_id" to id,
-                    )
-                )
+                val query = ""
+
+
             } catch (e: Exception) {
                 errorService.showError("Failed to archive taskModel: ${e.message}")
                 Log.e(TAG, "Failed to archive taskModel:", e)

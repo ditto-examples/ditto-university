@@ -306,12 +306,9 @@ class DittoManager(
         return withContext(Dispatchers.IO) {
             try {
                 //
-                //TODO: write UPDATE DQL Statement
                 // https://docs.ditto.live/dql/update#basic-update
                 // https://docs.ditto.live/sdk/latest/crud/update#updating
                 //
-
-                //UPDATE CODE HERE
                 val query = """
                 UPDATE tasks
                 SET title = :title,
@@ -321,11 +318,8 @@ class DittoManager(
                 """
 
                 //
-                //TODO: use dittoInstance store to execute DQL with arguments
                 // https://docs.ditto.live/sdk/latest/crud/update#updating
                 //
-
-                //UPDATE CODE HERE
                 ditto?.store?.execute(
                     query,
                     mapOf(
@@ -416,10 +410,8 @@ class DittoManager(
         return withContext(Dispatchers.IO) {
             try {
                 //
-                //TODO: write UPDATE DQL Statement using Soft-Delete pattern
                 // https://docs.ditto.live/sdk/latest/crud/delete#soft-delete-pattern
                 //
-                //UPDATE CODE HERE
                 val query = """
                 UPDATE tasks
                 SET deleted = true

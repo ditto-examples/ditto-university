@@ -323,32 +323,16 @@ class DittoManager(
     }
 
     /**
-     * Updates an existing TaskModel in the Ditto store, setting the done
-     * field to true.
+     * Updates existing TaskModel's properties in the Ditto store.
+     * https://docs.ditto.live/sdk/latest/crud/update#updating
+     * Implementation details:
+     * - Uses DQL to update the document
      *
-     * This method:
-     * - Updates the done field to true
-     * - Maintains the taskModel's ID and references
-     * - Triggers a sync with other devices
-     *
-     * The taskModel object should have:
-     * - A unique ID
-     * - All required fields populated
-     *
-     * @param id The _id TaskModel object to update
-     * @throws Exception if the insert operation fails
+     * @param taskModel The TaskModel object containing updated values
      */
-    override suspend fun toggleComplete(id: String) {
+    override suspend fun toggleComplete(taskModel: TaskModel) {
         return withContext(Dispatchers.IO) {
             try {
-                ditto?.let {
-                    val doc = it.store.execute(
-                        "SELECT * FROM tasks WHERE _id = :_id AND NOT deleted",
-                        mapOf("_id" to id)
-                    ).items.first()
-
-                    val done = doc.value["done"] as Boolean
-
                     //
                     //TODO: write UPDATE DQL Statement
                     // https://docs.ditto.live/dql/update#basic-update
@@ -364,7 +348,7 @@ class DittoManager(
                     //
 
                     // UPDATE CODE HERE
-                }
+                
             } catch (e: Exception) {
                 errorService.showError("Failed to update taskModel: ${e.message}")
                 Log.e(TAG, "Failed to update taskModel:", e)
