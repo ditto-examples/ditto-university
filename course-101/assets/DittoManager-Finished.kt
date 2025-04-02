@@ -220,20 +220,8 @@ class DittoManager(
         return withContext(Dispatchers.IO) {
             try {
                 ditto?.let {
-                    //
-                    //TODO: implement the startSync
-                    // https://docs.ditto.live/sdk/latest/install-guides/swift#integrating-and-initializing-sync
-                    //
-
-                    //UPDATE CODE HERE
                     it.startSync()
 
-                    //
-                    //TODO: implement the set subscription
-                    // https://docs.ditto.live/sdk/latest/sync/syncing-data#creating-subscriptions
-                    //
-
-                    //UPDATE CODE HERE
                     val subscriptionQuery = "SELECT * from tasks"
                     subscription = it.sync.registerSubscription(subscriptionQuery)
                 }
@@ -287,21 +275,7 @@ class DittoManager(
     override suspend fun insertTaskModel(taskModel: TaskModel) {
         return withContext(Dispatchers.IO) {
             try {
-                //
-                // TODO - write INSERT DQL Statement
-                // https://docs.ditto.live/dql/insert
-                // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
-                //
-
-                //UPDATE CODE HERE
                 val query = "INSERT INTO tasks DOCUMENTS (:newTask)"
-
-                //
-                //TODO: use dittoInstance store to execute DQL with arguments
-                // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
-                //
-
-                //UPDATE CODE HERE
                 ditto?.store?.execute(
                     query,
                     mapOf(
