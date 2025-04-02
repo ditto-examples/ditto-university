@@ -1,4 +1,4 @@
-# Lab 2:  Register Observer
+# Lab 2:  Register Observer - Swift UI iOS Application
 
 The Ditto Manager provides a `@Published` property `tasks` which is an array of `TaskModel` objects.  
 

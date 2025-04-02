@@ -1,0 +1,19 @@
+ override fun getTaskModels(): Flow<List<TaskModel>> = callbackFlow {
+        try {
+            val query = "SELECT * FROM tasks WHERE NOT deleted"
+
+            storeObserver = ditto?.store?.registerObserver(query) { results ->
+                val items = results.items.map { item ->
+                    TaskModel.fromMap(item.value)
+                }
+                trySend(items)
+            }
+            awaitClose {
+                storeObserver?.close()
+                storeObserver = null
+            }
+        } catch (e: Exception) {
+            errorService.showError("Failed to setup observer for getting taskModels: ${e.message}")
+            Log.e(TAG, "Failed to setup observer for getting taskModels", e)
+        }
+    }

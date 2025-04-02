@@ -145,18 +145,8 @@ class DittoManager(
      */
     override fun getTaskModels(): Flow<List<TaskModel>> = callbackFlow {
         try {
-            //
-            //TODO: - setup observer query, filter out NOT deleted
-            //
-
-            //UPDATE CODE HERE
             val query = "SELECT * FROM tasks WHERE NOT deleted"
 
-            //
-            //TODO: - setup store observer with query and set array with TaskModel
-            //
-
-            //UPDATE CODE HERE
             storeObserver = ditto?.store?.registerObserver(query) { results ->
                 val items = results.items.map { item ->
                     TaskModel.fromMap(item.value)
@@ -164,11 +154,6 @@ class DittoManager(
                 trySend(items)
             }
             awaitClose {
-                //
-                //TODO: - Clean up the observer when the flow is cancelled
-                //
-
-                //UPDATE CODE HERE
                 storeObserver?.close()
                 storeObserver = null
             }
