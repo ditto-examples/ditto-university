@@ -27,6 +27,7 @@ import java.util.UUID
 @OptIn(ExperimentalCoroutinesApi::class)
 class DittoManagerTests {
 
+    @Test
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -213,7 +214,6 @@ class DittoManagerTests {
 
         val dittoManager = DittoManager(
             dittoConfig = dittoConfig,
-            context = appContext,
             androidDittoDependencies = customDependencies,
             errorService = createErrorService()
         )

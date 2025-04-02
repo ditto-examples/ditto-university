@@ -76,10 +76,10 @@ With this code now replaced, we can run the unit test to verify that the followi
 - The ditto instance was initialized `init` function the with the App ID, Online Playground Authentication Token, Auth URL, and Websocket URL
 - The `populateTaskCollection()`  function was updated with the DQL statement to insert the task into the task collection.
 
-The `populateTaskCollection` function has an integration test that can be used to validate that your code is working properly.  To run the integration tests, you can open up the `DittoManagerTests` class from the `live.ditto.quickstart.tasks` androidTest folder. Locate the `testDittoPopulateTaskCollection` function and then us the play icon on the left to select `Run testDittoPopulateTaskCollection` menu that appears.  This will run the unit test and verify that the task collection was populated with the correct data.
+The `populateTaskCollection` function has an integration test that can be used to validate that your code is working properly.  To run the integration tests, you can open up the `DittoManagerTests` class from the `live.ditto.quickstart.tasks` androidTest folder. Locate the `testDittoPopulateTaskCollection` function and then use the play icon on the left to select `Run testDittoPopulateTaskCollection` menu that appears.  This will run the unit test and verify that the task collection was populated with the correct data.
 
-![Unit Tests](../../assets/unit-tests.gif)
+![Unit Tests](../../assets/android-unit-tests.gif)
 
-You should see a message that the `Test Succeeded!`   Congratulations - virtual high five 🙏! You've done your first major task of replacing the mock data with a real Ditto database.  Let's move on to the next step of adding offline-first data persistence.  
+You should see a message that the `Test Passed!`   Congratulations - virtual high five 🙏! You've done your first major task of replacing the mock data with a real Ditto database.  Let's move on to the next step of adding offline-first data persistence.  
 
 [Return to the lesson](../README.md) to continue.

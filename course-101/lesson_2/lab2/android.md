@@ -10,7 +10,7 @@ Open the [`DittoManager.kt`](../../android/app/src/main/java/data/DittoManager.k
   //
   //UPDATE CODE HERE
 ```
-You can find this quickly by using the Structure toolbar in Android Studio.
+You can find this quickly by using the Structure toolbar in Android Studio.  To open the Structure toolbar, you can use the shortcut `Ctrl+7` (Windows/Linux) or `Cmd+7` (macOS).
 
 ![Structure toolbar](./assets/select-identity-kotlin.gif)
 
