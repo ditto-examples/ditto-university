@@ -19,13 +19,23 @@ Since the credentials are already available through the `appManager`, we can use
 ```swift
 ditto = Ditto(
 	identity: .onlinePlayground(
-		appID: appManager.appConfig.appId,
+		appID: appManager.appConfig.appID,
 		token: appManager.appConfig.authToken,
-		enableDittoCloudSync: true
+		enableDittoCloudSync: false,
+		customAuthURL: URL(string: appManager.appConfig.authURL)
 	)
 )
+// Set the Ditto Websocket URL
+var config = DittoTransportConfig()
+config.connect.webSocketURLs.insert(appManager.appConfig.websocketURL)
+
+// TODO: enable all P2P transports
+
+ditto?.transportConfig = config
 ```
 
-As you can see we are using the identity type of `onlinePlayground`.  This tells the Ditto SDK to connect to the Ditto Cloud and use the app ID and online playground token for authentication.  The enableDittoCloudSync flag tells the SDK to use the Ditto Cloud for sync. 
+As you can see we are using the identity type of `onlinePlayground`.  This tells the Ditto SDK to connect to the Ditto Cloud and use the app ID and online playground token for authentication.  The enableDittoCloudSync flag is required to be false in order for it to use the customAuthURL provided by the appConfig.
+
+Note we also set the Ditto Websocket URL and have a TODO comment about P2P that we will handle in a future lab. 
 
 [Return to the lesson](../README.md) to continue.

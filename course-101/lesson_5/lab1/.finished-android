@@ -1,0 +1,15 @@
+private suspend fun startSync() {
+	return withContext(Dispatchers.IO) {
+		try {
+			ditto?.let {
+				it.startSync()
+
+				val subscriptionQuery = "SELECT * from tasks"
+				subscription = it.sync.registerSubscription(subscriptionQuery)
+			}
+		} catch (e: Exception) {
+			errorService.showError("Failed to start ditto sync: ${e.message}")
+			Log.e(TAG, "Failed to start ditto sync", e)
+		}
+	}
+}

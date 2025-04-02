@@ -1,1 +1,25 @@
-// TODO add finished method
+    init {
+        try {
+            DittoLogger.minimumLogLevel = DittoLogLevel.DEBUG
+
+            val identity = DittoIdentity.OnlinePlayground(
+                androidDittoDependencies,
+                dittoConfig.appId,
+                dittoConfig.authToken,
+                false,
+                dittoConfig.authUrl
+            )
+            this.ditto = Ditto(androidDittoDependencies, identity)
+
+            ditto?.updateTransportConfig { config ->
+                config.connect.websocketUrls.add(dittoConfig.websocketUrl)
+            	  // TODO: enable all P2P transports
+            }
+
+            // disable sync with v3 peers, required for syncing with the Ditto Cloud (Big Peer)
+            this.ditto?.disableSyncWithV3()
+
+        } catch (e: DittoError) {
+            errorService.showError("Failed to initialize Ditto: ${e.message}")
+        }
+    }

@@ -1,0 +1,55 @@
+override suspend fun insertTaskModel(taskModel: TaskModel) {
+	return withContext(Dispatchers.IO) {
+		try {
+			val query = "INSERT INTO tasks DOCUMENTS (:newTask)"
+			ditto?.store?.execute(
+				query,
+				mapOf(
+					"newTask" to mapOf(
+						"_id" to taskModel._id,
+						"title" to taskModel.title,
+						"done" to taskModel.done,
+						"deleted" to taskModel.deleted
+					)
+				)
+			)
+		} catch (e: Exception) {
+			errorService.showError("Failed to add taskModel: ${e.message}")
+			Log.e(TAG, "Failed to add taskModel:", e)
+		}
+	}
+}
+
+override suspend fun updateTaskModel(taskModel: TaskModel) {
+	return withContext(Dispatchers.IO) {
+		try {
+			//
+			// https://docs.ditto.live/dql/update#basic-update
+			// https://docs.ditto.live/sdk/latest/crud/update#updating
+			//
+			val query = """
+			UPDATE tasks
+			SET title = :title,
+				done = :done,
+				deleted = :deleted
+			WHERE _id = :_id 
+			"""
+
+			//
+			// https://docs.ditto.live/sdk/latest/crud/update#updating
+			//
+			ditto?.store?.execute(
+				query,
+				mapOf(
+					"title" to taskModel.title,
+					"done" to taskModel.done,
+					"deleted" to taskModel.deleted,
+					"_id" to taskModel._id
+				)
+			)
+		} catch (e: Exception) {
+			errorService.showError("Failed to update taskModel: ${e.message}")
+			Log.e(TAG, "Failed to update taskModel:", e)
+		}
+	}
+}

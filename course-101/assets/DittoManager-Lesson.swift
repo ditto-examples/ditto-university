@@ -10,7 +10,7 @@ import DittoSwift
     
     func initialize() async throws
     func populateTaskCollection() async throws
-    func setSyncEnabled(_ newValue: Bool) throws
+    func setSyncEnabled(_ newValue: Bool) 
     func insertTaskModel(_ task: TaskModel) async
     func updateTaskModel(_ task: TaskModel) async
     func toggleComplete(task: TaskModel) async
@@ -21,7 +21,6 @@ import DittoSwift
 
 // MARK: DittoManager Implementation
 @MainActor class DittoManager : ObservableObject, DataManager {
-    
     @Published var tasks = [TaskModel]()
     @Published var isPresentingEditScreen: Bool = false
     @Published var selectedTaskModel: TaskModel?
@@ -48,14 +47,11 @@ import DittoSwift
             DittoLogger.minimumLogLevel = .debug
         }
         
+        //
         //TODO: setup Ditto Identity
-        ditto = Ditto(
-            identity: .onlinePlayground(
-                appID: appManager.appConfig.appId,
-                token: appManager.appConfig.authToken,
-                enableDittoCloudSync: true
-            )
-        )
+        //
+        //UPDATE CODE HERE
+        
         do {
             //Disable sync with v3 peers, required for DQL
             try ditto?.disableSyncWithV3()
@@ -114,16 +110,16 @@ extension DittoManager {
         
         let initialTasks: [TaskModel] = [
             TaskModel(
-                _id: "50191411-4C46-4940-8B72-5F8017A04FA811",
+                _id: "50191411-4C46-4940-8B72-5F8017A04FA7",
                 title: "Buy groceries"),
             TaskModel(
-                _id: "6DA283DA-8CFE-4526-A6FA-D385089364E811",
+                _id: "6DA283DA-8CFE-4526-A6FA-D385089364E5",
                 title: "Clean the kitchen"),
             TaskModel(
-                _id: "5303DDF8-0E72-4FEB-9E82-4B007E5797F911",
+                _id: "5303DDF8-0E72-4FEB-9E82-4B007E5797F0",
                 title: "Schedule dentist appointment"),
             TaskModel(
-                _id: "38411F1B-6B49-4346-90C3-0B16CE97E17911",
+                _id: "38411F1B-6B49-4346-90C3-0B16CE97E174",
                 title: "Pay bills"),
         ]
         
@@ -134,18 +130,8 @@ extension DittoManager {
                     //TODO: add tasks into the ditto collection using INSERT statment
                     // https://docs.ditto.live/sdk/latest/crud/write#inserting-documents
                     //
-                    try await dittoInstance.store.execute(
-                        query: "INSERT INTO tasks INITIAL DOCUMENTS (:task)",
-                        arguments: [
-                            "task":
-                                [
-                                    "_id": task._id,
-                                    "title": task.title,
-                                    "done": task.done,
-                                    "deleted": task.deleted,
-                                ]
-                        ]
-                    )
+                    
+                    //UPDATE CODE HERE
                 }
             } catch {
                 appManager.setError(error)
@@ -170,19 +156,17 @@ extension DittoManager {
     func registerObservers() throws {
         if let dittoInstance = ditto {
             
+            //
             //TODO: - setup observer query, filter out NOT deleted
-            let observerQuery = "SELECT * FROM tasks WHERE NOT deleted"
+            //
             
+            //UPDATE CODE HERE
+            
+            //
             //TODO: - setup store observer with query and set array with TaskModel
-            storeObserver = try dittoInstance.store.registerObserver(query: observerQuery)
-            { [weak self] results in
-                Task { @MainActor in
-                    // Create new TaskModel instances and update the published property
-                    self?.tasks = results.items.compactMap{
-                        TaskModel($0.jsonString())
-                    }
-                }
-            }
+            //
+            
+            //UPDATE CODE HERE
         }
     }
 }
@@ -198,7 +182,7 @@ extension DittoManager {
 ///
 extension DittoManager {
     
-    func setSyncEnabled(_ newValue: Bool) {
+   func setSyncEnabled(_ newValue: Bool) {
         if let dittoInstance = ditto {
             if !dittoInstance.isSyncActive && newValue {
                 startSync()
@@ -215,14 +199,15 @@ extension DittoManager {
                 //TODO: implement the startSync
                 // https://docs.ditto.live/sdk/latest/install-guides/swift#integrating-and-initializing-sync
                 //
-                try dittoInstance.startSync()
+                
+                //UPDATE CODE HERE
                 
                 //
                 //TODO: implement the set subscription
                 // https://docs.ditto.live/sdk/latest/sync/syncing-data#creating-subscriptions
                 //
-                let subscriptionQuery = "SELECT * from tasks"
-                subscription = try dittoInstance.sync.registerSubscription(query: subscriptionQuery)
+                
+                //UPDATE CODE HERE
             }
         } catch {
             appManager.setError(error)
@@ -261,7 +246,9 @@ extension DittoManager {
         // https://docs.ditto.live/dql/insert
         // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
         //
-        let query = "INSERT INTO tasks DOCUMENTS (:newTask)"
+        
+        //UPDATE CODE HERE
+        let query = ""
         
         do {
             if let dittoInstance = ditto {
@@ -269,8 +256,8 @@ extension DittoManager {
                 //TODO: use dittoInstance store to execute DQL with arguments
                 // https://docs.ditto.live/sdk/latest/crud/create#creating-documents
                 //
-                try await dittoInstance.store.execute(
-                    query: query, arguments: ["newTask": newTask])
+                
+                //UPDATE CODE HERE
             }
         } catch {
             appManager.setError(error)
@@ -291,13 +278,9 @@ extension DittoManager {
         // https://docs.ditto.live/dql/update#basic-update
         // https://docs.ditto.live/sdk/latest/crud/update#updating
         //
-        let query = """
-                UPDATE tasks SET
-                    title = :title,
-                    done = :done,
-                    deleted = :deleted
-                WHERE _id == :_id
-                """
+        
+        //UPDATE CODE HERE
+        let query = ""
         
         do {
             if let dittoInstance = ditto {
@@ -305,15 +288,8 @@ extension DittoManager {
                 //TODO: use dittoInstance store to execute DQL with arguments
                 // https://docs.ditto.live/sdk/latest/crud/update#updating
                 //
-                try await dittoInstance.store.execute(
-                    query: query,
-                    arguments: [
-                        "title": task.title,
-                        "done": task.done,
-                        "deleted": task.deleted,
-                        "_id": task._id,
-                    ]
-                )
+                
+                //UPDATE CODE HERE
             }
         } catch {
             appManager.setError(error)
@@ -342,15 +318,13 @@ extension DittoManager {
         let done = !task.done
         
         //
-        //TODO: write toggle UPDATE DQL Statement
+        //TODO: write UPDATE DQL Statement
         // https://docs.ditto.live/dql/update#basic-update
         // https://docs.ditto.live/sdk/latest/crud/update#updating
         //
-        let query = """
-                UPDATE tasks
-                SET done = :done 
-                WHERE _id == :_id
-                """
+        
+        //UPDATE CODE HERE
+        let query = ""
         
         do {
             if let dittoInstance = ditto {
@@ -358,10 +332,8 @@ extension DittoManager {
                 //TODO: use dittoInstance store to execute DQL with arguments
                 // https://docs.ditto.live/sdk/latest/crud/update#updating
                 //
-                try await dittoInstance.store.execute(
-                    query: query,
-                    arguments: ["done": done, "_id": task._id]
-                )
+                
+                // UPDATE CODE HERE
             }
         } catch {
             appManager.setError(error)
@@ -385,22 +357,23 @@ extension DittoManager {
     /// - Throws: A DittoError if the archive operation fails
     func deleteTaskModel(_ task: TaskModel) async {
         //
-        //TODO - write UPDATE DQL Statement using Soft-Delete pattern
+        //TODO: write UPDATE DQL Statement using Soft-Delete pattern
         // https://docs.ditto.live/sdk/latest/crud/delete#soft-delete-pattern
         //
-        let query = "UPDATE tasks SET deleted = true WHERE _id = :_id"
+        
+        //UPDATE CODE HERE
+        let query = ""
         do {
             if let dittoInstance = ditto {
                 //
                 //TODO: use dittoInstance store to execute DQL with arguments
                 // https://docs.ditto.live/sdk/latest/crud/update#updating
                 //
-                try await dittoInstance.store.execute(
-                    query: query, arguments: ["_id": task._id])
+                
+                //UPDATE CODE HERE
             }
         } catch {
             appManager.setError(error)
         }
     }
 }
-
