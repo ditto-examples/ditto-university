@@ -1,1 +1,1 @@
-# Lab 1: Building and Running the Swift UI iOS Application
+# Lab 1: Adding a Second Device with SwiftUI iOS Application 
