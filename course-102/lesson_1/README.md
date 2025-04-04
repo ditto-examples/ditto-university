@@ -2,7 +2,7 @@
 
 ## Multiple Small Peers
 
-In order to experience the full power of Ditto, we'll want to run our application on multiple devices (or simulators). This wil enable us to see how changes made on one device are seamlessly replicated to the other devices. To keep things simple, in this course we'll just be using two devices, but you are welcome to apply this to as many devices as you like. 
+In order to experience the full power of Ditto, we'll want to run our application on multiple devices (or simulators), syncing to each other without using the Big Peer. This will enable us to see how changes made on one device are seamlessly replicated to the other devices. To keep things simple, in this course we'll just be using two devices, but you are welcome to apply this to as many devices as you like. 
 
 ### The Ditto Mesh
 
