@@ -1,1 +1,0 @@
-# Lab 1: Adding a Second Device with SwiftUI iOS Application 
