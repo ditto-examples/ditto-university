@@ -194,9 +194,10 @@ struct MockDataManagerTests {
     }
 
     private func createTestAppManager() -> Tasks.AppManager {
-        let config = Tasks.DittoConfig(endpointUrl: "http://localhost:8080",
-                                       appId: "test_app",
-                                       authToken: "test_token")
+        let config = Tasks.DittoConfig(appID: "test_app",
+                                       authToken: "test_token",
+                                       authURL: "https://localhost",
+                                       websocketURL: "ws://localhost")
         let appManager = Tasks.AppManager(configuration: config)
         return appManager
     }
