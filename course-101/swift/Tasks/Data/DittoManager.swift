@@ -240,7 +240,6 @@ extension DittoManager {
     ///
     /// - Throws: A DittoError if the insert operation fails
     func insertTaskModel(_ task: TaskModel) async {
-        let newTask = task.value
         //
         // TODO - write INSERT DQL Statement
         // https://docs.ditto.live/dql/insert
