@@ -42,8 +42,8 @@ Now we can setup a subscription query to tell Ditto what data we want to synchro
 
 ## Coding Tasks:  
 
-- Update the second TODO comment with a new variable `subscriptionQuery` that defines a DQL SELECT statement to select all the data from the `tasks` collection, without any filters (no WHERE clause).  
-- Call the `dittoInstance.sync.registerSubscription(query: subscriptionQuery)` method to create the subscription. 
+- Update the second TODO comment with a new variable `subscriptionQuery` that defines a DQL SELECT statement to select all the data from the `tasks` collection, with a filter that filters out any of the tasks that aren't deleted.  You can use the NOT keyword to check a false value (i.e. NOT deleted).
+- Call the `try dittoInstance.sync.registerSubscription(query: subscriptionQuery)` method to create the subscription.
 
 ### Validate the app still builds and runs 
 
