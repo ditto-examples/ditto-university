@@ -58,9 +58,20 @@ The process of network discovery involves peers attempting to create a presence 
 
 Once devices discover each other through direct connections, they then share information about these direct connections with other peers throughout the mesh. This sharing helps build and regularly update the presence graph on each device, which acts like a map. This "map" allows devices to find routes to other peers, even if they aren't directly connected, enabling multihop links. This constant process of discovery and connection management ensures continuous connectivity and helps prevent the isolation of device groups, known as `islanding`.
 
+## Collection Sync Scopes
+
+User Collection Sync Scopes allow fine-grained control over how data in each collection is shared with other peers that are connected to the Peer-to-Peer Mesh. You can choose to:
+	•	Prevent a collection from syncing entirely
+	•	Sync only with Ditto Server (a “Big Peer”)
+	•	Sync only with nearby devices (Small Peers)
+
+This configuration helps reduce unnecessary data transfer, control document flow, and improve performance.
+
+Note: Sync scopes are defined per collection. Even if a document matches a peer’s subscription, it will not sync unless the collection’s scope allows it.
+
 ## Lab 1: Configuring Collection Sync 
 
-In this lab, we will configure `Collection Sync Scopes` — settings that control how data from each collection is shared with connected peers. This allows you to fine-tune which collections sync with other Edge Peers, with the Ditto Cloud, or even prevent certain collections from syncing altogether.
+In this lab, we will configure `Collection Sync Scopes` — settings that control how data from each collection is shared with connected peers.  To test our application syncing only to other peers, we will update the `Collection Sync Scopes` for the `task` collection and set it to sync only with nearby devices rather than sync with the Ditto Cloud (`Big Peer`).
 
 Follow the instructions based on what platform you are using:
 
