@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>authURL</key>
+	<string>put Auth URL here</string>
+	<key>appID</key>
+	<string>put App ID here</string>
+	<key>websocketURL</key>
+	<string>put Websocket URL here</string>
+	<key>authToken</key>
+	<string>put Online Playground Authentication Token here
+put Online Playground Authentication Token here</string>
+</dict>
+</plist>
