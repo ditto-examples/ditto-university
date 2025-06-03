@@ -330,7 +330,7 @@ class DittoManager(
      *
      * @param taskModel The TaskModel object containing updated values
      */
-    override suspend fun toggleComplete(taskModel: TaskModel) {
+    override suspend fun toggleComplete(id: String) {
         return withContext(Dispatchers.IO) {
             try {
                     //
