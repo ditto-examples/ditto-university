@@ -49,7 +49,9 @@ class DittoManagerTests {
             //act
             dittoManager.populateTaskCollection()
             advanceUntilIdle()
-            val tasks = dittoManager.getTaskModels().first()
+            val results = dittoManager.ditto?.store?.execute("SELECT * FROM tasks WHERE NOT deleted")
+            val tasks = results?.items?.map { TaskModel.fromMap(it.value) } ?: emptyList()
+
 
             //assert
             assertEquals(expectedTitles.size, tasks.size)

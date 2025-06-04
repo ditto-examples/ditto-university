@@ -203,7 +203,7 @@ class DittoManager(
                 ditto?.let {
                     //
                     //TODO: implement the startSync
-                    // https://docs.ditto.live/sdk/latest/install-guides/swift#integrating-and-initializing-sync
+                    // https://docs.ditto.live/sdk/latest/install-guides/kotlin#integrating-and-initializing
                     //
 
                     //UPDATE CODE HERE
@@ -330,7 +330,7 @@ class DittoManager(
      *
      * @param taskModel The TaskModel object containing updated values
      */
-    override suspend fun toggleComplete(taskModel: TaskModel) {
+    override suspend fun toggleComplete(id: String) {
         return withContext(Dispatchers.IO) {
             try {
                     //

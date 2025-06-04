@@ -42,6 +42,7 @@ class TasksApplication : Application() {
            }
 
            // Create DittoManager with injected dependencies
+           /*
             single<DataManager> {
                DittoManager(
                    dittoConfig = get(),     // Koin will provide the DittoConfig instance
@@ -49,16 +50,15 @@ class TasksApplication : Application() {
                    errorService = get()
                )
            }
+            */
 
            // Create MockDataManagerImp with injected dependencies
-           /*
            single<DataManager> {
                MockDataManagerImp(
                    dittoConfig = get(),
                    errorService = get()
                )
            }
-            */
 
            // Create TasksListScreenViewModel with injected DittoManager
            viewModel { TasksListScreenViewModel(get(), this@TasksApplication) }

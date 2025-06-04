@@ -1,6 +1,6 @@
 # Lab 1: Populate the Task Collection
 
-Find the [`populateTaskCollection()`](../../android/app/src/main/java/live/ditto/quickstart/tasks/data/DittoManager.kt#L75) function in the [`DittoManager.swift`](https://github.com/ditto-examples/ditto-university/blob/main/course-101/android/app/src/main/java/live/ditto/quickstart/tasks/data/DittoManager.kt) file.  This is the place to populate the task collection with data.  
+Find the [`populateTaskCollection()`](../../android/app/src/main/java/live/ditto/quickstart/tasks/data/DittoManager.kt#L75) function in the [`DittoManager.kt`](https://github.com/ditto-examples/ditto-university/blob/main/course-101/android/app/src/main/java/live/ditto/quickstart/tasks/data/DittoManager.kt) file.  This is the place to populate the task collection with data.  
 
 The existing code should look like this:
 
