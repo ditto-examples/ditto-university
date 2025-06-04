@@ -203,7 +203,7 @@ class DittoManager(
                 ditto?.let {
                     //
                     //TODO: implement the startSync
-                    // https://docs.ditto.live/sdk/latest/install-guides/swift#integrating-and-initializing-sync
+                    // https://docs.ditto.live/sdk/latest/install-guides/kotlin#integrating-and-initializing
                     //
 
                     //UPDATE CODE HERE
