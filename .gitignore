@@ -2,4 +2,5 @@
 .DS_Store
 .idea/
 .vscode/
-course-101/android/.gradle
+.gradle
+local.properties

@@ -180,7 +180,7 @@ fun TasksList(
     onClickDelete: ((taskId: String) -> Unit)? = null,
 ) {
     LazyColumn {
-        items(tasks) { task ->
+        items(tasks, key = { it._id }) { task ->
             TaskRow(
                 task = task,
                 onToggle = { onToggle?.invoke(it._id) },
