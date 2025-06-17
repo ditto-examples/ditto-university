@@ -2,11 +2,13 @@
 
 ## Overview
 
-Too many of today's mobile applications are neutered when they have no connectivity. When wifi is down or there is no cellular connection, the applications stop working. Ditto is different. Ditto allows applications to continue operating in environments with hostile or zero connectivity. In this quick course we'll demonstrate how you can build great, fully functional applications that share their data, even when working offline, using the power of peer to peer replication. 
+Too many of today's mobile applications are neutered when they have no connectivity. When wifi is down or there is no cellular connection, the applications stop working. Ditto is different. Ditto allows applications to continue operating in environments with hostile or zero connectivity. In this quick course we'll demonstrate how you can build great, fully functional applications that share their data, even when working offline, using the power of peer-to-peer replication. 
 
 ## 🎯 The Scenario
 
-In [course-101](../course-101/README.md) you learnt how to build your first Ditto-powered App. That used our Cloud service (Big Peer) to replicate data. We're going to build on that and show how multiple devices can communicate and share data, even without that Big Peer connection. We'll start by setting up multiple devices running the same app - creating our first mesh. Then we'll demonstrate how updates made to the same documents are shared across this mesh including how conflicts are handled as well as deletions. We'll explore some of the communication mechanisms that form the backbone of this mesh. The outcome will be an app that seamlessly synchronises data across devices without any external cloud connection!
+In [course-101](../course-101/README.md) you learn how to build your first Ditto-powered App. That used the Ditto Cloud to replicate data. We're going to build on that and show how multiple devices can communicate and share data, even without a connection to the Ditto Cloud. 
+
+We'll start by setting up multiple devices running the same app - creating our first mesh. Then we'll demonstrate how updates made to the same documents are shared across this mesh including how conflicts are handled as well as deletions. We'll explore some of the communication mechanisms that form the backbone of this mesh. The outcome will be an app that seamlessly synchronises data across devices without any external cloud connection!
 
 
 ## 🎓 Learning Objectives
@@ -22,8 +24,8 @@ This course will teach you the following:
 ## 📖 Table of Contents
 | Course | Topics |
 | -------|-------- |
-| Lesson 1 [Setting Up Multiple Devices](lesson_1/README.md) |* TODO |
-| Lesson 2 [Sync, Subscriptions and Observers](lesson_2/README.md) | •TODO |
+| Lesson 1 [Networking and Discovery](lesson_1/README.md) |* TODO |
+| Lesson 2 [Setting Up Multiple Devices](lesson_2/README.md) | •TODO |
 | Lesson 3 [Making Changes Offline](lesson_3/README.md) | • TODO |
 | Lesson 4 [Introduction to Handling Conflicts](lesson_4/README.md) | • TODO |
 | Lesson 5 [Deletion and Eviction](lesson_5/README.md) | * TODO |
