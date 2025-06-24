@@ -13,9 +13,6 @@ Android Emulators are virtual devices that run on your computer, allowing you to
 - **Bluetooth/WiFi Limitations**: Emulators cannot use Bluetooth or WiFi to connect to other devices, which is essential for Ditto's mesh networking
 - **Multicast Support**: The emulator currently doesn't support multicast protocols (mDNS and DNS-SD) used for device discovery
 
-> [!NOTE] 
-> On Windows, you can use the Android Emulator with the [Hyper-V](https://learn.microsoft.com/en-us/dotnet/maui/android/emulator/hardware-acceleration?view=net-maui-9.0#accelerate-with-hyper-v) virtual machine manager if you use [Visual Studio 2022](https://learn.microsoft.com/en-us/dotnet/maui/android/emulator/?view=net-maui-9.0) to make the Android Emulator.  By theory Hyper-V could allow you to create a virtual network that allows emulators to communicate with each other, however, is not officially supported by Google and may not work as expected. 
-
 For testing Ditto's mesh networking with Android, we recommend at least two physical Android devices.
 
 ### iOS/iPadOS Simulators 
@@ -23,11 +20,10 @@ For testing Ditto's mesh networking with Android, we recommend at least two phys
 Apple's iOS/iPadOS Simulator provides a convenient way to test applications, but with some important considerations:
 
 - **Hardware Simulation**: The simulator only partially simulates the operating system and hardware capabilities
-- **Bluetooth Limitations**: Full Bluetooth functionality is not supported
-- **Mesh Networking**: The simulator does support Ditto's mesh networking using:
+- **Bluetooth Limitations**: Bluetooth functionality is not supported
+- **Mesh Networking**: The simulator does support Ditto's mesh networking using the host MacOS network interfaces:
   - WiFi connections
-  - AWDL (Apple Wireless Direct Link)
-  - Communication between multiple iOS/iPadOS/macOS devices
+  - LAN connections 
 
 ### Cross Platform Development
 
@@ -53,9 +49,9 @@ Follow the platform-specific instructions:
 
 ## ❓ Knowledge Check 
 
-1. What is AWDL? 
-2. What is Wi-Fi Aware? 
-3. True or False; An Android Emulator can use Bluetooth or WiFi to connect to other devices. 
+1. True or False; An Android Emulator can use Bluetooth or WiFi to connect to other devices. 
+2. True or False; An iOS Simulator can use Bluetooth to connect to other devices. 
+3. True or False; An iOS Simulator can use LAN or WIFI on the host (MacOS) to connect to other devices. 
 
 The answers can be found in the [answer file](.answer).
 
@@ -74,11 +70,7 @@ The answers can be found in the [answer file](.answer).
 
 ## Next Steps
 
-Now that we have multiple devices set up, we can explore how data synchronization works across the mesh network. In the next lesson, we'll dive into:
-- Real-time data synchronization
-- Subscription management
-- Observer patterns
-- Conflict resolution
+Now that we have multiple devices set up, we can explore how data synchronization works across the mesh network. 
 
-[Continue to Lesson 2 - Sync, Subscriptions and Observers →](../lesson_2/README.md)
+[Continue to Lesson 3 -  →](../lesson_3/README.md)
 

@@ -30,6 +30,14 @@ This course will teach you the following:
 | Lesson 4 [Introduction to Handling Conflicts](lesson_4/README.md) | • TODO |
 | Lesson 5 [Deletion and Eviction](lesson_5/README.md) | * TODO |
 
+## 📦 Source Code
+
+| Platform | Source Code |
+| -------- | ----------- |
+| Android | [ditto-university/course-102/android](https://github.com/ditto-examples/ditto-university/tree/main/course-102/android) |
+| Swift | [ditto-university/course-102/swift](https://github.com/ditto-examples/ditto-university/tree/main/course-102/swift) |
+
+
 ## 🚀 Ready to Begin?
 
 Head to [Lesson 1 - Create Your Account](lesson_1/README.md) to get started! 

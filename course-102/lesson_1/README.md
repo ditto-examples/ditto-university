@@ -14,7 +14,7 @@ When you you see the word Mesh referenced, we will be referring to a collection 
 
 ## AWDL and Wi-Fi Aware
 
-In addition to Bluetooth LE, LAN, and WebSocket transports, Ditto’s mesh technology takes advantage of platform-specific peer-to-peer technologies to establish fast, local connections — even when devices are not on the same traditional Wi-Fi network.
+In addition to Bluetooth LE, LAN, and WebSocket transports, Ditto's mesh technology takes advantage of platform-specific peer-to-peer technologies to establish fast, local connections — even when devices are not on the same traditional Wi-Fi network.
 
 ### AWDL (Apple Wireless Direct Link)
 
@@ -58,33 +58,50 @@ The process of network discovery involves peers attempting to create a presence 
 
 Once devices discover each other through direct connections, they then share information about these direct connections with other peers throughout the mesh. This sharing helps build and regularly update the presence graph on each device, which acts like a map. This "map" allows devices to find routes to other peers, even if they aren't directly connected, enabling multihop links. This constant process of discovery and connection management ensures continuous connectivity and helps prevent the isolation of device groups, known as `islanding`.
 
-## Collection Sync Scopes
+## TransportConfig 
 
-User Collection Sync Scopes allow fine-grained control over how data in each collection is shared with other peers that are connected to the Peer-to-Peer Mesh. You can choose to:
-	•	Prevent a collection from syncing entirely
-	•	Sync only with Ditto Server (a “Big Peer”)
-	•	Sync only with nearby devices (Small Peers)
+The `TransportConfig` is a configuration object that allows you to configure the Ditto SDK to use different transports for different purposes.  It is a powerful tool that allows you to customize the behavior of the Ditto SDK to your specific needs.  By default when you create a new Ditto instance, the `TransportConfig` is set to automatically attempts to connect to other instances on the Local Area Network (LAN), Bluetooth Low Energy (LE), Apple Wireless Direct Link (AWDL), and Wi-Fi Aware.  You can use the TransportConfig to enable or disable different tranports that Ditto uses to communicate between nodes in the Ditto Mesh.
 
-This configuration helps reduce unnecessary data transfer, control document flow, and improve performance.
+When you provide a WebsocketURL in the `TransportConfig`, you are telling the Ditto SDK how to connect to a Ditto Server or the Ditto Cloud.  In this lesson, we will comment out the `Websocket` transport from the `TransportConfig` to disable sync to the Ditto Cloud so we can test syncing to other small peers (Ditto SDK) only.
 
-Note: Sync scopes are defined per collection. Even if a document matches a peer’s subscription, it will not sync unless the collection’s scope allows it.
+> [!NOTE] 
+>When you create a new TransportConfig object rather than update the existing on a Ditt instance, you will need to manually enable peer-to-peer as new TransportConfig objects do not automatically enable peer-to-peer.  See the [documentation](https://docs.ditto.live/sdk/latest/sync/customizing-transport-configurations) for more information.
 
-## Lab 1: Configuring Collection Sync 
+## Lab 1: Remove Websocket in TransportConfig to Disable Sync to Ditto Cloud 
 
-In this lab, we will configure `Collection Sync Scopes` — settings that control how data from each collection is shared with connected peers.  To test our application syncing only to other peers, we will update the `Collection Sync Scopes` for the `task` collection and set it to sync only with nearby devices rather than sync with the Ditto Cloud (`Big Peer`).
+In this lab, we will remove the `Websocket` section of the TransportConfig.  By doing this, we will disable sync to the Ditto Cloud.  
 
 Follow the instructions based on what platform you are using:
 
-- [Configuring Collection Sync Scopes - Swift UI iOS Application](lab1/swift.md)
-- [Configuring Collection Sync Scopes - Android JetPack Compose with Kotlin Application](lab1/android.md)
-- [Configuring Collection Sync Scopes - Flutter Application](lab1/flutter.md)
+- [Remove Websocket in Transport Config - Swift UI iOS Application](lab1/swift.md)
+- [Remove Websocket in Transport Config - Android JetPack Compose with Kotlin Application](lab1/android.md)
+- [Remove Websocket in Transport Config - Flutter Application](lab1/flutter.md)
 
 ## ❓ Knowledge Check 
 
 1. What is a Mesh?
+   a) A collection of devices that are connected together and synchronising
+   b) A single device running the Ditto SDK
+   c) A cloud-based database service
+   d) A type of wireless router
+
 2. Which is not a communication method used to create the mesh?
+   a) Bluetooth LE
+   b) Wi-Fi Aware
+   c) LAN
+   d) IPX/SPX 
+
 3. What is the purpose of the Ditto Multiplexer?
-4. What does Collection Sync Scopes control?
+   a) To compress data to save bandwidth
+   b) To encrypt all data before transmission
+   c) To manage the different transports that Ditto uses to communicate between nodes in the Ditto Mesh.
+   d) To authenticate users before allowing connections
+
+4. What does the TransportConfig control?
+   a) The user interface of the application
+   b) The different transports that Ditto uses to communicate between nodes in the Ditto Mesh.
+   c) The database schema and structure
+   d) The authentication and security settings
 
 The answers can be found in the [answer file](.answer).
 
@@ -94,12 +111,11 @@ The answers can be found in the [answer file](.answer).
 - The Ditto Mesh and how it works
 - The Ditto Multiplexer and how it works
 - The process of device discovery and how it works
-- How to configure Collection Sync Scopes
+- How TransportConfig works and how to use it to disable sync to Ditto Server/Cloud
 
 ## 📚 References
-TODO
 - [Ditto Mesh Networking](https://docs.ditto.live/key-concepts/mesh-networking)
-- [Collection Sync Scopes](https://docs.ditto.live/sdk/latest/sync/sync-scopes)
+- [Ditto TransportConfig](https://docs.ditto.live/sdk/latest/sync/customizing-transport-configurations)
 
 ## Next Steps
 
