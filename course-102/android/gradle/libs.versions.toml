@@ -16,6 +16,7 @@ koin-bom = "4.0.2"
 coroutes-tests = "1.8.0"
 ditto = "4.11.0"
 monitor = "1.7.2"
+dittoTools = "4.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +43,7 @@ koin-android = { group = "io.insert-koin", name = "koin-android" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose" }
 koin-androidx-compose-navigation = { group = "io.insert-koin", name = "koin-androidx-compose-navigation" }
 live-ditto = { group = "live.ditto", name = "ditto", version.ref = "ditto" }
+ditto-tools-android = { group = "live.ditto", name = "ditto-tools-android", version.ref = "dittoTools" }
 kotlinx-coroutines = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutes-tests" }
 androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
 

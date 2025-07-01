@@ -69,14 +69,6 @@ fun TasksListScreen(
                                 text = "Ditto Tasks",
                                 style = MaterialTheme.typography.titleMedium
                             )
-                            Text(
-                                text = "App ID: ${viewModel.dataManager.dittoConfig.appId}",
-                                style = TextStyle(fontSize = 10.sp)
-                            )
-                            Text(
-                                text = "Token: ${viewModel.dataManager.dittoConfig.authToken}",
-                                style = TextStyle(fontSize = 10.sp)
-                            )
                         }
                     }
                 },

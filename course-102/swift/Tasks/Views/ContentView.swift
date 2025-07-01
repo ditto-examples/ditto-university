@@ -1,5 +1,7 @@
 import SwiftUI
 import Combine
+import DittoPresenceViewer
+import DittoSwift
 
 // MARK: ContentView
 struct ContentView: View {
@@ -53,6 +55,13 @@ struct ContentView: View {
                             }
                     }
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        viewModel.isPresentingPresenceView.toggle()
+                    } label: {
+                        Image(systemName: "info.circle.fill")
+                    }
+                }
                 ToolbarItem(placement: .bottomBar) {
                     HStack {
                         Spacer()
@@ -72,14 +81,41 @@ struct ContentView: View {
             .sheet(
                 isPresented: $dataManager.isPresentingEditScreen,
                 content: {
-                    EditTaskModelView(taskModel: dataManager.selectedTaskModel)
+                        EditTaskModelView(taskModel: dataManager.selectedTaskModel)
                 })
-            
+            .sheet(isPresented: $viewModel.isPresentingPresenceView) {
+                if let ditto = dataManager.ditto {
+                    PresenceSheetView(ditto: ditto) {
+                        viewModel.isPresentingPresenceView = false
+                    }
+                }
+            }
         }
         .task(id: ObjectIdentifier(dataManager)) {
             await viewModel.initialize(dataManager: dataManager)
-            viewModel.setSyncEnabled(syncEnabled)
+            do {
+                try viewModel.setSyncEnabled(syncEnabled)
+            } catch {
+                syncEnabled = false
+            }
             
+        }
+    }
+    
+    private func PresenceSheetView(ditto: Ditto, onDismiss: @escaping () -> Void) -> some View {
+        VStack {
+            HStack {
+                Spacer()
+                Text("Presence Viewer")
+                    .font(.title3)
+                    .padding()
+                Spacer()
+                Button("Done") {
+                    onDismiss()
+                }
+                .padding()
+            }
+            PresenceView(ditto: ditto)
         }
     }
     
@@ -119,6 +155,7 @@ extension ContentView {
         //TODO: update to DittoManager
         private var dataManager:  DittoManager?
         var tasks: [TaskModel] = []
+        var isPresentingPresenceView = false
         
         deinit {
             cancellables.removeAll()
@@ -136,7 +173,7 @@ extension ContentView {
                 .store(in: &cancellables)
         }
         
-        func setSyncEnabled(_ newValue: Bool) {
+        func setSyncEnabled(_ newValue: Bool) throws {
             dataManager?.setSyncEnabled(newValue)
         }
         
