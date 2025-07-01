@@ -1,4 +1,4 @@
-# Lesson 2 🚀 Running on Multiple Devices
+# Lesson 2 🚀 Testing P2P - Multiple Devices
 
 ## Emulators, Simulators and Physical Devices
 
