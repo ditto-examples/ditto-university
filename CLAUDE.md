@@ -37,7 +37,7 @@
   - All labs for Android are done in Kotlin.
 - Labs are built in a way that we try to give the developer enough information for them to complete a task.
 - Tasks can be writing new code, observing an application, or testing the application to validate that any changes produce the desired result. 
-- All intractions with the Ditto SDK should be done in the DittoManager class.  This is to help developers understand the code and not get lost in the concepts.  This is also to help developers understand the concepts and not get lost in the code. 
+- All intractions with the Ditto SDK should be done in the DittoManager class.  This is to help developers understand the code and not get lost in the concepts.  This also means the developer usually only needs to focus on a single file.
 - We should always try to limit the developer to the number of changes they need to make to complete a task in a lab.  This is also to help developers understand the concepts and not get lost in the code of having to modify too many files in a single lab. 
 
 # General Rules
