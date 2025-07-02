@@ -97,33 +97,12 @@ Once devices are running your app:
   - Uninstall previous versions
   - Disable Play Protect temporarily
 
-## Best Practices
-
-1. **Test on diverse devices:**
-   - Different Android versions (API levels)
-   - Various screen sizes and densities
-   - Different manufacturers
-
-2. **Use Wireless Debugging (Android 11+):**
-   - Settings → Developer options → Wireless debugging
-   - Pair using QR code or pairing code
-   - No USB cables required
-
-3. **Monitor performance:**
-   - Use Android Studio Profiler
-   - Check memory usage with multiple devices
-   - Monitor battery impact
-
-4. **Logging and debugging:**
-   - Use device-specific log filters
-   - Add device name/ID to log messages
-   - Use different log colors per device
 
 ## Next Steps
 
-With multiple devices running:
+Now that you can run multiple simulators, try:
+- Creating data on one device and watching it sync to others
+- Testing conflict resolution by modifying the same data on multiple devices
+- Simulating network partitions by turning sync mode on/off 
 
-- Test Ditto mesh network formation
-- Simulate offline scenarios by toggling airplane mode
-- Test edge cases with devices joining/leaving the mesh
-- Measure sync performance across different device types  
+[Return to the lesson](../README.md) to continue.

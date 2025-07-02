@@ -4,12 +4,6 @@
 
 In this lab, you'll learn how to run your Ditto-enabled SwiftUI application on multiple iOS simulators simultaneously. This is essential for testing P2P communication between devices during development.
 
-## Prerequisites
-
-- Xcode 15.0 or later
-- Your Ditto-enabled SwiftUI app from previous lessons
-- macOS with sufficient resources to run multiple simulators
-
 ## Running Multiple iOS Simulators
 
 ### Method 1: Using Xcode's Built-in Tools
@@ -76,9 +70,8 @@ xcrun simctl launch booted com.yourcompany.yourapp
 Once you have multiple simulators running:
 
 1. **Verify Ditto is initialized** on each simulator
-2. **Check the network indicator** to ensure devices can see each other
-3. **Perform actions** in one simulator and verify they sync to others
-4. **Monitor the console** for Ditto peer discovery logs
+2. **Perform actions** by modifying data in one simulator and verify the data is updated on the other simulator 
+3. **Monitor the console** for Ditto peer discovery logs
 
 ## Troubleshooting Tips
 
@@ -86,16 +79,11 @@ Once you have multiple simulators running:
 - **Network Issues**: Ensure all simulators are on the same network (they share your Mac's network by default)
 - **Simulator Limit**: macOS typically supports 2-3 simultaneous simulators depending on your hardware
 
-## Best Practices
-
-1. **Use different device types** to test various screen sizes
-2. **Reset simulators** between test sessions to ensure clean state: Device → Erase All Content and Settings
-3. **Enable console logging** to monitor Ditto's P2P discovery process
-4. **Test offline scenarios** by disabling WiFi on individual simulators
-
 ## Next Steps
 
 Now that you can run multiple simulators, try:
 - Creating data on one device and watching it sync to others
 - Testing conflict resolution by modifying the same data on multiple devices
-- Simulating network partitions by turning airplane mode on/off 
+- Simulating network partitions by turning sync mode on/off 
+
+[Return to the lesson](../README.md) to continue.
