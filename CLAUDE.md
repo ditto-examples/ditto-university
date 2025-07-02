@@ -43,8 +43,8 @@
 # General Rules
 - Ditto University complements the Ditto SDK documentation that can be found at:  https://docs.ditto.live/
 - If you don't know how to do something, and you can't find accurate and up-to-date information from sources such as online documentation, content in Notion or Linear, or a tool's help output or manpages, then ask about an approach before doing it instead of guessing.
-- Before checking in any changes, you should validate that the apps for each platform compile and run as expected with the "DittoManager-Finished" file.  This is a sanity check to make sure that the app compiles and works as expected when the Ditto SDK is updated without having to manually redo all the labs by hand.
-- Before checking in, you should revert the changes to the "DittoManager-Finished" file to the "DittoManager-Lesson" file, otherwise developers will already have all the code completed for them for all labs in the course which is NOT WHAT WE WANT. 
+- Before checking in any changes, you should validate that the apps for each platform compile and run as expected with the "DittoManager-Finished" file.  This is done by replacing the "DittoManager" file in the application with the "DittoManager-Finished" file in the asset folder.    This is a sanity check to make sure that the app compiles and works as expected when the Ditto SDK is updated without having to manually redo all the labs by hand.
+- Before checking in, you must revert the changes to the "DittoManager" file to the "DittoManager-Lesson" file found in the asset folder, otherwise developers will already have all the code completed for them for all labs in the course which is NOT WHAT WE WANT. 
 - All changes should be checked into a seperate branch with a PR posted with a clear description of the changes.
 - You should only have 1 course changes in your PR.  If you are working on multiple courses, you should create a separate PR for each course.
 - The description of the PR should be clear and concise.  It should explain the changes made and the reasoning behind the changes.  
