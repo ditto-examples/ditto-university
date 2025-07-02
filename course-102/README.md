@@ -26,7 +26,7 @@ This course will teach you the following:
 | -------|-------- |
 | Lesson 1 [Networking and Discovery](lesson_1/README.md) |* TODO |
 | Lesson 2 [Testing P2P - Multiple Devices](lesson_2/README.md) | •TODO |
-| Lesson 3 [Making Changes Offline](lesson_3/README.md) | • TODO |
+| Lesson 3 [Presence Viewer](lesson_3/README.md) | • TODO |
 | Lesson 4 [Introduction to Handling Conflicts](lesson_4/README.md) | • TODO |
 
 ## 📦 Source Code
